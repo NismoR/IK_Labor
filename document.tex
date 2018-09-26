@@ -21,7 +21,7 @@
 \usepackage{setspace}  % Ettol a tablazatok, abrak, labjegyzetek maradnak 1-es sorkozzel!
 \usepackage[hang]{caption}
 \usepackage{hyperref}
-
+\usepackage[numbered,framed]{matlab-prettifier}
 \usepackage{graphicx}
 \usepackage{epstopdf}
 
@@ -43,11 +43,18 @@
 \newcommand{\vikcsapattagIII}{Kiss András}
 \newcommand{\vikcsapattagIV}{Medvedev Mihály}
 \newcommand{\vikcsapattagV}{Pelikán Dániel}
+\newcommand{\vikneptunI}{B61EK1}
+\newcommand{\vikneptunII}{VFAO4E}
+\newcommand{\vikneptunIII}{VUUVQ3}
+\newcommand{\vikneptunIV}{JILTAL}
+\newcommand{\vikneptunV}{GABQNB}
 \newcommand{\vikcim}{M01 - Nemlineáris rendszerek fuzzy elvű irányítása}
 \newcommand{\viktanszek}{Irányítástechnika és Informatika Tanszék}
 \newcommand{\viklabor}{Irányítástechnika és képfeldolgozás laboratórium 1.}
 \newcommand{\vikdoktipus}{Mérési jegyzőkönyv}
 %\newcommand{\vikdepartmentr}{Bódis-Szomorú András}
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
 
 %--------------------------------------------------------------------------------------
 % Page layout setup
@@ -94,21 +101,22 @@
 % Set up listings
 %--------------------------------------------------------------------------------------
 %\lstset{language=C}
-\lstset{
-	basicstyle=\scriptsize\ttfamily, % print whole listing small
-	keywordstyle=\color{black}\bfseries\underbar, % underlined bold black keywords
-	identifierstyle=, 					% nothing happens
-	commentstyle=\color{white}, % white comments
-	stringstyle=\scriptsize\sffamily, 			% typewriter type for strings
-	showstringspaces=false,     % no special string spaces
-	aboveskip=3pt,
-	belowskip=3pt,
-	columns=fixed,
-	backgroundcolor=\color{lightgray},
-	inputencoding=utf8,
-	extendedchars=true,
-	literate={á}{{\'a}}1 {ã}{{\~a}}1 {é}{{\'e}}1,
-} 		
+%\lstset{language=Matlab,%
+%	%basicstyle=\color{red},
+%	breaklines=true,%
+%	morekeywords={matlab2tikz},
+%	keywordstyle=\color{blue},%
+%	morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+%	identifierstyle=\color{black},%
+%	stringstyle=\color{mylilas},
+%	commentstyle=\color{mygreen},%
+%	showstringspaces=false,%without this there will be a symbol in the places where there is a space
+%	numbers=left,%
+%	numberstyle={\tiny \color{black}},% size of the numbers
+%	numbersep=9pt, % this defines how far the numbers are from the text
+%	emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+%	%emph=[2]{word1,word2}, emphstyle=[2]{style},    
+%}
 \def\lstlistingname{lista}	
 
 %--------------------------------------------------------------------------------------
@@ -142,7 +150,7 @@
 	chapter2,%
 %	chapter3,%
 %	acknowledgement,%
-%	appendices,%
+	appendices,%
 }
 %--------------------------------------------------------------------------------------
 %	Setup captions
@@ -184,7 +192,7 @@ aboveskip=10pt}
 %\addcontentsline{toc}{chapter}{Irodalomjegyzék}
 %\bibliographystyle{plain}
 
-%\include{appendices}
+\include{appendices}
 
 \label{page:last}
 %Latex kisokos Ruditól
