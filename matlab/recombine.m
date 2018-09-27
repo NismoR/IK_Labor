@@ -1,5 +1,7 @@
 function offspring=recombine(population,selected)
 
+recomb_proc='line';
+N_var=length(population(1,:));
 % Making pairs of selected parents
 N=length(selected);
 r1=randperm(N);
@@ -18,9 +20,30 @@ end;
 
 %Recombination
 for i=1:N
-    r=rand*1.5-0.25;
-    a(i)=r;
-    o(i,:)=par(i,:,1)+a(i)*(par(i,:,2)-par(i,:,1));
+    if strcmp(recomb_proc,'line')
+        a(i,:)=ones(1:N_var)*(rand*1.5-0.25);
+    end;
+    if strcmp(recomb_proc,'inner')        
+        for j=1:N_var
+            a(i,j)=(rand*1.5-0.25);
+        end;
+    end;
+    o(i,:)=par(i,:,1)+a(i,:).*(par(i,:,2)-par(i,:,1));
 end;
+a';
 offspring=o;
-    
+if(0)
+    figure(2);
+    clf(figure(2));
+    hold on
+    for i=1:2
+        p=1;
+        scatter(par(i,1,p),par(i,2,p),'b')
+        plot([par(i,1,p) o(i,1)],[par(i,2,p) o(i,2)],'bl')
+        p=2;
+        scatter(par(i,1,p),par(i,2,p),'r')
+        scatter(o(i,1),o(i,2),'g')
+        plot([par(i,1,p) o(i,1)],[par(i,2,p) o(i,2)],'bl')
+        
+    end;
+end;
