@@ -1,5 +1,4 @@
 function pid=pid_fctn(in)
-W=10;
 N=size(in,1);
 for i=1:N
     Ap=in(i,1);
@@ -9,22 +8,27 @@ for i=1:N
 
     try
         [t,x,y,r,u]=sim('gentank',[],simset('SrcWorkspace','current'));
-    catch E
-        E
-        pid(i)=W*4;
+    catch
+        pid(i)=30;
+        int_e1(i)=50;
+        int_e2(i)=50;
+        int_e3(i)=50;
         continue;
     end;
     w=warning('query','last');
     warning('off',w.identifier);
     er=abs(r-y);
     z=er.*t;
-    int_e1=abs(trapz(t,z));
+    int_e1(i)=abs(trapz(t,z));
     e2=subplus(y-1);
-    int_e2=abs(trapz(t,e2));
+    int_e2(i)=abs(trapz(t,e2));
     e3=subplus(abs(u)-10);
-    int_e3=abs(trapz(t,e3));
-    pid(i)=int_e1+W*(int_e3+int_e2);
+    int_e3(i)=abs(trapz(t,e3));
+end;
+W=mean(int_e1)*60;
+for i=1:N
+    pid(i)=int_e1(i)+W*(int_e3(i)+int_e2(i)*1.2);
     if(pid(i)<0)
-        fprintf('P: %f, E1:%f, E2:%f, E3:%f\n',pid(i),int_e1,int_e2,int_e3);
+        fprintf('P: %f, E1:%f, E2:%f, E3:%f\n',pid(i),int_e1(i),int_e2(i),int_e3(i));
     end;
 end;
