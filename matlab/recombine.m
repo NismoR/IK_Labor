@@ -1,6 +1,6 @@
 function offspring=recombine(population,selected)
 
-recomb_proc='line';
+recomb_proc='inner';
 N_var=length(population(1,:));
 % Making pairs of selected parents
 N=length(selected);
