@@ -5,68 +5,61 @@
 %----------------------------------------------------------------------------
 \section{Első feladat}
 %----------------------------------------------------------------------------
-Első lépésként megnyitottuk a \textit{tank\_na\_m2017\_multi.slx} fájlt Simulink-kel. A kapcsoló segítségével átkapcsoltuk a rendszert a megadott PD szabályzóra és kipróbáltuk annak működését, mely a \figref{pd}~ábrán látható. A célunk hasonlóan működő rendszer(ek) megvalósítása a Fuzzy szabályzók segítségével.
+Szelekciós eljárásként a sztochasztikus univerzális mintavételezést kellett megvalósítani. A függvény a pointerek elhelyezése után a Rulettkerék módszerrel választja ki a mintákat. Rekombinációs eljárásként a közbenső, illetve az egyenes mentén történő rekombinációt is megvalósítottuk, a további feladatokhoz az előbbit használtuk.
 
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[width=150mm,keepaspectratio]{figures/m01/pd.png}
-	\caption{Az alapjel és a PD szabályzóval kimenete, a vízszint} 
-	\label{fig:pd}
-\end{figure}
-
-A Fuzzy Logic Toolbox segítségével létrehoztuk az először még üres szabályrendszert, Mamdani-féle implikációt választva. Bemenetként a vízszint hibáját és a vízszint változás sebességét adtuk meg, tagsági függvényeknek Gauss-eloszlást választottunk, melyet először a tartományon egyenletesen elosztva, azonos szórással próbáltunk elhelyezni. Így jártunk el a kimenetnél is, ám  ott már háromszög alakú tagsági függvényt használtunk. A bemeneteknél figyeltünk az átlapolódásra, mellyel elértük, hogy minden bemeneti értékre legyen válasza a rendszernek. A kimeneti tagsági függvényeket diszjunktnak választottuk, ezzel segítve a szabályzó döntését.
-
-A szabályok megválasztásánál a MacVicar-Whelan metaszabályokat vettük alapul, először 3 kimeneti beavatkozás-változást előírva. A beállítások a \figref{FirstFuzzy}~ábrán láthatóak.
-
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=71mm, keepaspectratio]{figures/m01/fuzzy1.png}\hspace{5mm}
-	\includegraphics[width=71mm, keepaspectratio]{figures/m01/fuzzy2.png}\\\vspace{2.5mm}
-	\includegraphics[width=71mm, keepaspectratio]{figures/m01/fuzzy3.png}\hspace{5mm}
-	\includegraphics[width=71mm, keepaspectratio]{figures/m01/rules.png}
-	%TODO ábraelnevezés
-	\caption{A szabályzó megvalósítása a Fuzzy Logic Toolboxxal} 
-	\label{fig:FirstFuzzy}
-\end{figure}
-
-Ezután Simulinkben visszaállítottuk a kapcsolót és leteszteltük a megvalósított Fuzzy szabályzót. Az alapjel, és a szabályzó kimenete, valamint a beavatkozó jel látható a \figref{FirstFuzzyResults}~ábrán láthatóak.
-
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=71mm, keepaspectratio]{figures/m01/fuzzy4.png}\hspace{5mm}
-	\includegraphics[width=71mm, keepaspectratio]{figures/m01/fuzzy5.png}
-	%TODO ábraelnevezés
-	\caption{A Fuzzy szabályzás eredménye} 
-	\label{fig:FirstFuzzyResults}
-\end{figure}
-Az első verzió után több lehetőséget is kipróbáltunk, például több kimeneti tagsági függvényt, más eloszlásokat, azok elhelyezését, továbbá a T és S normákat változtatva se sikerült számottevő javulást elérni.
+\lstinputlisting[style=Matlab-editor]{figures/m02/sus.m}\label{SusCode}
+\lstinputlisting[style=Matlab-editor]{figures/m02/rws.m}\label{RwsCode}
+\newpage
+\lstinputlisting[style=Matlab-editor]{figures/m02/recombine.m}\label{XoverCode}
 
 \newpage
 %----------------------------------------------------------------------------
 \section{Második feladat}
 %----------------------------------------------------------------------------
-A második feladatban a Fuzzy Toolboxban megtervezett szabályzó működését implementáltuk le. A program a beavatkozó jel meghatározása során a Fuzzy tagsági függvényeket \textit{0.01} raszterosztással értékeli ki, az éles numerikus értéket a \textit{Tömegközéppont-módszerrel} állítja elő. A programkód a Függelékben található, két megvalósított \textit{defuzzykálás} pedig a \figref{MatlabFuzzy}~ábrán.
+A második feladat során a \textit{genlab} programban található tesztfüggvényeken próbáltuk ki a megvalósított algoritmust. Igyekeztünk a genetikus algoritmus paramétereinek változtatásával a lehető legjobb eredményre törekedni.
+
+
+A DeJong-függvény esetében a globális és a lokális minimum egybeesik, így itt nem ragadhattunk lokális minimumban, nem megfelelő paraméterezés esetén csupán nem találtuk meg pontosan a függvény minimumát. A további tesztfüggvények viszont több lokális minimummal rendelkeznek, így nem megfelelő paraméterválasztás esetén könnyen lokális minimumban ragadhatunk. A mutáció értékét érdemes viszonylag nagyra választani, mivel így gyakran el tudtuk kerülni a lokális optimumban maradást. A populáció egyedszámát is érdemes nagyra választani (pl. 100 egyed). A legjobb eredményeket a \figref{Dejong}~ábrán szemléltetjük.
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=71mm, keepaspectratio]{figures/m01/matlab2.png}\hspace{5mm}
-	\includegraphics[width=71mm, keepaspectratio]{figures/m01/matlab3.png}
+	\includegraphics[width=71mm, keepaspectratio]{figures/m02/dejong.png}\hspace{5mm}
+	\includegraphics[width=71mm, keepaspectratio]{figures/m02/rastr.png}\vspace{5mm}
+	\includegraphics[width=71mm, keepaspectratio]{figures/m02/rosenbr.png}\hspace{5mm}
+	\includegraphics[width=71mm, keepaspectratio]{figures/m02/schwfl.png}
 	%TODO ábraelnevezés
-	\caption{Defuzzyfikálás} 
-	\label{fig:MatlabFuzzy}
+	\caption{Tesztfüggvények} 
+	\label{fig:Dejong}
 \end{figure}
-A megfelelő kapcsolók beállításával leteszteltük az elkészített szabályzót, mely az eddigiekhez hasonlóan működött.
 
-\begin{figure}
-\centering
-\includegraphics[width=131mm, keepaspectratio]{figures/m01/matlab1.png}
-%TODO ábraelnevezés
-\caption{A Fuzzy szabályzás eredménye} 
-\label{fig:MatlabFuzzyResults}
+\newpage
+%----------------------------------------------------------------------------
+\section{Harmadik feladat}
+%----------------------------------------------------------------------------
+A meghatározott szabályok alapján, a célfüggvény megvalósításához a modellt úgy módosítottuk, hogy kimenetként a szimuláció végén a beavatkozó jel és az alapjel is jelenjen meg, a módosítás a \figref{Control}~ábrán látható.
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=71mm, keepaspectratio]{figures/m02/cntrl.png}
+	%TODO ábraelnevezés
+	\caption{A módosított modell} 
+	\label{fig:Control}
 \end{figure}
+A költségfüggvényt három hibajel összegeként határoztuk meg. Az első a valódi hibajel integrálja, ez a kimenet és az alapjel különbségéből ered. A másodikként a túllövés miatt keletkezik, itt az 1 érték feletti terület integrálját igyekszünk minimalizálni. Harmadik hibajel a maximálisan kiadható beavatkozó jelből következik. Utóbbi két hibajel súlyozva került bele a költségfüggvénybe, hogy az algoritmus ezeket erősebben optimalizálja.
+
+Számos próbálkozás után a legjobb eredményt egy \textbf{70} egyedből álló populációban találtuk meg, \textbf{100} generáció futtatása után. A szabályzó csupán \textbf{1.21776}-os értékű túllövés mellett, maximálisan \textbf{9.999542}-es beavatkozójelet adott ki \textit{(Paraméterek: Ap=0.909, Td=1.3267, Ti=4.3365, Tc=0.13267)}. Az eredményeket, és a költségfüggvény alakulását a futás során a \figref{PID}~ábrán szemléltetjük, a 
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=151mm, keepaspectratio]{figures/m02/pid2.png}
+	%TODO ábraelnevezés
+	\caption{A legjobb eredményt produkáló algoritmus} 
+	\label{fig:PID}
+\end{figure}
+\newpage
+\lstinputlisting[style=Matlab-editor]{figures/m02/pid-fctn.m}\label{PidFctn}
+
 %----------------------------------------------------------------------------
 \section{Konklúzió}
 %----------------------------------------------------------------------------
-Látható, hogy a PD szabályzó hatásfokát nem tudtuk elérni a fuzzy szabályzóval. Ennek az oka az, hogy a fuzzy szabálybázisunk csak kilenc szabályból állt. A bemenetei és kimenetei tartományokat több részre felosztva a fuzzy szabályzás pontosítható. A mérés során egyértelművé vált, hogy a fuzzy szabályzás a Matlab és azon belül is a Fuzzy Toolbox segítségével egyszerűen, átláthatóan elkészíthető.
+A genetikus algoritmusok nagyon jól használhatóak optimalizálásra, implementálásuk Matlab környezetben nem túl bonyolult. A futtatásukhoz időre és számítási teljesítményre van szüksége, ám ezek se garantálják a jó eredményt. Az algoritmusok bele tudnak ragadni lokális minimumokba, paraméterezésük időigényes, ám ezzek megfelelő beállítása esetén akár a globális optimumot is képesek megtalálni.
 
 
