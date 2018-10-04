@@ -19,6 +19,7 @@ end
 
 ksi=mu(1,1:domN(1))';
 for i=2:I
-  D=ksi*mu(i,1:domN(i)); ksi=D(:); 
+  D=ksi*mu(i,1:domN(i)); 
+  ksi=D(:); 
  
 end

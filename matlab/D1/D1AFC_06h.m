@@ -24,8 +24,10 @@ rand('state',0)
 % --- Initialize Variables
 simtime=[];
 n=length(K);
-Mo=limit(1); V=limit(2); gamma=limit(3);
-fU=funrange(1); bL=funrange(2);
+Mo=limit(1); V=limit(2); 
+gamma=limit(3);
+fU=funrange(1); 
+bL=funrange(2);
 m=prod(domN);
 y=[]; u=[]; v=[];
 
@@ -37,6 +39,8 @@ Lambda= zeros(n);
 Lambda(1:(n-1),2:end) = eye(n-1);
 Lambda(n,:)=-K;
 P     = lyap(transpose(Lambda),Q)
+bc = zeros(n,1);
+bc(n)=1;
 
 % --- Step 2: Initial Controller Construction
 
@@ -49,22 +53,30 @@ O=0.2*rand(m,1)-0.1;
 
 x=x0';
 for k=1:length(ym)
-
+    k
   % Calculating errors
-
-  y= x  ;         % Kimeneti vektor idõbeni alakulasa
+  y= [y,x(1)];         % Kimeneti vektor idõbeni alakulasa
   e=derivn(ym(1:k)-y(1:k),n,ts)'; % A Hibavektor es derivaltjainak idõbeli alakulasa
-%   ymn=derivn(ym(1:k),n,ts)';
-  ymn=diff(ym(1:k));
-  Ve=0.5*((P*e).*e);
+  ymn=derivn(ym(1:k),n,ts)';
+%   ymn=diff(ym(1:k));
+  Ve=0.5*dot((P*e),e);
 
   % Forming control signal:
 
   ksi= evalFBF(x,domC,domW,domN,range);   %Fuzzy rendszer kiertekelese MEG KELL IRNI
-  uc=???;           % nevleges fuzzy szabalyozo
-  us=???;           % felugyelo szabalyozo
-  uk=???;           % beavatkozo jel a k. utemben
-  u=???;
+  sumksi = sum(ksi);
+  ksi = ksi / sumksi;
+  uc=ksi'*O;           % nevleges fuzzy szabalyozo
+  us=sign(bc'*P*e)*(abs(uc)+((abs(ymn(k))+fU+abs(dot(K,e)/bL))));           % felugyelo szabalyozo
+  if (Ve>V)
+    uk=uc + us
+    size(uk)% beavatkozo jel a k. utemben
+  else
+      uk=uc;
+      size(uk)
+  end;
+      
+  u=[u uk];
  
   % --------------  Simulating the process: ------------------------
 
@@ -77,7 +89,7 @@ for k=1:length(ym)
   
   % Adjust parameter vector O:
 
-  Onew=???
+  O=O+ts*gamma*ksi*(bc'*P*e);
 
 end
 
