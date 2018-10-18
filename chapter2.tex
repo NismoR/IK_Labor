@@ -2,42 +2,84 @@
 \chapter{Jegyzőkönyv}
 %----------------------------------------------------------------------------
 
-%----------------------------------------------------------------------------
-\section{Megvalósított függvények}
-%----------------------------------------------------------------------------
-A képfeldolgozás a processImage függvényben történik, melyet a keretprogram minden új képkockára meghív. A képfeldolgozást megvalósító függvényeket kellett itt meghívni. 
-\begin{itemize}
-	\item \textbf{getRoi} - A \textit{Region of Interest} (ROI) kivágása az eredeti képből a \textit{Bounding Box} (BB) alapján, melyet az inicializálás során egérrel határozzuk meg, később a program frissíti
-	\item \textbf{getDepthMask} - A függvény megkeresi a ROI terület közepét, és elmenti az ahhoz a képponthoz tartozó mélység értéket. Leellenőrzi, hogy nem történt-e hirtelen ugrás az előző értékhez képest, ha ez nem következett be, akkor az azonos távolságú pixelek alapján maszkot készítünk, mellyel visszatér a függvény.
-	\item \textbf{getHueMask} - A könnyebb képfeldolgozás érdekében HSV színtérbe konvertáljuk a ROI által meghatározott képrészletet, majd az első lefutáskor meghatározzuk a benne leggyakrabban szereplő színt, melyet a \textit{getMaxHue} függvénnyel valósítunk meg. Színszűréssel készítünk egy második maszkot. A fekete és a szürke pixeleket kizárjuk, mivel ezek \textit{Hue} értéke bizonytalan.
-	\item \textbf{getMaxHue} - Hisztogramot készítünk a kapott kép pixeleinek \textit{Hue} értékéből, amennyiben azok nem szürkék vagy feketék. A függvény a leggyakrabban előforduló színértékkel tér vissza.
-	\item \textbf{getLargestMask} - A függvény a bemenetként megadott bináris maszkban kontúrokat keres és a legnagyobb területű kontúrt és az ezáltal meghatározott objektum momentumait adja vissza. Mi ezt a távolság és szín érték alapján meghatározott maszkok metszetével hívtuk meg.
-	\item \textbf{compute3D} - A megtalált objektum térbeli pozícióját számolja ki, az előtte már meghatározott \textit{Center of Gravity} (COG) és a kép paraméterei alapján. 
-	\item Ezen megvalósított függvények mellett a \textit{processImage}-ben a COG és a BB frissítésre kerül. 
 
-\end{itemize}
-A megvalósított program a következő kimenetet eredményezte:
-KÉP, SOK KÉP
+%----------------------------------------------------------------------------
+\section{A megadott nemlineáris függvény}
+%----------------------------------------------------------------------------
+
+
+Első feladatként megvalósítottuk a mérésvezető által megadott nemlineáris függvényt, amit a feladat során approximálnunk kellett. A függvény a következő volt: 
+
+\begin{equation}\label{key}
+Y = cos(\frac{X1-X2}{3}) - sin(\frac{X1+X2}{3}) + cos(\frac{X1.*X2}{8})
+\end{equation}
+A bemeneti változók a megadottak szerint a $ [0; 4\pi] $ intervallumon voltak, amihez a \textit{linspace} függvényt használtuk. Létrehoztuk a szükséges rácsot a \textit{meshgrid} függvénnyel, majd kirajzoltuk azt, melynek eredménye a \figref{fgv}~ábrán látható. 
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=69mm, keepaspectratio]{figures/m08/fig1.jpg}\hspace{5mm}
-	\includegraphics[width=69mm, keepaspectratio]{figures/m08/fig2.jpg}\\\vspace{5mm}
-	\includegraphics[width=69mm, keepaspectratio]{figures/m08/fig3.jpg}\hspace{5mm}
-	\includegraphics[width=69mm, keepaspectratio]{figures/m08/fig4.jpg}
-	\caption{A megvalósított objektumkövetés, az aktuális maszkokkal} 
-	\label{fig:Dejong}
+	\includegraphics[width=150mm, keepaspectratio]{figures/m04/fig1.png}
+	\caption{A megadott nemlineáris függvény} 
+	\label{fig:fgv}
 \end{figure}
 
-%----------------------------------------------------------------------------
-\section{Konklúzió}
-%----------------------------------------------------------------------------
-\begin{itemize}
-	\item Az \textbf{OpenCV} a képeket BGR alakban kezeli a sok helyen megszokott RGB helyett, mely miatt a keresendő piros objektum a Hue skálán 120 körüli értéket vesz fel a 0 helyett. Így a szűrt tartomány 100 és 140 közé esik a 160-20 helyett, mely egyszerűbben implementálható.
-	\item Kezdetben a feladat elején csak a \textit{Depth} maszkot használtuk, mellyel az objektum követés már megvalósítható volt, ám a maszk készítésnél a belógó tárgyak, pl a kezünk torzította az objektumot. Továbbá az inicializált objektum elé helyezett tárggyal átverhetővé vált a program, immár az új tárgyra valósult meg az objektumkövetés. Ez a szín szűréssel lényegesen javítható.
-	\item Mivel bármilyen \textit{Hue} érték esetén, ha a \textit{Value} 0 fekete színt kapunk, így a fekete pixelek szín szerinti szűrése véletlen eredményt okozna, mely zajt hozna a rendszerbe. A kis szaturációjú (szürke)  színek szintén ezt okoznák, emiatt ezeket is szűrjük.
+Ezután a rácspontokat megkevertük, hogy a tanulásnál az algoritmusunk ne egymás melletti pontokat használjon. 
+\newpage
+\lstinputlisting[style=Matlab-editor]{figures/m04/matlab-1.m}\label{Matlab1}
 
-\end{itemize}
+%----------------------------------------------------------------------------
+\section{Függvényapproximációs módszerek}
+%----------------------------------------------------------------------------
+
+A három lehetséges függvény közül mi a \textit{legközelebbi szomszéd alapú klaszterezést}(\textbf{fNNC}) és a \textit{fuzzy rendszer tanítását hiba-visszaterjesztéssel} (\textbf{fBP}) valósítottuk meg. 
+
+A függvényben a bemeneti adatok és a \textit{tr} alapján meghatároztuk, hogy mik legyenek a teszt és mik a tanító adatok, majd megadtuk a tagsági függvények középpontját (első M elem a bemeneti pontokból). A szórást az az $ \frac{xMax–xMin}{M} $ képlettel számoltuk.
+\lstinputlisting[style=Matlab-editor]{figures/m04/matlab-2.m}\label{Matlab2}
+
+Ezt követően a \textit{tau} mátrixba összefoglaljuk a tagsági függvényeket, majd kiszámítjuk a kimenet paraméterfüggését, azaz az egyes deriváltakat. Frissítjük a paramétereket és kiírjuk az eredményeket, a hibát. 
+\lstinputlisting[style=Matlab-editor]{figures/m04/matlab-3.m}\label{Matlab3}
+
+\newpage
+M értéknek egy viszonylag nagy értéket, 50-et választottunk, mivel a függvény bonyolult volt. Hogy ne rekedjünk meg a pontosság javulásában egy kicsi számot választottunk tanulási rátának, 0.05-öt.
+
+Eredmény 50 ciklus után:
+\begin{lstlisting}[frame=single]
+50. iteracio:
+Hibaosszeg: 290.6567
+Legnagyobb hiba: 0.77082
+Atlagos hiba: 0.032295
+Negyzetes hiba: 0.0011209
+\end{lstlisting}
+
+A tesztelés eredménye:
+\begin{lstlisting}[frame=single]
+TESTING
+Hibaosszeg: 30.3896
+Legnagyobb hiba: 0.44769
+Atlagos hiba: 0.030359
+Negyzetes hiba: 0.00090544
+\end{lstlisting}
+
+A legközelebbi szomszéd alapú függvény implementációja:
+\lstinputlisting[style=Matlab-editor]{figures/m04/matlab-4.m}\label{Matlab4}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
