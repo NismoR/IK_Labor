@@ -1,0 +1,15 @@
+size=length(u);
+teach_num = 100;
+test_num = size-teach_num; 
+teach_u = u(1:teach_num); 
+teach_y = y(1:teach_num); 
+test_u = u(test_num+1:size);
+test_y = y(test_num+1:size); 
+teach_u_1 = u(1:teach_num-1);
+teach_u_1 = [u(1); teach_u_1];
+teach_u_2 = u(1:teach_num-2); 
+teach_u_2 = [u(1); u(1); teach_u_2];
+teach_y_1 = y(1:teach_num-1);
+teach_y_1 = [y(1); teach_y_1];
+teach_y_2 = y(1:teach_num-2);
+teach_y_2 = [y(1); y(1); teach_y_2];

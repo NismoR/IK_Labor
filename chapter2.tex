@@ -2,68 +2,81 @@
 \chapter{Jegyzőkönyv}
 %----------------------------------------------------------------------------
 
-
 %----------------------------------------------------------------------------
-\section{A megadott nemlineáris függvény}
+\section{Első feladat}
 %----------------------------------------------------------------------------
+A ’6.mat’ fájl betöltése után a kapott adatokat megfeleztük, egyik felét tanítás céljából, másik felét tesztelés céljából használtuk fel.
 
+\lstinputlisting[style=Matlab-editor]{figures/m05/matlab-1.m}\label{Matlab1}
 
-Első feladatként megvalósítottuk a mérésvezető által megadott nemlineáris függvényt, amit a feladat során approximálnunk kellett. A függvény a következő volt: 
-
-\begin{equation}\label{key}
-Y = cos(\frac{X1-X2}{3}) - sin(\frac{X1+X2}{3}) + cos(\frac{X1.*X2}{8})
-\end{equation}
-A bemeneti változók a megadottak szerint a $ [0; 4\pi] $ intervallumon voltak, amihez a \textit{linspace} függvényt használtuk. Létrehoztuk a szükséges rácsot a \textit{meshgrid} függvénnyel, majd kirajzoltuk azt, melynek eredménye a \figref{fgv}~ábrán látható. 
+A \figref{poi}~ábrán látható a kapott eredmény.
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=150mm, keepaspectratio]{figures/m04/fig1.png}
-	\caption{A megadott nemlineáris függvény} 
-	\label{fig:fgv}
+	\includegraphics[width=69mm, keepaspectratio]{figures/m05/u_1.jpg}\hspace{5mm}
+	\includegraphics[width=69mm, keepaspectratio]{figures/m05/u_2.jpg}\\\vspace{5mm}
+	\includegraphics[width=69mm, keepaspectratio]{figures/m05/y_1.jpg}\hspace{5mm}
+	\includegraphics[width=69mm, keepaspectratio]{figures/m05/y_2.jpg}
+	\caption{Tanító és tesztpontok}
+	\label{fig:poi}
+\end{figure}
+\newpage
+
+%----------------------------------------------------------------------------
+\section{Második feladat}
+%----------------------------------------------------------------------------
+A rendszer inicializálásához a matlab egy beépített függvényét, a ’genfis2()-t használtuk fel. A függvény szubsztarktív klaszterezéssel állítja elő a szabálybázist. A működéséhez a tanítópontokat, a rájuk adott választ, és a klasztersugarat kellett megadnunk.
+\lstinputlisting[style=Matlab-editor]{figures/m05/matlab-2.m}
+A klasztersugár csökkentésével, a szabálybázist alkotó összefüggések száma növekszik. 
+
+
+
+%----------------------------------------------------------------------------
+\section{Harmadik feladat}
+%----------------------------------------------------------------------------
+\lstinputlisting[style=Matlab-editor]{figures/m05/matlab-3.m}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=90mm, keepaspectratio]{figures/m05/3.jpg}
 \end{figure}
 
-Ezután a rácspontokat megkevertük, hogy a tanulásnál az algoritmusunk ne egymás melletti pontokat használjon. 
-\newpage
-\lstinputlisting[style=Matlab-editor]{figures/m04/matlab-1.m}\label{Matlab1}
 
 %----------------------------------------------------------------------------
-\section{Függvényapproximációs módszerek}
+\section{Negyedik feladat}
 %----------------------------------------------------------------------------
 
-A három lehetséges függvény közül mi a \textit{legközelebbi szomszéd alapú klaszterezést}(\textbf{fNNC}) és a \textit{fuzzy rendszer tanítását hiba-visszaterjesztéssel} (\textbf{fBP}) valósítottuk meg. 
+Az ANFIS rendszer tesztelése következett ebben a feladatban. A tesztelés során a kapott Simulink modellt használtuk fel. A teszt eredményei a következő ábrákon láthatóak:
 
-A függvényben a bemeneti adatok és a \textit{tr} alapján meghatároztuk, hogy mik legyenek a teszt és mik a tanító adatok, majd megadtuk a tagsági függvények középpontját (első M elem a bemeneti pontokból). A szórást az az $ \frac{xMax–xMin}{M} $ képlettel számoltuk.
-\lstinputlisting[style=Matlab-editor]{figures/m04/matlab-2.m}\label{Matlab2}
-
-Ezt követően a \textit{tau} mátrixba összefoglaljuk a tagsági függvényeket, majd kiszámítjuk a kimenet paraméterfüggését, azaz az egyes deriváltakat. Frissítjük a paramétereket és kiírjuk az eredményeket, a hibát. 
-\lstinputlisting[style=Matlab-editor]{figures/m04/matlab-3.m}\label{Matlab3}
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=150mm, keepaspectratio]{figures/m05/4_1.png}
+	\caption{Az ANFIS rendszer kimenete és a mért érték}
+\end{figure}
+\begin{figure}[!h]
+	\centering
+	\includegraphics[trim=0mm 0mm 0mm 10mm, clip, width=150mm, keepaspectratio]{figures/m05/4_2.png}
+	\caption{A prediktált kimenet és a mért kimenet}
+\end{figure}
+\begin{figure}[!h]
+	\centering
+	\includegraphics[trim=0mm 0mm 0mm 10mm, clip, width=150mm, keepaspectratio]{figures/m05/4_3.png}
+	\caption{A prediktált kimenet és a mért kimenet közti eltérés}
+\end{figure}
 
 \newpage
-M értéknek egy viszonylag nagy értéket, 50-et választottunk, mivel a függvény bonyolult volt. Hogy ne rekedjünk meg a pontosság javulásában egy kicsi számot választottunk tanulási rátának, 0.05-öt.
-
-Eredmény 50 ciklus után:
-\begin{lstlisting}[frame=single]
-50. iteracio:
-Hibaosszeg: 290.6567
-Legnagyobb hiba: 0.77082
-Atlagos hiba: 0.032295
-Negyzetes hiba: 0.0011209
-\end{lstlisting}
-
-A tesztelés eredménye:
-\begin{lstlisting}[frame=single]
-TESTING
-Hibaosszeg: 30.3896
-Legnagyobb hiba: 0.44769
-Atlagos hiba: 0.030359
-Negyzetes hiba: 0.00090544
-\end{lstlisting}
-
-A legközelebbi szomszéd alapú függvény implementációja:
-\lstinputlisting[style=Matlab-editor]{figures/m04/matlab-4.m}\label{Matlab4}
+%----------------------------------------------------------------------------
+\section{Ötödik feladat}
+%----------------------------------------------------------------------------
+Az initANFIS függvény:
+\lstinputlisting[style=Matlab-editor]{figures/m05/matlab-5.m}
 
 
-
+%----------------------------------------------------------------------------
+\section{Összegzés}
+%----------------------------------------------------------------------------
+A feladatok megoldása közben kipróbáltuk, hogy milyen eredményre jutunk amennyiben dinamikus viselkedést alkalmazunk. Dinamikus viselkedés esetén a rendszer bemenete nem más, mint az igazi, valós rendszer bemenete, kimenetére viszont a az ANFIS rendszer kimenetét használjuk. 
+A predikció esetében a valós rendszert szimuláljuk, és a szimulált rendszer bemeneti és kimeneti értékeit használjuk fel az ANFIS-nál. A mérés során kiderült, hogy a predikció ad pontosabb eredményt.
 
 
 
