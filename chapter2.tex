@@ -1,190 +1,57 @@
 %----------------------------------------------------------------------------
-\chapter{Jegyzőkönyv}
+\chapter{A házi feladat megoldása}
 %----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
 \section{Első feladat}
 %----------------------------------------------------------------------------
-PyTorch segítségével definiáltunk egy \textit{Conv} osztályt, mely a 2D konvolúción kívül tartalmaz még \textit{BatchNorm} réteget és \textit{ReLU} aktivációt is. A hálót definiáló \textit{ConvNet} osztály pedig erre építve állítottuk össze, 6 \textit{Conv} és egy \textit{nn.Linear} rétegből áll, ez utóbbi szolgáltatja az egyes osztályokhoz tartozó kimeneteket.
+A motort a leírásban részletezett módon modelleztük a PDE toolbox segítségével. Mivel esetünkben, időben változás nincs, így a magnetosztatikai módot választottuk. A motor egyszerűsített modellje egy statorból, rotorból, tekercsekből és légrésből áll. Ezek elrendezését a Matlab parancssorjában adtuk meg, majd mivel az elrendezés a függőleges tengelyre antiszimetrikus, a vízszintesre pedig szimetrikus, így elegendő az egyik negyedet modellezni. A jobb felső negyed kiválasztás után összevontuk a megfelelő elemekhez tartozó subdomaineket, ezután pedig megadtuk az így kialakult peremeken a megfelelő peremfeltételeket. A stator külsejére, illetve a  modell függőleges tengelyre illeszkedő peremére Dirichlet peremfeltételt, mert a peremen a mágneses skalárpotenciál nulla, a modell vízszintes tengelyére illeszkedő peremére pedig Neumann peremfeltételt, mert a mágneses skalárpotenciál normális irányú gradiense nulla. Ezután beállítottuk az adott anyagjellemzőket és az áramsűrűséget a tekercsben. Inicializáltuk a rácshálót, majd a Solve paramétereknél, nemlineáris solvert választottunk adaptív móddal és $ 10^{-11} $ tolarancia határral, az elsőre kiszámolt értékek maximuma $ 10^{-7} $-es nagyságrendbe esett, így a alapértelmezett toleranciahatárra, kevésbé voltak megfigyelhetők a későbbi feladatokban a kisebb változások. 
+
+Látható, hogy a tekercshez közelebb, ahol nagyobbak a mágneses indukció értékei ott a rácshálót is sűrűbben vette fel a program.
+
+
+
 %----------------------------------------------------------------------------
 \section{Második feladat}
 %----------------------------------------------------------------------------
-A CIFAR adatbázis része a PyTorch \textit{torchvision} moduljának, így néhány parancs segítségével betöltöttük. Adatdúsításhoz véletlen képrészlet kivágást, vízszintes tükrözést és színtér transzformációkat alkalmaztunk, ezen kívül minden minta előkészítésénél szükség volt PyTorch tenzorrá alakításra és normalizációra. Az előbb említett funkciókat és a batchek előkészítését a \textit{transforms} modul és a DataLoader osztály végezte.
-A következő hiperparaméterek hatásával kísérleteztünk a különböző tanítások során:
 
-\begin{itemize}
-	\item \textbf{Planes} - az egyes Conv blokkok 2D konvolúciós rétegeinek számát határozza meg.
-	\item \textbf{LR} - learning rate, egy tanítási lépés során a gradienst ezzel skálázzuk le.
-	\item \textbf{Momentum} - Az újonnan számolt gradiens aránya, ehhez az előző gradienseket is hozzáadjuk súlyozva, így megakadályozhatjuk a lokális minimumba ragadást.
-	\item \textbf{Weight Decay} - arány L2 loss számolásához, a súlyok növekedését akadályozza meg.
-	\item \textbf{Batch Size} - egy tanítási lépés alatt a háló egyszerre ennyi adat alapján számít gradienst.
-\end{itemize}
+A mágneses indukcióvonalak mellett érdemes megvizsgálni, hogy a motoron belül hol mekkora a mágneses indukció abszolútértéke. Ezt mi egy \textit{surface} függvény segítségével ábrázoltuk, mely a \figref{normaleloszlas}~ábrán látható. Miután elvégeztük a modellezést a PDE toolbox segítségével, kiexportáltuk a modellezés során használt háló pontjait, illetve az egyes pontokban a mágneses indukció nagyságát. Az exportált értékeket a \textit{workspace}-ben megjelenítve elkészíthető a 3D-s ábra. Mivel a pontok nem egyenletes távolságra helyezkednek el egymástól, ezért az ábrázoláshoz nem volt lehetséges az ábrázolás egyszerűen csak a \textit{meshgrid} és a \textit{surf} függvények használatával, de a Matlab \textit{griddata} elnevezésű interpoláló függvényével a probléma megoldható. Az abszolút értékek nagyságának leolvasásához egy \textit{colorbar}-t is megjelenítettünk.
 
-\newpage
-%----------------------------------------------------------------------------
-\subsection{Első futás}
-%----------------------------------------------------------------------------
-\begin{table}[h]
-	\begin{tabular}{|l|l|l|l|l|}
-		\hline
-		\textbf{Planes} & \textbf{LR} & \textbf{Momentum} & \textbf{Weight Decay} & \textbf{Batch Size} \\
-		8 & 0.1 & 0.9 & 0.0001 & 128 \\ \hline
-		\textbf{Futási idő} & \textbf{Training Acc.} & \textbf{Training Loss} & \textbf{Valid. Acc.} & \textbf{Valid. Loss} \\
-		6m 43s & 73.44 & 0.7793 & 75.87 & 0.6925 \\ \hline
-	\end{tabular}
-	\caption{Az első futás eredménye}
-\end{table}
-Az első tanítást tekinthetjük viszonyítási alapnak.
-
-%----------------------------------------------------------------------------
-\subsection{Második futás}
-%----------------------------------------------------------------------------
-\begin{table}[h]
-	\begin{tabular}{|l|l|l|l|l|}
-		\hline
-		\textbf{Planes} & \textbf{LR} & \textbf{Momentum} & \textbf{Weight Decay} & \textbf{Batch Size} \\
-		8 & \textit{0.01} & 0.9 & 0.0001 & 128 \\ \hline
-		\textbf{Futási idő} & \textbf{Training Acc.} & \textbf{Training Loss} & \textbf{Valid. Acc.} & \textbf{Valid. Loss} \\
-		6m 44s & 71.38 & 0.8304 & 74.21 & 0.7389 \\ \hline
-	\end{tabular}
-	\caption{A második futás eredménye}
-\end{table}
-A második tanítás során csökkentettük a learning rate-et. Az eredmény rosszabb lett, így már túl lassan tanult a háló. 10 epochonként automatikus LR csökkentést alkalmaztunk, ez amúgy is hamar kis LR-t eredményez, érdemes a tanítást nagy értékkel kezdeni.
-
-
-%----------------------------------------------------------------------------
-\subsection{Harmadik futás}
-%----------------------------------------------------------------------------
-\begin{table}[h]
-	\begin{tabular}{|l|l|l|l|l|}
-		\hline
-		\textbf{Planes} & \textbf{LR} & \textbf{Momentum} & \textbf{Weight Decay} & \textbf{Batch Size} \\
-		8 & 0.1 & \textit{0} & 0.0001 & 128 \\ \hline
-		\textbf{Futási idő} & \textbf{Training Acc.} & \textbf{Training Loss} & \textbf{Valid. Acc.} & \textbf{Valid. Loss} \\
-		6m 52s & 70.07 & 0.8657 & 72.60 & 0.7699 \\ \hline
-	\end{tabular}
-	\caption{A harmadik futás eredménye}
-\end{table}
-A harmadik tanítás momentum nélkül futott. Jelen esetben is csökkent a háló teljesítménye, hiszen a lokális minimumok könnyebben befolyásolták, téves irányokba terelték a gradienst.
-
-
-
-
-%----------------------------------------------------------------------------
-\subsection{Negyedik futás}
-%----------------------------------------------------------------------------
-\begin{table}[h]
-	\begin{tabular}{|l|l|l|l|l|}
-		\hline
-		\textbf{Planes} & \textbf{LR} & \textbf{Momentum} & \textbf{Weight Decay} & \textbf{Batch Size} \\
-		8 & 0.1 & 0.9 & 0.0001 & \textit{32} \\ \hline
-		\textbf{Futási idő} & \textbf{Training Acc.} & \textbf{Training Loss} & \textbf{Valid. Acc.} & \textbf{Valid. Loss} \\
-		10m 3s & 70.10 & 0.8657 & 73.67 & 0.7533 \\ \hline
-	\end{tabular}
-	\caption{A negyedik futás eredménye}
-\end{table}
-Ebben az esetben kevesebb minta tartozott egy batch-be. Így jóval több tanítási ciklusra volt szükség, hogy epoch-onként az összes mintát felhasználjuk. A python mátrix kezelő könyvtárai jól optimalizáltan dolgoznak, nagyobb mátrixok helyett több ciklust használni sebesség csökkenést okoz. Ezen kívül a teljesítmény is romlott, a kisebb batchekkel kevésbé általánosan jó irányokba haladt a háló.
-
-\newpage
-%----------------------------------------------------------------------------
-\subsection{Ötödik futás}
-%----------------------------------------------------------------------------
-\begin{table}[h]
-	\begin{tabular}{|l|l|l|l|l|}
-		\hline
-		\textbf{Planes} & \textbf{LR} & \textbf{Momentum} & \textbf{Weight Decay} & \textbf{Batch Size} \\
-		\textit{16} & 0.1 & 0.9 & 0.0001 & 128 \\ \hline
-		\textbf{Futási idő} & \textbf{Training Acc.} & \textbf{Training Loss} & \textbf{Valid. Acc.} & \textbf{Valid. Loss} \\
-		7m 6s & 79.90 & 0.6010 & 81.35 & 0.5379 \\ \hline
-	\end{tabular}
-	\caption{Az ötödik futás eredménye}
-\end{table}
-Az 5. tanításnál megdupláztuk a háló rétegeinek számát. A több súly miatt lassabban teljesítette a program a 20 epochot, cserébe jelentős teljesítmény növekedést értünk el, bonyolultabb összefüggések tanulására lett képes a háló. 
-
-
-%----------------------------------------------------------------------------
-\subsection{Hatodik futás}
-%----------------------------------------------------------------------------
-\begin{table}[h]
-	\begin{tabular}{|l|l|l|l|l|}
-		\hline
-		\textbf{Planes} & \textbf{LR} & \textbf{Momentum} & \textbf{Weight Decay} & \textbf{Batch Size} \\
-		\textit{16} & 0.1 & 0.9 & \textit{0} & 128 \\ \hline
-		\textbf{Futási idő} & \textbf{Training Acc.} & \textbf{Training Loss} & \textbf{Valid. Acc.} & \textbf{Valid. Loss} \\
-		7m 7s & 80.22 & ? & 81.56 & 0.5432 \\ \hline
-	\end{tabular}
-	\caption{A hatodik futás eredménye}
-\end{table}
-Az előző esethez hasonlóan maradt a teljesítmény és futási idő növekedés. A súlyokból számolt költség elhagyása nem hozott jelentős változást.
-
-\newpage
-%----------------------------------------------------------------------------
-\subsection{Összegzés}
-%----------------------------------------------------------------------------
-A \figref{Train}~ és a \figref{Val}~ábrákon láthatóak a különböző futások eredményei összesített grafikonok. 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 	\centering
-	\includegraphics[width=125mm, keepaspectratio]{figures/m07/train_acc2.jpg}\\\vspace{2mm}
-	\includegraphics[width=125mm, keepaspectratio]{figures/m07/train_loss.jpg}
-	\caption{Tanítási eredmények}
-	\label{fig:Train}
-\end{figure}
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=125mm, keepaspectratio]{figures/m07/val_acc.jpg}\\\vspace{2mm}
-	\includegraphics[width=125mm, keepaspectratio]{figures/m07/val_loss.jpg}
-	\caption{Validálási eredmények}
-	\label{fig:Val}
+	\includegraphics[width=150mm, keepaspectratio]{figures/terek/normal_eloszlas}
+	\caption{Mágneses indukció abszolút értékei}
+	\label{fig:normaleloszlas}
 \end{figure}
 
-\newpage
-\newpage
+
+Az ábráról leolvasható, hogy a mágneses indukció maximuma  $ 10^{-6} $-on nagyságrendű, és jól látszik, hogy legnagyobb értékek a tekercs közelében tapasztalhatók. Emellett jól megfigyelhető, hogy a stator és a rotor közötti légrésben a tekercstől távolodva a mágneses indukciónak egy „fennsíkja” van, ami kb.  $ 7*10^{-7} $-en értékű. A stator külsején, illetve a függőleges tengely mentén az indukció nagysága 0, ami a peremfeltételekkel összhangban van.
 
 %----------------------------------------------------------------------------
 \section{Harmadik feladat}
 %----------------------------------------------------------------------------
-A DenseNet tanításához az eredeti hiperparaméter kombinációt (\textit{Learning Rate}=0.1, \textit{Momentum}=0.9, \textit{Weight Decay}=0.0001, \textit{Batch Size}=128) választottuk, ezek mellett, csak az epochok számát (100-ra) és a \textit{LearningRate Scheduler} paramétét (25 epochra) változtattuk. Az előző feladatokban használt általunk megírt modell helyett, a mérésvezető által kijelölt DenseNet struktárára állítottuk a tanítandó modellt. Az így módosított fájlokat az egyetem DeepLearning szerverére feltöltöttük, majd SSH segítségével egy terminál ablakban elindítottuk a tanítást. Mivel a tanítás hosszabb ideig tartott, mint a laboratórium, így az eredményeket az egyetem honlapján megjelenő TensorBoard segítségével utólagosan tudtuk kiértékelni.
+Nemlineáris helyett lineáris vasmagot feltételezve, a modellt így megoldva első ránézésre az indukció abszolút értékeiben nagy változás nem látható, azonban a két felület különbségét képezve az eltérés láthatóvá válik, ezt ábrázoltuk a \figref{kulonbseg}~ábrán.
 
-A grafikonok a vártnak megfelelő működést mutatnak, a haló kb 50 epoch után beszaturált, a tanítási pontosság elérte a 99\%-ot. A validációs pontosság 93\% körül tetőzött, e kettő érték aránya mutatja, hogy a DenseNet struktúrája és a benne lévő batch normalizációs rétegek is jól működtek, a jóval mélyebb háló ellenére is sikerült elkerülni a túlillesztés jelenségét.
-
-A tanítási hiba grafikonján látni, hogy megfelelő tanítási rátát választottunk, a tanítás elején a konvergencia erős, ám konstans gyengül. Az első ütemezett tanítási ráta csökkentése (25. epoch) után ugrásszerűen növekszik, majd a ismét legyengül. A második csökkentés (50. epoch után) hatása még látható a grafikonon, de ezután érdemi változást nem lehet látni, a hiba szinte 0-ba konvergált.
-
-\begin{figure}[!h]
+\begin{figure}[!ht]
 	\centering
-	\includegraphics[width=140mm, keepaspectratio]{figures/m07/dn_train_acc.jpg}\\\vspace{5mm}
-	\includegraphics[width=140mm, keepaspectratio]{figures/m07/dn_train_loss.jpg}
-	\caption{Tanítási eredmények a DenseNet struktúrán}
-	\label{fig:TrainDense}
+	\includegraphics[width=150mm, keepaspectratio]{figures/terek/kulonbseg}
+	\caption{A mágneses indukciók nagyságainak különbsége lineáris és nemlineáris vas esetén}
+	\label{fig:kulonbseg}
 \end{figure}
+
+Megfigyelhető, hogy a legnagyobb eltérés a tekercsnél, azon belül is a tekercs sarkainál tapasztalható. A maximális eltérés a lineáris és a nemlineáris vas között $ 10^{-18} $-on nagyságrendbe esik.
+
+
+
+
 %----------------------------------------------------------------------------
 \section{Negyedik feladat}
 %----------------------------------------------------------------------------
-A feladathoz egy előre tanított AlexNet modellt használtunk, mely a PyTorch-ból egyszerűen betölthető. Első lépésként a korábbi feladatokkal megegyezően a kamera képét bemenetként adtuk a hálónak, majd a legbiztosabbra becsült kimenetet ‘1’ értékűnek véve a \textit{GuidedBckprop} osztály segítségével gradienseket generáltunk a háló bemenetére.
-A gradiensek abszolútértékeit pixelenként szummáztuk, majd küszöbözés és legnagyobb kontúr keresés után bejelölhetővé vált a képen az a régió, amely a háló döntését leginkább befolyásolta.
-Sok esetben a háló nem a prediktált objektum, hanem annak környezete alapján döntött. Például gyakran szerepelt “csokornyakkendő” vagy “öltöny” címke, amikor embereket látott a kamera, vagy “falióra” címke egy üres falat nézve. Ennek oka, hogy a tévesztett és valódi objektumok szorosan együtt járnak, a tanításhoz használt képeken mindig szerepel ember a csokornyakkendővel együtt, vagy üres falfelületen látható a falióra.
 
+A PDE ToolBoxban számos lehetőség van a végeselem számítás/(szimuláció?) pontosítására, finomabb végeselemháló készítésére. A háló jóságának egyik jellemzője az őt alkotó háromszögek milyensége. Ez egy 0 és 1 közötti szám, minél nagyobb, annál jobban hasonlít az adott háromszög egy egyenlőoldalú háromszögre. A PDE Toolboxban megtalálható egy \textit{„Jiggle Mesh”} funkció, mely egyenletesebben oszlatja el a csúcspontokat, jobb minőségű háromszögeket alkotva. Ez a funkció a paraméterekben állítható változóval akár többször is lefuttatható, így már a kezdeti háló is javítható a * ábrán látható módon.
 
+A \textit{„Refine Mesh”} funkcióhoz két paraméter tartozik, az elsővel beállítható, hogy milyen módszerrel finomítsunk a hálón, a másodikkal pedig a növekedési ráta állítható. Az általános esetben a háromszögek oldalainak felezőpontjait összekötve alkot új háromszögeket a toolbox, értelemszerűen így megnégyszerezve az elemek számát, a \textit{longest} módban pedig a háromszög átfogójának felezőpontját a vele szemközti csúccsal köti össze, így megduplázza az elemek számát. Utóbbi módban a növekedési ráta paraméterrel nem csak az eddig meglévő, de már az újonnan létrejött háromszögek egy részén is finomítani lehet egy iteráció alatt.
 
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=69mm, keepaspectratio]{figures/m07/Untitled-.jpg}\hspace{5mm}
-	\includegraphics[width=69mm, keepaspectratio]{figures/m07/Untitled-2.jpg}\\\vspace{5mm}
-	\includegraphics[width=69mm, keepaspectratio]{figures/m07/Untitled-3.jpg}\hspace{5mm}
-	\includegraphics[width=69mm, keepaspectratio]{figures/m07/Untitled-4.jpg}
-	\caption{A Guided Propagation megvalósítása különböző objektumokra}
-	\label{fig:poi}
-\end{figure}
-
-
-
-
-
-
-
-
-
-
-
-
+Ezeken felül lehetőség van az Adaptív végeselemháló finomításhoz, mely a \textit{Solve} paraméterek között kapcsolható be. Itt beállíthatjuk, hogy a szimuláció során mennyi finomítást végezzen a program, azokat milyen módon, illetve mely háromszögekre alkalmazva. A toolbox a legrosszabb minőségű háromszögeket vagy a szomszédos háromszögekhez képest a legnagyobb relatív különbséget elérő(?) háromszögeket finomítja, melyekhez toleranciát is lehet beállítani. Itt több paramétert célszerű kipróbálni, ugyanis túl kis tolerancia esetén az összes háromszögen, túl nagy tolerancia esetén pedig egyiken se fog finomítani az algoritmus.
 
 
 
