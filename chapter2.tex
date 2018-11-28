@@ -31,7 +31,7 @@ A mágneses indukcióvonalak mellett érdemes megvizsgálni, hogy a motoron bel�
 
 
 Az ábráról leolvasható, hogy a mágneses indukció maximuma  $ 10^{-6} $-on nagyságrendű, és jól látszik, hogy legnagyobb értékek a tekercs közelében tapasztalhatók. Emellett jól megfigyelhető, hogy a stator és a rotor közötti légrésben a tekercstől távolodva a mágneses indukciónak egy „fennsíkja” van, ami kb.  $ 7*10^{-7} $-en értékű. A stator külsején, illetve a függőleges tengely mentén az indukció nagysága 0, ami a peremfeltételekkel összhangban van.
-
+\newpage
 %----------------------------------------------------------------------------
 \section{Harmadik feladat}
 %----------------------------------------------------------------------------
@@ -58,24 +58,82 @@ A PDE ToolBoxban számos lehetőség van a végeselem számítás/(szimuláció?
 	\centering
 	\includegraphics[trim = 25mm 50mm 10mm 70mm,clip, width=69mm, keepaspectratio]{figures/terek/nl_1_3szog0.png}\hspace{5mm}
 	\includegraphics[trim = 25mm 50mm 10mm 70mm,clip, width=67mm, keepaspectratio]{figures/terek/nl_1_3szog1.png}
-	\caption{Az első eredmények}
+	\caption{A jiggle nélküli, illetve az azt futtató háló háromszögeinek minőségei}
 	\label{fig:jiggle}
 \end{figure}
 
 A \textit{„Refine Mesh”} funkcióhoz két paraméter tartozik, az elsővel beállítható, hogy milyen módszerrel finomítsunk a hálón, a másodikkal pedig a növekedési ráta állítható. Az általános esetben a háromszögek oldalainak felezőpontjait összekötve alkot új háromszögeket a toolbox, értelemszerűen így megnégyszerezve az elemek számát, a \textit{longest} módban pedig a háromszög átfogójának felezőpontját a vele szemközti csúccsal köti össze, így megduplázza az elemek számát. Utóbbi módban a növekedési ráta paraméterrel nem csak az eddig meglévő, de már az újonnan létrejött háromszögek egy részén is finomítani lehet egy iteráció alatt.
 
-Ezeken felül lehetőség van az Adaptív végeselemháló finomításhoz, mely a \textit{Solve} paraméterek között kapcsolható be. Itt beállíthatjuk, hogy a szimuláció során mennyi finomítást végezzen a program, azokat milyen módon, illetve mely háromszögekre alkalmazva. A toolbox a legrosszabb minőségű háromszögeket vagy a szomszédos háromszögekhez képest a legnagyobb relatív különbséget elérő(?) háromszögeket finomítja, melyekhez toleranciát is lehet beállítani. Itt több paramétert célszerű kipróbálni, ugyanis túl kis tolerancia esetén az összes háromszögen, túl nagy tolerancia esetén pedig egyiken se fog finomítani az algoritmus.
+Ezeken felül lehetőség van az Adaptív végeselemháló finomításhoz, mely a \textit{Solve} paraméterek között kapcsolható be. Itt beállíthatjuk, hogy a szimuláció során mennyi finomítást végezzen a program, azokat milyen módon, illetve mely háromszögekre alkalmazva. A toolbox a legrosszabb minőségű háromszögeket vagy a szomszédos háromszögekhez képest a legnagyobb relatív különbséget elérő(?) háromszögeket finomítja, melyekhez toleranciát is lehet beállítani. Itt több paramétert célszerű kipróbálni, ugyanis túl kis tolerancia esetén az összes háromszögen, túl nagy tolerancia esetén pedig egyiken se fog finomítani az algoritmus. A \figref{adaptive}~ábrán ugyanazon kezdeti hálózat finomítása látható 2 iteráció után, adaptív finomítás nélküli, illetve azt alkalmazó esetben.
 
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[trim = 15mm 80mm 10mm 40mm,clip, width=69mm, keepaspectratio]{figures/terek/mesh1.png}\hspace{5mm}
 	\includegraphics[trim = 15mm 80mm 10mm 40mm,clip, width=69mm, keepaspectratio]{figures/terek/mesh2.png}
-	\caption{Az első eredmények}
+	\caption{Adaptív finomítás}
 	\label{fig:adaptive}
 \end{figure}
+\newpage
+Ezen ismeretekre alapozva meghatároztunk 4 féle végeselemháló finomítási módot, melyek a következők:
 
 
+\begin{enumerate}
+	\item Nem adaptív, \textit{jiggle} nélküli, \textit{longest} módszerű, 1.3-as növekedési rátával.
+	\item Nem adaptív, 20 \textit{jiggle}-t futtató, általános módszerű.
+	\item Adaptív, maximum 2000 finomítást, $ 10^{-7} $-es toleranciát használó \textit{longest} módszerű.
+	\item Adaptív, maximum 2000 finomítást, $ 10^{-7} $-es toleranciát használó általános módszerű.
+\end{enumerate}
+Ezeket mind a lineáris, mind a nemlineáris modellre lefuttattuk, az eredményeket kiexportáltuk, és megkerestük a mágneses indukció értékek maximumát. Eredményeink a \tabref{res-lin} és a \tabref{res-nl} táblázatokban találhatóak. Látható, hogy az általános felezőpontos módszer könnyebben megtalálja a felület maximumát, ám az adaptív finomítást használva ez akár lényegesen kevesebb háromszöggel is elérhető.
+
+\begin{table}[!h]
+	\centering
+	\begin{tabular}{|c||c|c|c|c|}
+		\hline
+		\textbf{$ *10^{-6} $}		&1. mód&    2. mód&    3. mód&    4. mód\\ \hline\hline
+		Inicializáció&   0.96196865034802&   0.96312399284637&   0.98312171335652&   0.98320005165117\\ \hline
+		1. Iteráció&   0.97675147818946&   0.98320723184013&   0.98777832396964&   0.99108471276693\\ \hline
+		2. Iteráció&   0.98299702428866&   0.99109788082421&   0.99140497343270&   0.99418851293672\\ \hline
+		3. Iteráció&   0.98886512022438&   0.99420673120022&   0.99341595180488&   0.99544815538382\\ \hline
+		4. Iteráció&   0.99132744744480&   0.99546873795444&   0.99443044519884&   0.99595287564214\\ \hline
+		
+	\end{tabular}
+	\caption{A mágneses indukció maximumértékének változása lineáris modell esetén}
+	\label{tab:res-lin}
+\end{table}
+
+\begin{table}[!h]
+	\centering
+\begin{tabular}{|c||c|c|c|c|}
+	\hline
+	\textbf{$ *10^{-6} $}		&1. mód&    2. mód&    3. mód&    4. mód\\ \hline\hline
+	Inicializáció&   0.96196865034802&   0.96312399284635&   0.98312171335651&   0.98320005165113\\ \hline
+	1. Iteráció&   0.97675147818948&   0.98320723184012&   0.98777832396964&   0.99108471276696\\ \hline
+	2. Iteráció&   0.98299702428871&   0.99109788082414&   0.99140497343272&   0.99418851293635\\ \hline
+	3. Iteráció&   0.98886512022444&   0.99420673120021&   0.99341595180488&   0.99544815538414\\ \hline
+	4. Iteráció&   0.99132744744506&   0.99546873795697&   0.99443044519850&   0.99595287564182\\ \hline
+	
+\end{tabular}
+\caption{A mágneses indukció maximumértékének változása nemlineáris modell esetén}
+\label{tab:res-nl}
+\end{table}
+
+\begin{table}[!h]
+	\centering
+	\begin{tabular}{|c||c|c|c|c|}
+		\hline
+				&1. mód&    2. mód&    3. mód&    4. mód\\ \hline\hline
+		Inicializáció&371&371&1539&1210\\ \hline
+		1. Iteráció&902&1484&2932&3888\\ \hline
+		2. Iteráció&2059&5936&5628&12943\\ \hline
+		3. Iteráció&4546&23744&10972&46215\\ \hline
+		4. Iteráció&9813&94976&21345&154082\\ \hline
+		
+		
+	\end{tabular}
+	\caption{A végeselem hálót alkotó háromszögek száma}
+	\label{tab:res-size}
+\end{table}
 
 
 
