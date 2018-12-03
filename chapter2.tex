@@ -4,185 +4,75 @@
 %----------------------------------------------------------------------------
 \section{Első feladat}
 %----------------------------------------------------------------------------
-PyTorch segítségével definiáltunk egy \textit{Conv} osztályt, mely a 2D konvolúción kívül tartalmaz még \textit{BatchNorm} réteget és \textit{ReLU} aktivációt is. A hálót definiáló \textit{ConvNet} osztály pedig erre építve állítottuk össze, 6 \textit{Conv} és egy \textit{nn.Linear} rétegből áll, ez utóbbi szolgáltatja az egyes osztályokhoz tartozó kimeneteket.
+Először definiáltunk egy mintavételi időt, amit aztán annak a megelőzésére használunk fel, hogy egy kézmozdulatot két külön mozdulatként érzékeljünk. Kezdetben ezt az értéket 150 ms-nak definiáltuk, de ez kicsinek bizonyult,  300 ms-os értékkel megfelelően robusztusan működött. Ha a két mozdulat között eltelt idő nagyobb, mint az általunk beállított limit, akkor a handlist változóba elmentjük a detektált mozdulatok listáját és továbbadjuk azt a processHands függvénynek, az utolsó detektálás idejét pedig frissítjük az aktuálisra.
+
+\begin{lstlisting}
+const double THRESHOLD_PROCESS_FRAME = 300;
+clock_t this_time = clock();
+clock_t last_time = this_time;
+void processFrame(Frame frame) {
+	this_time = clock();
+	if ((this_time - last_time) > THRESHOLD_PROCESS_FRAME) {
+		Leap::HandList handList = frame.hands();
+		last_time = this_time;
+		processHands(handList);
+	}
+}	
+\end{lstlisting}
+A processHands függvény megkapja a kezek pillanatnyi tartalmazó hands listát. Végigmenve a listán, minden elemére megvizsgáljuk, hogy az adott kéz sebessége mekkora. Ehhez a hand objektum palmVelocity metódusát használjuk, ami megadja a kéz mozgásának sebességét és irányát. Ha a mozgás sebessége 750 felett van (mm/sec), akkor swipe gesztusnak minősítjük a mozdulatot. A 750-es választással a kicsit lassabb mozdulatokat is swipe gesztusként kezeljük.
+
+\begin{lstlisting}
+void processHands(HandList hands) {
+	for(int i = 0; i<hands.count();++i){
+		Hand hand = hands[i];
+		Leap::Vector velocity = hand.palmVelocity();
+		if (velocity.magnitude() > 750)
+			processSwipe(velocity, hand.isLeft());
+		grabTest(hand, hand.isLeft());
+	}
+}
+\end{lstlisting}
+
 %----------------------------------------------------------------------------
 \section{Második feladat}
 %----------------------------------------------------------------------------
-A CIFAR adatbázis része a PyTorch \textit{torchvision} moduljának, így néhány parancs segítségével betöltöttük. Adatdúsításhoz véletlen képrészlet kivágást, vízszintes tükrözést és színtér transzformációkat alkalmaztunk, ezen kívül minden minta előkészítésénél szükség volt PyTorch tenzorrá alakításra és normalizációra. Az előbb említett funkciókat és a batchek előkészítését a \textit{transforms} modul és a DataLoader osztály végezte.
-A következő hiperparaméterek hatásával kísérleteztünk a különböző tanítások során:
-
-\begin{itemize}
-	\item \textbf{Planes} - az egyes Conv blokkok 2D konvolúciós rétegeinek számát határozza meg.
-	\item \textbf{LR} - learning rate, egy tanítási lépés során a gradienst ezzel skálázzuk le.
-	\item \textbf{Momentum} - Az újonnan számolt gradiens aránya, ehhez az előző gradienseket is hozzáadjuk súlyozva, így megakadályozhatjuk a lokális minimumba ragadást.
-	\item \textbf{Weight Decay} - arány L2 loss számolásához, a súlyok növekedését akadályozza meg.
-	\item \textbf{Batch Size} - egy tanítási lépés alatt a háló egyszerre ennyi adat alapján számít gradienst.
-\end{itemize}
-
-\newpage
-%----------------------------------------------------------------------------
-\subsection{Első futás}
-%----------------------------------------------------------------------------
-\begin{table}[h]
-	\begin{tabular}{|l|l|l|l|l|}
-		\hline
-		\textbf{Planes} & \textbf{LR} & \textbf{Momentum} & \textbf{Weight Decay} & \textbf{Batch Size} \\
-		8 & 0.1 & 0.9 & 0.0001 & 128 \\ \hline
-		\textbf{Futási idő} & \textbf{Training Acc.} & \textbf{Training Loss} & \textbf{Valid. Acc.} & \textbf{Valid. Loss} \\
-		6m 43s & 73.44 & 0.7793 & 75.87 & 0.6925 \\ \hline
-	\end{tabular}
-	\caption{Az első futás eredménye}
-\end{table}
-Az első tanítást tekinthetjük viszonyítási alapnak.
-
-%----------------------------------------------------------------------------
-\subsection{Második futás}
-%----------------------------------------------------------------------------
-\begin{table}[h]
-	\begin{tabular}{|l|l|l|l|l|}
-		\hline
-		\textbf{Planes} & \textbf{LR} & \textbf{Momentum} & \textbf{Weight Decay} & \textbf{Batch Size} \\
-		8 & \textit{0.01} & 0.9 & 0.0001 & 128 \\ \hline
-		\textbf{Futási idő} & \textbf{Training Acc.} & \textbf{Training Loss} & \textbf{Valid. Acc.} & \textbf{Valid. Loss} \\
-		6m 44s & 71.38 & 0.8304 & 74.21 & 0.7389 \\ \hline
-	\end{tabular}
-	\caption{A második futás eredménye}
-\end{table}
-A második tanítás során csökkentettük a learning rate-et. Az eredmény rosszabb lett, így már túl lassan tanult a háló. 10 epochonként automatikus LR csökkentést alkalmaztunk, ez amúgy is hamar kis LR-t eredményez, érdemes a tanítást nagy értékkel kezdeni.
+A függvény bemenete egy kéz pillanatnyi sebességét és annak irányát tartalmazó vektor valamint egy logikai érték arra vonatkozóan, hogy melyik kézzel történt  mozdulat. A függvény elején definiáljuk a jobb, bal, fel, le vektorokat, amelyekkel összehasonlítva a bemeneti vektort meg tudjuk állapítani annak irányát. Ezután a bemeneti vektornak minden irányvektorral bezárt szögét elmentjük a dir tömbbe, majd ezekből kiválasztjuk a legkisebb értéket, ami megadja, hogy milyen irányú volt a kézmozgás. A konzolra kiírjuk, hogy ez az érték radiánban mennyivel tér el az irányvektortól, illetve hogy melyik irányvektorhoz áll a legközelebb, és meghívjuk az annak megfelelő sendSwipe függvényt, ami a communication.hpp fájlban van definiálva.
 
 
-%----------------------------------------------------------------------------
-\subsection{Harmadik futás}
-%----------------------------------------------------------------------------
-\begin{table}[h]
-	\begin{tabular}{|l|l|l|l|l|}
-		\hline
-		\textbf{Planes} & \textbf{LR} & \textbf{Momentum} & \textbf{Weight Decay} & \textbf{Batch Size} \\
-		8 & 0.1 & \textit{0} & 0.0001 & 128 \\ \hline
-		\textbf{Futási idő} & \textbf{Training Acc.} & \textbf{Training Loss} & \textbf{Valid. Acc.} & \textbf{Valid. Loss} \\
-		6m 52s & 70.07 & 0.8657 & 72.60 & 0.7699 \\ \hline
-	\end{tabular}
-	\caption{A harmadik futás eredménye}
-\end{table}
-A harmadik tanítás momentum nélkül futott. Jelen esetben is csökkent a háló teljesítménye, hiszen a lokális minimumok könnyebben befolyásolták, téves irányokba terelték a gradienst.
-
-
-
-
-%----------------------------------------------------------------------------
-\subsection{Negyedik futás}
-%----------------------------------------------------------------------------
-\begin{table}[h]
-	\begin{tabular}{|l|l|l|l|l|}
-		\hline
-		\textbf{Planes} & \textbf{LR} & \textbf{Momentum} & \textbf{Weight Decay} & \textbf{Batch Size} \\
-		8 & 0.1 & 0.9 & 0.0001 & \textit{32} \\ \hline
-		\textbf{Futási idő} & \textbf{Training Acc.} & \textbf{Training Loss} & \textbf{Valid. Acc.} & \textbf{Valid. Loss} \\
-		10m 3s & 70.10 & 0.8657 & 73.67 & 0.7533 \\ \hline
-	\end{tabular}
-	\caption{A negyedik futás eredménye}
-\end{table}
-Ebben az esetben kevesebb minta tartozott egy batch-be. Így jóval több tanítási ciklusra volt szükség, hogy epoch-onként az összes mintát felhasználjuk. A python mátrix kezelő könyvtárai jól optimalizáltan dolgoznak, nagyobb mátrixok helyett több ciklust használni sebesség csökkenést okoz. Ezen kívül a teljesítmény is romlott, a kisebb batchekkel kevésbé általánosan jó irányokba haladt a háló.
-
-\newpage
-%----------------------------------------------------------------------------
-\subsection{Ötödik futás}
-%----------------------------------------------------------------------------
-\begin{table}[h]
-	\begin{tabular}{|l|l|l|l|l|}
-		\hline
-		\textbf{Planes} & \textbf{LR} & \textbf{Momentum} & \textbf{Weight Decay} & \textbf{Batch Size} \\
-		\textit{16} & 0.1 & 0.9 & 0.0001 & 128 \\ \hline
-		\textbf{Futási idő} & \textbf{Training Acc.} & \textbf{Training Loss} & \textbf{Valid. Acc.} & \textbf{Valid. Loss} \\
-		7m 6s & 79.90 & 0.6010 & 81.35 & 0.5379 \\ \hline
-	\end{tabular}
-	\caption{Az ötödik futás eredménye}
-\end{table}
-Az 5. tanításnál megdupláztuk a háló rétegeinek számát. A több súly miatt lassabban teljesítette a program a 20 epochot, cserébe jelentős teljesítmény növekedést értünk el, bonyolultabb összefüggések tanulására lett képes a háló. 
-
-
-%----------------------------------------------------------------------------
-\subsection{Hatodik futás}
-%----------------------------------------------------------------------------
-\begin{table}[h]
-	\begin{tabular}{|l|l|l|l|l|}
-		\hline
-		\textbf{Planes} & \textbf{LR} & \textbf{Momentum} & \textbf{Weight Decay} & \textbf{Batch Size} \\
-		\textit{16} & 0.1 & 0.9 & \textit{0} & 128 \\ \hline
-		\textbf{Futási idő} & \textbf{Training Acc.} & \textbf{Training Loss} & \textbf{Valid. Acc.} & \textbf{Valid. Loss} \\
-		7m 7s & 80.22 & ? & 81.56 & 0.5432 \\ \hline
-	\end{tabular}
-	\caption{A hatodik futás eredménye}
-\end{table}
-Az előző esethez hasonlóan maradt a teljesítmény és futási idő növekedés. A súlyokból számolt költség elhagyása nem hozott jelentős változást.
-
-\newpage
-%----------------------------------------------------------------------------
-\subsection{Összegzés}
-%----------------------------------------------------------------------------
-A \figref{Train}~ és a \figref{Val}~ábrákon láthatóak a különböző futások eredményei összesített grafikonok. 
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=125mm, keepaspectratio]{figures/m07/train_acc2.jpg}\\\vspace{2mm}
-	\includegraphics[width=125mm, keepaspectratio]{figures/m07/train_loss.jpg}
-	\caption{Tanítási eredmények}
-	\label{fig:Train}
+\lstinputlisting{figures/m10/2.cpp}
+\begin{figure}[!ht]
+	\includegraphics[width=150mm,keepaspectratio]{figures/m10/1.png}
+	\label{fig:Road-of-a-char}
+	\caption{Swipe left/right - váltás az elemek között}
 \end{figure}
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=125mm, keepaspectratio]{figures/m07/val_acc.jpg}\\\vspace{2mm}
-	\includegraphics[width=125mm, keepaspectratio]{figures/m07/val_loss.jpg}
-	\caption{Validálási eredmények}
-	\label{fig:Val}
-\end{figure}
-
-\newpage
-\newpage
-
-%----------------------------------------------------------------------------
-\section{Harmadik feladat}
-%----------------------------------------------------------------------------
-A DenseNet tanításához az eredeti hiperparaméter kombinációt (\textit{Learning Rate}=0.1, \textit{Momentum}=0.9, \textit{Weight Decay}=0.0001, \textit{Batch Size}=128) választottuk, ezek mellett, csak az epochok számát (100-ra) és a \textit{LearningRate Scheduler} paramétét (25 epochra) változtattuk. Az előző feladatokban használt általunk megírt modell helyett, a mérésvezető által kijelölt DenseNet struktárára állítottuk a tanítandó modellt. Az így módosított fájlokat az egyetem DeepLearning szerverére feltöltöttük, majd SSH segítségével egy terminál ablakban elindítottuk a tanítást. Mivel a tanítás hosszabb ideig tartott, mint a laboratórium, így az eredményeket az egyetem honlapján megjelenő TensorBoard segítségével utólagosan tudtuk kiértékelni.
-
-A grafikonok a vártnak megfelelő működést mutatnak, a haló kb 50 epoch után beszaturált, a tanítási pontosság elérte a 99\%-ot. A validációs pontosság 93\% körül tetőzött, e kettő érték aránya mutatja, hogy a DenseNet struktúrája és a benne lévő batch normalizációs rétegek is jól működtek, a jóval mélyebb háló ellenére is sikerült elkerülni a túlillesztés jelenségét.
-
-A tanítási hiba grafikonján látni, hogy megfelelő tanítási rátát választottunk, a tanítás elején a konvergencia erős, ám konstans gyengül. Az első ütemezett tanítási ráta csökkentése (25. epoch) után ugrásszerűen növekszik, majd a ismét legyengül. A második csökkentés (50. epoch után) hatása még látható a grafikonon, de ezután érdemi változást nem lehet látni, a hiba szinte 0-ba konvergált.
-
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=140mm, keepaspectratio]{figures/m07/dn_train_acc.jpg}\\\vspace{5mm}
-	\includegraphics[width=140mm, keepaspectratio]{figures/m07/dn_train_loss.jpg}
-	\caption{Tanítási eredmények a DenseNet struktúrán}
-	\label{fig:TrainDense}
-\end{figure}
-%----------------------------------------------------------------------------
-\section{Negyedik feladat}
-%----------------------------------------------------------------------------
-A feladathoz egy előre tanított AlexNet modellt használtunk, mely a PyTorch-ból egyszerűen betölthető. Első lépésként a korábbi feladatokkal megegyezően a kamera képét bemenetként adtuk a hálónak, majd a legbiztosabbra becsült kimenetet ‘1’ értékűnek véve a \textit{GuidedBckprop} osztály segítségével gradienseket generáltunk a háló bemenetére.
-A gradiensek abszolútértékeit pixelenként szummáztuk, majd küszöbözés és legnagyobb kontúr keresés után bejelölhetővé vált a képen az a régió, amely a háló döntését leginkább befolyásolta.
-Sok esetben a háló nem a prediktált objektum, hanem annak környezete alapján döntött. Például gyakran szerepelt “csokornyakkendő” vagy “öltöny” címke, amikor embereket látott a kamera, vagy “falióra” címke egy üres falat nézve. Ennek oka, hogy a tévesztett és valódi objektumok szorosan együtt járnak, a tanításhoz használt képeken mindig szerepel ember a csokornyakkendővel együtt, vagy üres falfelületen látható a falióra.
-
-
-
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=69mm, keepaspectratio]{figures/m07/Untitled-.jpg}\hspace{5mm}
-	\includegraphics[width=69mm, keepaspectratio]{figures/m07/Untitled-2.jpg}\\\vspace{5mm}
-	\includegraphics[width=69mm, keepaspectratio]{figures/m07/Untitled-3.jpg}\hspace{5mm}
-	\includegraphics[width=69mm, keepaspectratio]{figures/m07/Untitled-4.jpg}
-	\caption{A Guided Propagation megvalósítása különböző objektumokra}
-	\label{fig:poi}
+\begin{figure}[!ht]
+	\includegraphics[width=150mm,keepaspectratio]{figures/m10/2.png}
+	\caption{Swipe up - elem kiválasztása}
 \end{figure}
 
 
+%----------------------------------------------------------------------------
+\section{Harmadik és negyedik feladat}
+%----------------------------------------------------------------------------
+A grabTest függvény megállapítja, hogy a kéz ökölbe van-e szorítva, illetve, hogy jobb vagy bal kéz az, illetve ennek megfelelően be- vagy kizoomolunk. Először megnézzük, hogy ökölben van-e a kéz, amit a grabStrength függvény kimenetét egy threshold értékkel összehasonlítva kapunk meg. Ha a kéz ökölben van és az előző függvényhívásnál még nem volt ökölben (isGrabLeft és isGrabRight változók), akkor zoomolonk. Megvizsgáljuk jobb és bal kézre is, az határozza meg, hogy ki- vagy bezoomolás történik. Ezt a konzolra is kiírjuk.
+
+\lstinputlisting{figures/m10/3-4.cpp}
+\begin{figure}[!ht]
+	\includegraphics[width=150mm,keepaspectratio]{figures/m10/3.png}
+	\caption{Zoomolás ökölbe szorításra}
+\end{figure}
+
+%----------------------------------------------------------------------------
+\section{Ötödik feladat}
+%----------------------------------------------------------------------------
+Az előző feladatban megírt függvényt módosítjuk ehhez a feladathoz. A grab\_counter változóban számoljuk a kattintások számát. Ha ökölbe szorítás történik, növeljük a változó értékét és elmentjük a hozzá tartozó időpontot. Ezután megvizsgáljuk, hogy a két kattintás között eltelt idő nagyobb-e az általunk beállított limitnél. Mi ezt a threshold-ot 800 ms-ra állítottuk. Ha nagyobb, és egy grab\_counter értéke 1 bezoomolunk, ha 2 vagy több (default), akkor kizoomolunk, és ezt ki is írjuk a konzolra. A threshold idő leteltével a grab\_counter változót mindenképp nullázzuk, hogy egy későbbi kattintás ismét megjelölhesse a dupla kattintáshoz rendelkezésre álló időablak kezdetét.
 
 
-
-
-
-
-
-
+\lstinputlisting{figures/m10/5.cpp}
+\begin{figure}[!ht]
+	\includegraphics[width=150mm,keepaspectratio]{figures/m10/4.png}
+	\caption{A konzol a rá kiírt információkkal, több egymás utáni, különböző kézmozdulat esetén.}
+\end{figure}
 
 
 

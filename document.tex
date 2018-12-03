@@ -49,7 +49,7 @@
 \newcommand{\vikneptunIII}{VUUVQ3}
 \newcommand{\vikneptunIV}{JILTAL}
 \newcommand{\vikneptunV}{GABQNB}
-\newcommand{\vikcim}{M07 - Objektumkövetés}
+\newcommand{\vikcim}{M10 - Számítógép vezérlése mélységi szenzorokkal}
 \newcommand{\viktanszek}{Irányítástechnika és Informatika Tanszék}
 \newcommand{\viklabor}{Irányítástechnika és képfeldolgozás laboratórium 1.}
 \newcommand{\vikdoktipus}{Mérési jegyzőkönyv}
@@ -118,6 +118,36 @@
 %	emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
 %	%emph=[2]{word1,word2}, emphstyle=[2]{style},    
 %}
+\lstset { %
+language=C++,
+backgroundcolor=\color{black!5}, % set backgroundcolor
+basicstyle=\footnotesize,% basic font setting
+}
+% define general style
+\lstdefinestyle{defaultStyle}
+{
+basicstyle=\footnotesize,
+tabsize=2,
+captionpos=b,
+frame=lines,
+breaklines=true,
+keepspaces=true
+}
+% de
+\lstdefinestyle{cppStyle}
+{
+	style=defaultStyle,
+	% language related
+	language=C++,
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	showstringspaces=false,
+	%otherkeywords={\#include}, % do not uncomment!
+	% numbering
+	numbers=left,
+	numberstyle=\tiny
+}
 \def\lstlistingname{lista}	
 
 %--------------------------------------------------------------------------------------
