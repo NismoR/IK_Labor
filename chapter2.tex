@@ -2,97 +2,112 @@
 \chapter{Jegyzőkönyv}
 %----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
+\section{A labor témája}
+%----------------------------------------------------------------------------
+Egy sáv detektáló szoftver részeit kellett megvalósítani, mely egy videót dolgoz fel. 
+Python nyelven, PyCharm fejlesztőkörnyezetet használtunk a mérés során, képfeldolgozó funkciókhoz az OpenCV-t használtuk. 
+A fájl betöltő, megjelenítő és szemléltető funkciók már adottak voltak, ezt kellett bizonyos függvényekkel kiegészítenünk, ennek részleteit a következő fejezetek tartalmazzák.
+
+%----------------------------------------------------------------------------
 \section{Első feladat}
 %----------------------------------------------------------------------------
-Először definiáltunk egy mintavételi időt, amit aztán annak a megelőzésére használunk fel, hogy egy kézmozdulatot két külön mozdulatként érzékeljünk. Kezdetben ezt az értéket 150 ms-nak definiáltuk, de ez kicsinek bizonyult,  300 ms-os értékkel megfelelően robusztusan működött. Ha a két mozdulat között eltelt idő nagyobb, mint az általunk beállított limit, akkor a handlist változóba elmentjük a detektált mozdulatok listáját és továbbadjuk azt a processHands függvénynek, az utolsó detektálás idejét pedig frissítjük az aktuálisra.
+Az első feladat során a videó egy képe alapján határoztuk meg a sávok pixeleit egy bináris maszkon. 
+Ehhez többféle képfeldolgozó eljárást használtunk, melyek együttesen határozták meg a kimenetet.
 
-\begin{lstlisting}
-const double THRESHOLD_PROCESS_FRAME = 300;
-clock_t this_time = clock();
-clock_t last_time = this_time;
-void processFrame(Frame frame) {
-	this_time = clock();
-	if ((this_time - last_time) > THRESHOLD_PROCESS_FRAME) {
-		Leap::HandList handList = frame.hands();
-		last_time = this_time;
-		processHands(handList);
-	}
-}	
-\end{lstlisting}
-A processHands függvény megkapja a kezek pillanatnyi tartalmazó hands listát. Végigmenve a listán, minden elemére megvizsgáljuk, hogy az adott kéz sebessége mekkora. Ehhez a hand objektum palmVelocity metódusát használjuk, ami megadja a kéz mozgásának sebességét és irányát. Ha a mozgás sebessége 750 felett van (mm/sec), akkor swipe gesztusnak minősítjük a mozdulatot. A 750-es választással a kicsit lassabb mozdulatokat is swipe gesztusként kezeljük.
+\begin{figure}[!ht]
+	\includegraphics[width=150mm,keepaspectratio]{figures/m09/mag-mask.png}\vspace{2mm}
+	\includegraphics[width=150mm,keepaspectratio]{figures/m09/mag-mask.png}
+	\caption{A gradiens abszolút értéke és iránya alapján készített maszk}
+	\label{fig:MagDirMask}
+\end{figure}
 
-\begin{lstlisting}
-void processHands(HandList hands) {
-	for(int i = 0; i<hands.count();++i){
-		Hand hand = hands[i];
-		Leap::Vector velocity = hand.palmVelocity();
-		if (velocity.magnitude() > 750)
-			processSwipe(velocity, hand.isLeft());
-		grabTest(hand, hand.isLeft());
-	}
-}
-\end{lstlisting}
+Először a kép pixeleinek x és y irányú gradienseit határoztuk meg Sobel szűrőablakok segítségével. 
+Ezt az eredeti kép szürkeárnyalatossá konvertált másolatán tudtuk elvégezni. 
+A sávok határait kereshetjük meg a gradiensek segítségével, mivel a fehér sáv és közel fekete úttest pixelei között nagy az intenzitásbeli különbség. 
+A kapott értékeket kétféleképpen tettük elérhetővé a kód többi része számára:
+\begin{itemize}
+	\item Gradiens abszolút értéke: mivel a sávok mindkét határára szükségünk van, nem kell különbséget tennünk a világos-sötét és sötét-világos átmenet között. A szimmetria kiküszöbölésével továbbá elég egy küszöbözés műveletet elvégezni a gradiensekre, nem kell külön negatív és pozitív tartománnyal foglalkozni
+	\item Gradiens skálázott értéke: egységes, 0-255 közötti tartományba kényszerítjük külön az x és y irányú gradienseket, ahol a maximális x vagy y irányú gradiens jelenti a 255 értéket. Ezzel nagyság szerint küszöbözhetővé tesszük őket, hiszen például alacsony megvilágítás mellett minden pixel intenzitása kicsi lesz, különbségeik is kicsik maradnak, egy fényes képhez használt küszöbértékek alapján nem találnánk elég nagy intenzitás eltéréseket.
+\end{itemize}
+Intenzitás alapú szűrést a skálázott gradiensek összegére végeztük el, míg az irány szerinti szűréshez a két irány arkusztangensére, a keresett értéktartományok adottak voltak. Az így készített maszk látható a \figref{MagDirMask}~ábrán.
+
+
+Másodszor szín szerinti szűrést alkalmaztunk, ehhez HLS színtérbe konvertáltuk a képet. Mivel csak fehér színt kerestünk, elég volt a színtér S, azaz telítettség értékére szűrni, ez fehér közeli színekre nagy értékű lesz, ezt a \figref{ColorMask}~ábra mutatja.
+
+\begin{figure}[!ht]
+	\includegraphics[width=150mm,keepaspectratio]{figures/m09/color-mask.png}
+	\caption{A színszűrés alapján készített maszk}
+	\label{fig:ColorMask}
+\end{figure}
+
+Végül sávnak nyilvánítottunk minden nagy és megfelelő irányú gradiensvektor által jelölt vagy megfelelő színű pixelt. Ezzel a két módszer hibáit szűrtük ki: a gradiens módszer a sáv széleit, míg a szín módszer a belsejét találja meg, a kettő uniója jelenti a teljes sávot, ez látható a \figref{CombinedMask}~ábrán.
+
+\begin{figure}[!ht]
+	\includegraphics[width=150mm,keepaspectratio]{figures/m09/combined-mask.png}
+	\caption{A kombinált maszk}
+	\label{fig:CombinedMask}
+\end{figure}
+\newpage
 
 %----------------------------------------------------------------------------
 \section{Második feladat}
 %----------------------------------------------------------------------------
-A függvény bemenete egy kéz pillanatnyi sebességét és annak irányát tartalmazó vektor valamint egy logikai érték arra vonatkozóan, hogy melyik kézzel történt  mozdulat. A függvény elején definiáljuk a jobb, bal, fel, le vektorokat, amelyekkel összehasonlítva a bemeneti vektort meg tudjuk állapítani annak irányát. Ezután a bemeneti vektornak minden irányvektorral bezárt szögét elmentjük a dir tömbbe, majd ezekből kiválasztjuk a legkisebb értéket, ami megadja, hogy milyen irányú volt a kézmozgás. A konzolra kiírjuk, hogy ez az érték radiánban mennyivel tér el az irányvektortól, illetve hogy melyik irányvektorhoz áll a legközelebb, és meghívjuk az annak megfelelő sendSwipe függvényt, ami a communication.hpp fájlban van definiálva.
+Egy konstans paraméterű perspektív transzformációt hajtottunk végre az első feladatban elkészített maszkon. Ehhez négy pontot kellett megadni a síkon, majd ezek transzformáció utáni megfelelőit, az átalakítást mátrixát az OpenCV \textit{getPerspectiveTransform} függvénye számolta ki, a transzformációt pedig a \textit{warpPerspective} függvény végezte el a mátrix alapján. Ennek eredménye a \figref{Warped}~ábrán látható. Az átalakítás inverzét is el kellett tárolnunk, hogy a torzított képen meghatározott sávok helyét megkaphassuk az eredeti képen is.
 
-
-\lstinputlisting{figures/m10/2.cpp}
 \begin{figure}[!ht]
-	\includegraphics[width=150mm,keepaspectratio]{figures/m10/1.png}
-	\label{fig:Road-of-a-char}
-	\caption{Swipe left/right - váltás az elemek között}
-\end{figure}
-\begin{figure}[!ht]
-	\includegraphics[width=150mm,keepaspectratio]{figures/m10/2.png}
-	\caption{Swipe up - elem kiválasztása}
+	\includegraphics[width=150mm,keepaspectratio]{figures/m09/warped-mask.png}
+	\caption{A transzformált maszk}
+	\label{fig:Warped}
 \end{figure}
 
+Egy hisztogramot készítettünk, mely a \figref{Histogram}~ábrán látható. Ez a torzított kép fehér pixeleinek számát tartalmazta oszloponként összesítve. Mivel az egyenes sávok egyenes oszlopokként jelennek meg ezen a képen, ott helyezkedik el a sáv, ahol az oszlopban sok a sávnak címkézett pixel. A hisztogram két lokális maximuma jelenti a két sávot. Ha az egyik maximum jóval kevesebb, mint a másik, az szaggatott felfestésre utal. A sávok görbülhetnek is, ekkor a felső részük már nem esik a sáv aljának oszlopába. Ezért csak a torzított maszk alsó felét vesszük figyelembe a hisztogram készítésekor, azon a részen a sáv görbülettől függetlenül megközelítőleg oszlopként látszik.
+
+
+\begin{figure}[!ht]
+	\includegraphics[width=150mm,keepaspectratio]{figures/m09/histogram.png}
+	\caption{A vertikális hisztogram}
+	\label{fig:Histogram}
+\end{figure}
+\newpage
 
 %----------------------------------------------------------------------------
-\section{Harmadik és negyedik feladat}
+\section{Harmadik feladat}
 %----------------------------------------------------------------------------
-A grabTest függvény megállapítja, hogy a kéz ökölbe van-e szorítva, illetve, hogy jobb vagy bal kéz az, illetve ennek megfelelően be- vagy kizoomolunk. Először megnézzük, hogy ökölben van-e a kéz, amit a grabStrength függvény kimenetét egy threshold értékkel összehasonlítva kapunk meg. Ha a kéz ökölben van és az előző függvényhívásnál még nem volt ökölben (isGrabLeft és isGrabRight változók), akkor zoomolonk. Megvizsgáljuk jobb és bal kézre is, az határozza meg, hogy ki- vagy bezoomolás történik. Ezt a konzolra is kiírjuk.
+A kamera és a detektálás is zajos eredményeket produkál, a jármű irányításához azonban célszerű ezt kiszűrni, simább bemenetet szolgáltatni. A program előre megírt részei kiszámolták a sáv görbületét és a jármű sávközéptől való eltérését, ezeket dolgoztuk fel. 
 
-\lstinputlisting{figures/m10/3-4.cpp}
+Az új értékeket egy-egy tömbben tároljuk, a tömb elemeinek átlaga adja a simított értéket. Mozgó átlagot számolunk, azaz a tömb teljes feltöltése után a legrégebbi értéket eldobtuk, az újat beszúrtuk, majd átlagot számoltunk az elemekből.
+A simított eltérés értékekre LS becsléssel egyenest illesztettünk, az egyenes egyenlet alakját egy mátrix definiálta. Az egyenes becsült meredeksége jelenti majd a szabályzó számára a középtől való eltérés változását.
+
+
+\newpage
+%----------------------------------------------------------------------------
+\section{Negyedik feladat}
+%----------------------------------------------------------------------------
+A fuzzy szabályzót a klasszikus MacVicar-Wheelan metaszabályok szerint terveztük meg. Bemenetnek a hibajelet, illetve annak deriváltját adtuk, melyekhez 5-5 tagsági függvényt alkottunk. A kimenet szintén 5 tagsági függvénnyel rendelkezik. Ezek alapján 5 fuzzy szabályt hoztunk létre.
+
 \begin{figure}[!ht]
-	\includegraphics[width=150mm,keepaspectratio]{figures/m10/3.png}
-	\caption{Zoomolás ökölbe szorításra}
+	\includegraphics[width=150mm,keepaspectratio]{figures/m09/mcw.png}
+	\caption{Példa a MacVicar-Wheelan metaszabályokra, 7-7 be-, és kimeneti tagsági függvények alapján}
+	\label{fig:MCW}
 \end{figure}
+
 
 %----------------------------------------------------------------------------
 \section{Ötödik feladat}
 %----------------------------------------------------------------------------
-Az előző feladatban megírt függvényt módosítjuk ehhez a feladathoz. A grab\_counter változóban számoljuk a kattintások számát. Ha ökölbe szorítás történik, növeljük a változó értékét és elmentjük a hozzá tartozó időpontot. Ezután megvizsgáljuk, hogy a két kattintás között eltelt idő nagyobb-e az általunk beállított limitnél. Mi ezt a threshold-ot 800 ms-ra állítottuk. Ha nagyobb, és egy grab\_counter értéke 1 bezoomolunk, ha 2 vagy több (default), akkor kizoomolunk, és ezt ki is írjuk a konzolra. A threshold idő leteltével a grab\_counter változót mindenképp nullázzuk, hogy egy későbbi kattintás ismét megjelölhesse a dupla kattintáshoz rendelkezésre álló időablak kezdetét.
+A kész programot futtatva az általunk implementált detektáló és szabályzó algoritmus eredményét előre megírt függvények szemléltették a videón. A sávok közötti terület színes jelölése pontosan követte a felfestés közötti területet, a horizont környékén vált bizonytalanná a becslés, főleg kanyarodás közben, hajlamos volt a színes terület eltérni a valóságtól. 
+
+Az úthibák hatására az autó belengése miatt a kamera és az út síkja változik, emiatt a megadott négy pont a perspektív transzformáció során helytelenné vált, ilyen esetekben is pontatlanná vált a becslés.
+
+Egy grafikonon (\figref{Results}~ábra) láthattuk a szabályzó bemeneteit és kimenetét, az értékek csillapított és nyers formáját is. A zaj nagyrészt valóban eltűnt a simítás után.
 
 
-\lstinputlisting{figures/m10/5.cpp}
+
 \begin{figure}[!ht]
-	\includegraphics[width=150mm,keepaspectratio]{figures/m10/4.png}
-	\caption{A konzol a rá kiírt információkkal, több egymás utáni, különböző kézmozdulat esetén.}
+	\includegraphics[width=150mm,keepaspectratio]{figures/m09/results.png}
+	\caption{Az algoritmus működésének ellenőrzése}
+	\label{fig:Results}
 \end{figure}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
