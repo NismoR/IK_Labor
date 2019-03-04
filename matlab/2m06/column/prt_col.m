@@ -1,7 +1,9 @@
 %Simulation of the perturbed Distillation Column systems
 %
 mod_col
-[k1,k2,Theta1,Theta2] = ndgrid([0.8 1.2],[0.8 1.2],[0 1],[0 1]);
+k_tol=[0.7 1.3];
+tau_tol=[0 1.05];
+[k1,k2,Theta1,Theta2] = ndgrid(k_tol,k_tol,tau_tol,tau_tol);
 %
 for j = 1:16
     [num1,den1] = pade(Theta1(j),2);
@@ -110,6 +112,11 @@ for j = 1:16
     ylabel('u_{22}')
     hold on
 end
+
+for j = 1:8
+    whitebg(j,'w');
+end
+
 figure(1), hold off
 figure(2), hold off
 figure(3), hold off

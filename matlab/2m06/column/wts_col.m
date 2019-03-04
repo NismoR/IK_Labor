@@ -1,13 +1,35 @@
 % Weighting functions for Distillation Column system
 %
 % uncertainty weight
-nuW_Delta1 = [2.2138 15.9537 27.6702  4.9050];
-dnW_Delta1 = [1.      8.3412 21.2393 22.6705];
+
+nuW_Delta_i_new = [2.4437 10.4649 24.8224  6.7252];
+dnW_Delta_i_new = [1.      5.2790 14.5868 15.8093];
+nuW_Delta_i_old = [2.2138 15.9537 27.6702  4.9050];
+dnW_Delta_i_old = [1.      8.3412 21.2393 22.6705];
+
+nuW_Delta_i_new = [2.3324 8.2039 19.7241  4.2575];
+dnW_Delta_i_new = [1.      4.5896 12.3380 13.4265];
+nuW_Delta_i_new = [2.3111 7.9043 7.2489  1.3516];
+dnW_Delta_i_new = [1.      4.3667 7.8794 4.3613];
+nuW_Delta_i_new = [2.3509    8.4222   13.6532    3.0960];
+dnW_Delta_i_new = [1.      4.6982   10.2369    9.4826];
+    
+
+
+nuW_Delta_i = nuW_Delta_i_new;
+dnW_Delta_i = dnW_Delta_i_new;
+
+% nuW_Delta1 = [2.2138 15.9537 27.6702  4.9050];
+% dnW_Delta1 = [1.      8.3412 21.2393 22.6705];
+nuW_Delta1 = nuW_Delta_i;
+dnW_Delta1 = dnW_Delta_i;
 gainW_Delta1 = 1;
 w_Delta1 = nd2sys(nuW_Delta1,dnW_Delta1,gainW_Delta1);
 %
-nuW_Delta2 = [2.2138 15.9537 27.6702  4.9050];
-dnW_Delta2 = [1.      8.3412 21.2393 22.6705];
+% nuW_Delta2 = [2.2138 15.9537 27.6702  4.9050];
+% dnW_Delta2 = [1.      8.3412 21.2393 22.6705
+nuW_Delta2 = nuW_Delta_i;
+dnW_Delta2 = dnW_Delta_i;
 gainW_Delta2 = 1;
 w_Delta2 = nd2sys(nuW_Delta2,dnW_Delta2,gainW_Delta2);
 %

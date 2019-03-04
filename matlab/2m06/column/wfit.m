@@ -1,4 +1,5 @@
 mf = ginput(20);                   % pick 20 points
+mf = sortrows(mf);
 magg = vpck(mf(:,2),mf(:,1));      % pack them as a varying matrix
 W = fitmag(magg);                  % choose the order of W online
 [A,B,C,D] = unpck(W);              % converting into state space

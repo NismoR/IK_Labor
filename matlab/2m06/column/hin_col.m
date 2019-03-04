@@ -18,3 +18,4 @@ title('Singular Value Plot of clp')
 xlabel('Frequency (rad/sec)')
 ylabel('Magnitude')
 K = K_hin;
+whitebg();

@@ -1,0 +1,3445 @@
+Model {
+  Name			  "barrier_template_14a"
+  Version		  8.3
+  MdlSubVersion		  0
+  SavedCharacterEncoding  "windows-1250"
+  GraphicalInterface {
+    NumRootInports	    0
+    NumRootOutports	    0
+    ParameterArgumentNames  ""
+    ComputedModelVersion    "1.9"
+    NumModelReferences	    0
+    NumTestPointedSignals   0
+  }
+  SaveDefaultBlockParams  on
+  ScopeRefreshTime	  0.035000
+  OverrideScopeRefreshTime on
+  DisableAllScopes	  off
+  DataTypeOverride	  "UseLocalSettings"
+  DataTypeOverrideAppliesTo "AllNumericTypes"
+  MinMaxOverflowLogging	  "UseLocalSettings"
+  MinMaxOverflowArchiveMode "Overwrite"
+  FPTRunName		  "Run 1"
+  MaxMDLFileLineLength	  120
+  Object {
+    $PropName		    "BdWindowsInfo"
+    $ObjectID		    1
+    $ClassName		    "Simulink.BDWindowsInfo"
+    Object {
+      $PropName		      "WindowsInfo"
+      $ObjectID		      2
+      $ClassName	      "Simulink.WindowInfo"
+      IsActive		      [1]
+      Location		      [-8.0, -8.0, 1382.0, 744.0]
+      Object {
+	$PropName		"ModelBrowserInfo"
+	$ObjectID		3
+	$ClassName		"Simulink.ModelBrowserInfo"
+	Visible			[0]
+	DockPosition		"Left"
+	Width			[50]
+	Height			[50]
+	Filter			[9]
+      }
+      Object {
+	$PropName		"ExplorerBarInfo"
+	$ObjectID		4
+	$ClassName		"Simulink.ExplorerBarInfo"
+	Visible			[1]
+      }
+      Object {
+	$PropName		"EditorsInfo"
+	$ObjectID		5
+	$ClassName		"Simulink.EditorInfo"
+	IsActive		[1]
+	ViewObjType		"SimulinkTopLevel"
+	LoadSaveID		"0"
+	Extents			[1332.0, 569.0]
+	ZoomFactor		[1.25]
+	Offset			[108.80571428571454, 15.249523809523822]
+      }
+    }
+  }
+  Created		  "Tue Feb 11 09:32:44 2014"
+  Creator		  "gkovacs"
+  UpdateHistory		  "UpdateHistoryNever"
+  ModifiedByFormat	  "%<Auto>"
+  LastModifiedBy	  "Bence"
+  ModifiedDateFormat	  "%<Auto>"
+  LastModifiedDate	  "Thu Feb 28 21:10:07 2019"
+  RTWModifiedTimeStamp	  473250677
+  ModelVersionFormat	  "1.%<AutoIncrement:9>"
+  ConfigurationManager	  "none"
+  SampleTimeColors	  off
+  SampleTimeAnnotations	  off
+  LibraryLinkDisplay	  "none"
+  WideLines		  off
+  ShowLineDimensions	  off
+  ShowPortDataTypes	  off
+  ShowDesignRanges	  off
+  ShowLoopsOnError	  on
+  IgnoreBidirectionalLines off
+  ShowStorageClass	  off
+  ShowTestPointIcons	  on
+  ShowSignalResolutionIcons on
+  ShowViewerIcons	  off
+  SortedOrder		  off
+  ExecutionContextIcon	  off
+  ShowLinearizationAnnotations on
+  BlockNameDataTip	  off
+  BlockParametersDataTip  off
+  BlockDescriptionStringDataTip	off
+  ToolBar		  on
+  StatusBar		  on
+  BrowserShowLibraryLinks off
+  BrowserLookUnderMasks	  off
+  SimulationMode	  "normal"
+  PauseTimes		  "5"
+  NumberOfSteps		  1
+  SnapshotBufferSize	  10
+  SnapshotInterval	  10
+  NumberOfLastSnapshots	  0
+  LinearizationMsg	  "none"
+  Profile		  off
+  ParamWorkspaceSource	  "MATLABWorkspace"
+  AccelSystemTargetFile	  "accel.tlc"
+  AccelTemplateMakefile	  "accel_default_tmf"
+  AccelMakeCommand	  "make_rtw"
+  TryForcingSFcnDF	  off
+  Object {
+    $PropName		    "DataLoggingOverride"
+    $ObjectID		    6
+    $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
+    model_		    "barrier_template_14a"
+    Array {
+      Type		      "Cell"
+      Dimension		      1
+      Cell		      "barrier_template_14a"
+      PropName		      "logAsSpecifiedByModels_"
+    }
+    Array {
+      Type		      "Cell"
+      Dimension		      1
+      Cell		      ""
+      PropName		      "logAsSpecifiedByModelsSSIDs_"
+    }
+  }
+  RecordCoverage	  off
+  CovPath		  "/"
+  CovSaveName		  "covdata"
+  CovMetricSettings	  "dw"
+  CovNameIncrementing	  off
+  CovHtmlReporting	  on
+  CovForceBlockReductionOff on
+  CovEnableCumulative	  on
+  covSaveCumulativeToWorkspaceVar on
+  CovSaveSingleToWorkspaceVar on
+  CovCumulativeVarName	  "covCumulativeData"
+  CovCumulativeReport	  off
+  CovReportOnPause	  on
+  CovModelRefEnable	  "Off"
+  CovExternalEMLEnable	  off
+  CovSFcnEnable		  on
+  CovBoundaryAbsTol	  0.000010
+  CovBoundaryRelTol	  0.010000
+  ExtModeBatchMode	  off
+  ExtModeEnableFloating	  on
+  ExtModeTrigType	  "manual"
+  ExtModeTrigMode	  "normal"
+  ExtModeTrigPort	  "1"
+  ExtModeTrigElement	  "any"
+  ExtModeTrigDuration	  1000
+  ExtModeTrigDurationFloating "auto"
+  ExtModeTrigHoldOff	  0
+  ExtModeTrigDelay	  0
+  ExtModeTrigDirection	  "rising"
+  ExtModeTrigLevel	  0
+  ExtModeArchiveMode	  "off"
+  ExtModeAutoIncOneShot	  off
+  ExtModeIncDirWhenArm	  off
+  ExtModeAddSuffixToVar	  off
+  ExtModeWriteAllDataToWs off
+  ExtModeArmWhenConnect	  on
+  ExtModeSkipDownloadWhenConnect off
+  ExtModeLogAll		  on
+  ExtModeAutoUpdateStatusClock on
+  BufferReuse		  on
+  ShowModelReferenceBlockVersion off
+  ShowModelReferenceBlockIO off
+  Array {
+    Type		    "Handle"
+    Dimension		    1
+    Simulink.ConfigSet {
+      $ObjectID		      7
+      Version		      "1.14.2"
+      Array {
+	Type			"Handle"
+	Dimension		8
+	Simulink.SolverCC {
+	  $ObjectID		  8
+	  Version		  "1.14.2"
+	  StartTime		  "0.0"
+	  StopTime		  "inf"
+	  AbsTol		  "auto"
+	  FixedStep		  "0.1"
+	  InitialStep		  "auto"
+	  MaxNumMinSteps	  "-1"
+	  MaxOrder		  5
+	  ZcThreshold		  "auto"
+	  ConsecutiveZCsStepRelTol "10*128*eps"
+	  MaxConsecutiveZCs	  "1000"
+	  ExtrapolationOrder	  4
+	  NumberNewtonIterations  1
+	  MaxStep		  "auto"
+	  MinStep		  "auto"
+	  MaxConsecutiveMinStep	  "1"
+	  RelTol		  "1e-3"
+	  SolverMode		  "Auto"
+	  EnableConcurrentExecution off
+	  ConcurrentTasks	  off
+	  Solver		  "ode3"
+	  SolverName		  "ode3"
+	  SolverJacobianMethodControl "auto"
+	  ShapePreserveControl	  "DisableAll"
+	  ZeroCrossControl	  "UseLocalSettings"
+	  ZeroCrossAlgorithm	  "Nonadaptive"
+	  AlgebraicLoopSolver	  "TrustRegion"
+	  SolverResetMethod	  "Fast"
+	  PositivePriorityOrder	  off
+	  AutoInsertRateTranBlk	  off
+	  SampleTimeConstraint	  "Unconstrained"
+	  InsertRTBMode		  "Whenever possible"
+	}
+	Simulink.DataIOCC {
+	  $ObjectID		  9
+	  Version		  "1.14.2"
+	  Decimation		  "1"
+	  ExternalInput		  "[t, u]"
+	  FinalStateName	  "xFinal"
+	  InitialState		  "xInitial"
+	  LimitDataPoints	  on
+	  MaxDataPoints		  "1000"
+	  LoadExternalInput	  off
+	  LoadInitialState	  off
+	  SaveFinalState	  off
+	  SaveCompleteFinalSimState off
+	  SaveFormat		  "Array"
+	  SignalLoggingSaveFormat "ModelDataLogs"
+	  SaveOutput		  on
+	  SaveState		  off
+	  SignalLogging		  on
+	  DSMLogging		  on
+	  InspectSignalLogs	  off
+	  VisualizeSimOutput	  on
+	  SaveTime		  on
+	  ReturnWorkspaceOutputs  off
+	  StateSaveName		  "xout"
+	  TimeSaveName		  "tout"
+	  OutputSaveName	  "yout"
+	  SignalLoggingName	  "logsout"
+	  DSMLoggingName	  "dsmout"
+	  OutputOption		  "RefineOutputTimes"
+	  OutputTimes		  "[]"
+	  ReturnWorkspaceOutputsName "out"
+	  Refine		  "1"
+	}
+	Simulink.OptimizationCC {
+	  $ObjectID		  10
+	  Version		  "1.14.2"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    8
+	    Cell		    "ZeroExternalMemoryAtStartup"
+	    Cell		    "ZeroInternalMemoryAtStartup"
+	    Cell		    "UseSpecifiedMinMax"
+	    Cell		    "OptimizeModelRefInitCode"
+	    Cell		    "NoFixptDivByZeroProtection"
+	    Cell		    "BooleansAsBitfields"
+	    Cell		    "PassReuseOutputArgsAs"
+	    Cell		    "PassReuseOutputArgsThreshold"
+	    PropName		    "DisabledProps"
+	  }
+	  BlockReduction	  on
+	  BooleanDataType	  on
+	  ConditionallyExecuteInputs on
+	  InlineParams		  off
+	  UseIntDivNetSlope	  off
+	  UseFloatMulNetSlope	  off
+	  DefaultUnderspecifiedDataType	"double"
+	  UseSpecifiedMinMax	  off
+	  InlineInvariantSignals  off
+	  OptimizeBlockIOStorage  on
+	  BufferReuse		  on
+	  EnhancedBackFolding	  off
+	  CachingGlobalReferences off
+	  GlobalBufferReuse	  on
+	  StrengthReduction	  off
+	  ExpressionFolding	  on
+	  BooleansAsBitfields	  off
+	  BitfieldContainerType	  "uint_T"
+	  EnableMemcpy		  on
+	  MemcpyThreshold	  64
+	  PassReuseOutputArgsAs	  "Structure reference"
+	  ExpressionDepthLimit	  128
+	  FoldNonRolledExpr	  on
+	  LocalBlockOutputs	  on
+	  RollThreshold		  5
+	  SystemCodeInlineAuto	  off
+	  StateBitsets		  off
+	  DataBitsets		  off
+	  ActiveStateOutputEnumStorageType "Native Integer"
+	  UseTempVars		  off
+	  ZeroExternalMemoryAtStartup on
+	  ZeroInternalMemoryAtStartup on
+	  InitFltsAndDblsToZero	  on
+	  NoFixptDivByZeroProtection off
+	  EfficientFloat2IntCast  off
+	  EfficientMapNaN2IntZero on
+	  OptimizeModelRefInitCode off
+	  LifeSpan		  "inf"
+	  MaxStackSize		  "Inherit from target"
+	  BufferReusableBoundary  on
+	  SimCompilerOptimization "Off"
+	  AccelVerboseBuild	  off
+	  ParallelExecutionInRapidAccelerator on
+	}
+	Simulink.DebuggingCC {
+	  $ObjectID		  11
+	  Version		  "1.14.2"
+	  RTPrefix		  "error"
+	  ConsistencyChecking	  "none"
+	  ArrayBoundsChecking	  "none"
+	  SignalInfNanChecking	  "none"
+	  SignalRangeChecking	  "none"
+	  ReadBeforeWriteMsg	  "UseLocalSettings"
+	  WriteAfterWriteMsg	  "UseLocalSettings"
+	  WriteAfterReadMsg	  "UseLocalSettings"
+	  AlgebraicLoopMsg	  "warning"
+	  ArtificialAlgebraicLoopMsg "warning"
+	  SaveWithDisabledLinksMsg "warning"
+	  SaveWithParameterizedLinksMsg	"none"
+	  CheckSSInitialOutputMsg on
+	  UnderspecifiedInitializationDetection	"Classic"
+	  MergeDetectMultiDrivingBlocksExec "none"
+	  CheckExecutionContextPreStartOutputMsg off
+	  CheckExecutionContextRuntimeOutputMsg	off
+	  SignalResolutionControl "TryResolveAllWithWarning"
+	  BlockPriorityViolationMsg "warning"
+	  MinStepSizeMsg	  "warning"
+	  TimeAdjustmentMsg	  "none"
+	  MaxConsecutiveZCsMsg	  "error"
+	  MaskedZcDiagnostic	  "warning"
+	  IgnoredZcDiagnostic	  "warning"
+	  SolverPrmCheckMsg	  "warning"
+	  InheritedTsInSrcMsg	  "warning"
+	  DiscreteInheritContinuousMsg "warning"
+	  MultiTaskDSMMsg	  "warning"
+	  MultiTaskCondExecSysMsg "none"
+	  MultiTaskRateTransMsg	  "error"
+	  SingleTaskRateTransMsg  "none"
+	  TasksWithSamePriorityMsg "warning"
+	  SigSpecEnsureSampleTimeMsg "warning"
+	  CheckMatrixSingularityMsg "none"
+	  IntegerOverflowMsg	  "warning"
+	  Int32ToFloatConvMsg	  "warning"
+	  ParameterDowncastMsg	  "error"
+	  ParameterOverflowMsg	  "error"
+	  ParameterUnderflowMsg	  "none"
+	  ParameterPrecisionLossMsg "warning"
+	  ParameterTunabilityLossMsg "warning"
+	  FixptConstUnderflowMsg  "none"
+	  FixptConstOverflowMsg	  "none"
+	  FixptConstPrecisionLossMsg "none"
+	  UnderSpecifiedDataTypeMsg "none"
+	  UnnecessaryDatatypeConvMsg "none"
+	  VectorMatrixConversionMsg "none"
+	  InvalidFcnCallConnMsg	  "error"
+	  FcnCallInpInsideContextMsg "EnableAllAsWarning"
+	  SignalLabelMismatchMsg  "none"
+	  UnconnectedInputMsg	  "warning"
+	  UnconnectedOutputMsg	  "warning"
+	  UnconnectedLineMsg	  "warning"
+	  SFcnCompatibilityMsg	  "none"
+	  FrameProcessingCompatibilityMsg "error"
+	  UniqueDataStoreMsg	  "none"
+	  BusObjectLabelMismatch  "warning"
+	  RootOutportRequireBusObject "warning"
+	  AssertControl		  "UseLocalSettings"
+	  EnableOverflowDetection off
+	  ModelReferenceIOMsg	  "none"
+	  ModelReferenceMultiInstanceNormalModeStructChecksumCheck "error"
+	  ModelReferenceVersionMismatchMessage "none"
+	  ModelReferenceIOMismatchMessage "none"
+	  ModelReferenceCSMismatchMessage "none"
+	  UnknownTsInhSupMsg	  "warning"
+	  ModelReferenceDataLoggingMessage "warning"
+	  ModelReferenceSymbolNameMessage "warning"
+	  ModelReferenceExtraNoncontSigs "error"
+	  StateNameClashWarn	  "none"
+	  SimStateInterfaceChecksumMismatchMsg "warning"
+	  SimStateOlderReleaseMsg "error"
+	  InitInArrayFormatMsg	  "warning"
+	  StrictBusMsg		  "ErrorLevel1"
+	  BusNameAdapt		  "WarnAndRepair"
+	  NonBusSignalsTreatedAsBus "none"
+	  LoggingUnavailableSignals "error"
+	  BlockIODiagnostic	  "none"
+	  SFUnusedDataAndEventsDiag "warning"
+	  SFUnexpectedBacktrackingDiag "warning"
+	  SFInvalidInputDataAccessInChartInitDiag "warning"
+	  SFNoUnconditionalDefaultTransitionDiag "warning"
+	  SFTransitionOutsideNaturalParentDiag "warning"
+	  SFUnconditionalTransitionShadowingDiag "warning"
+	  SFUndirectedBroadcastEventsDiag "warning"
+	  SFTransitionActionBeforeConditionDiag	"warning"
+	}
+	Simulink.HardwareCC {
+	  $ObjectID		  12
+	  Version		  "1.14.2"
+	  ProdBitPerChar	  8
+	  ProdBitPerShort	  16
+	  ProdBitPerInt		  32
+	  ProdBitPerLong	  32
+	  ProdBitPerLongLong	  64
+	  ProdBitPerFloat	  32
+	  ProdBitPerDouble	  64
+	  ProdBitPerPointer	  32
+	  ProdLargestAtomicInteger "Char"
+	  ProdLargestAtomicFloat  "None"
+	  ProdIntDivRoundTo	  "Undefined"
+	  ProdEndianess		  "Unspecified"
+	  ProdWordSize		  32
+	  ProdShiftRightIntArith  on
+	  ProdLongLongMode	  off
+	  ProdHWDeviceType	  "32-bit Generic"
+	  TargetBitPerChar	  8
+	  TargetBitPerShort	  16
+	  TargetBitPerInt	  32
+	  TargetBitPerLong	  32
+	  TargetBitPerLongLong	  64
+	  TargetBitPerFloat	  32
+	  TargetBitPerDouble	  64
+	  TargetBitPerPointer	  32
+	  TargetLargestAtomicInteger "Char"
+	  TargetLargestAtomicFloat "None"
+	  TargetShiftRightIntArith on
+	  TargetLongLongMode	  off
+	  TargetIntDivRoundTo	  "Undefined"
+	  TargetEndianess	  "Unspecified"
+	  TargetWordSize	  32
+	  TargetTypeEmulationWarnSuppressLevel 0
+	  TargetPreprocMaxBitsSint 32
+	  TargetPreprocMaxBitsUint 32
+	  TargetHWDeviceType	  "Specified"
+	  TargetUnknown		  off
+	  ProdEqTarget		  on
+	}
+	Simulink.ModelReferenceCC {
+	  $ObjectID		  13
+	  Version		  "1.14.2"
+	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
+	  CheckModelReferenceTargetMessage "error"
+	  EnableParallelModelReferenceBuilds off
+	  ParallelModelReferenceErrorOnInvalidPool on
+	  ParallelModelReferenceMATLABWorkerInit "None"
+	  ModelReferenceNumInstancesAllowed "Multi"
+	  PropagateVarSize	  "Infer from blocks in model"
+	  ModelReferencePassRootInputsByReference on
+	  ModelReferenceMinAlgLoopOccurrences off
+	  PropagateSignalLabelsOutOfModel off
+	  SupportModelReferenceSimTargetCustomCode off
+	}
+	Simulink.SFSimCC {
+	  $ObjectID		  14
+	  Version		  "1.14.2"
+	  SFSimEnableDebug	  on
+	  SFSimOverflowDetection  on
+	  SFSimEcho		  on
+	  SimBlas		  on
+	  SimCtrlC		  on
+	  SimExtrinsic		  on
+	  SimIntegrity		  on
+	  SimUseLocalCustomCode	  off
+	  SimParseCustomCode	  on
+	  SimBuildMode		  "sf_incremental_build"
+	  SimGenImportedTypeDefs  off
+	}
+	Simulink.RTWCC {
+	  $BackupClass		  "Simulink.RTWCC"
+	  $ObjectID		  15
+	  Version		  "1.14.2"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    16
+	    Cell		    "IncludeHyperlinkInReport"
+	    Cell		    "GenerateTraceInfo"
+	    Cell		    "GenerateTraceReport"
+	    Cell		    "GenerateTraceReportSl"
+	    Cell		    "GenerateTraceReportSf"
+	    Cell		    "GenerateTraceReportEml"
+	    Cell		    "PortableWordSizes"
+	    Cell		    "GenerateWebview"
+	    Cell		    "GenerateCodeMetricsReport"
+	    Cell		    "GenerateCodeReplacementReport"
+	    Cell		    "GenerateMissedCodeReplacementReport"
+	    Cell		    "GenerateErtSFunction"
+	    Cell		    "CreateSILPILBlock"
+	    Cell		    "CodeExecutionProfiling"
+	    Cell		    "CodeProfilingSaveOptions"
+	    Cell		    "CodeProfilingInstrumentation"
+	    PropName		    "DisabledProps"
+	  }
+	  SystemTargetFile	  "grt.tlc"
+	  TLCOptions		  ""
+	  GenCodeOnly		  off
+	  MakeCommand		  "make_rtw"
+	  GenerateMakefile	  on
+	  PackageGeneratedCodeAndArtifacts off
+	  PackageName		  ""
+	  TemplateMakefile	  "grt_default_tmf"
+	  PostCodeGenCommand	  ""
+	  Description		  ""
+	  GenerateReport	  off
+	  SaveLog		  off
+	  RTWVerbose		  on
+	  RetainRTWFile		  off
+	  ProfileTLC		  off
+	  TLCDebug		  off
+	  TLCCoverage		  off
+	  TLCAssert		  off
+	  ProcessScriptMode	  "Default"
+	  ConfigurationMode	  "Optimized"
+	  ProcessScript		  ""
+	  ConfigurationScript	  ""
+	  ConfigAtBuild		  off
+	  RTWUseLocalCustomCode	  off
+	  RTWUseSimCustomCode	  off
+	  CustomSourceCode	  ""
+	  CustomHeaderCode	  ""
+	  CustomInclude		  ""
+	  CustomSource		  ""
+	  CustomLibrary		  ""
+	  CustomInitializer	  ""
+	  CustomTerminator	  ""
+	  Toolchain		  "Automatically locate an installed toolchain"
+	  BuildConfiguration	  "Faster Builds"
+	  IncludeHyperlinkInReport off
+	  LaunchReport		  off
+	  PortableWordSizes	  off
+	  CreateSILPILBlock	  "None"
+	  CodeExecutionProfiling  off
+	  CodeExecutionProfileVariable "executionProfile"
+	  CodeProfilingSaveOptions "SummaryOnly"
+	  CodeProfilingInstrumentation off
+	  SILDebugging		  off
+	  TargetLang		  "C"
+	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
+	  IncludeERTFirstTime	  off
+	  GenerateTraceInfo	  off
+	  GenerateTraceReport	  off
+	  GenerateTraceReportSl	  off
+	  GenerateTraceReportSf	  off
+	  GenerateTraceReportEml  off
+	  GenerateCodeInfo	  off
+	  GenerateWebview	  off
+	  GenerateCodeMetricsReport off
+	  GenerateCodeReplacementReport	off
+	  RTWCompilerOptimization "Off"
+	  RTWCustomCompilerOptimizations ""
+	  CheckMdlBeforeBuild	  "Off"
+	  CustomRebuildMode	  "OnUpdate"
+	  DataInitializer	  ""
+	  SharedConstantsCachingThreshold 1024
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    2
+	    Simulink.CodeAppCC {
+	      $ObjectID		      16
+	      Version		      "1.14.2"
+	      Array {
+		Type			"Cell"
+		Dimension		28
+		Cell			"IgnoreCustomStorageClasses"
+		Cell			"InsertBlockDesc"
+		Cell			"SFDataObjDesc"
+		Cell			"SimulinkDataObjDesc"
+		Cell			"DefineNamingRule"
+		Cell			"SignalNamingRule"
+		Cell			"ParamNamingRule"
+		Cell			"InlinedPrmAccess"
+		Cell			"CustomSymbolStr"
+		Cell			"CustomSymbolStrGlobalVar"
+		Cell			"CustomSymbolStrType"
+		Cell			"CustomSymbolStrField"
+		Cell			"CustomSymbolStrFcn"
+		Cell			"CustomSymbolStrBlkIO"
+		Cell			"CustomSymbolStrTmpVar"
+		Cell			"CustomSymbolStrMacro"
+		Cell			"IgnoreTestpoints"
+		Cell			"BlockCommentType"
+		Cell			"InsertPolySpaceComments"
+		Cell			"MATLABFcnDesc"
+		Cell			"InternalIdentifier"
+		Cell			"CustomSymbolStrModelFcn"
+		Cell			"CustomSymbolStrFcnArg"
+		Cell			"CustomSymbolStrUtil"
+		Cell			"CustomSymbolStrEmxType"
+		Cell			"CustomSymbolStrEmxFcn"
+		Cell			"CustomUserTokenString"
+		Cell			"ReqsInCode"
+		PropName		"DisabledProps"
+	      }
+	      ForceParamTrailComments off
+	      GenerateComments	      on
+	      CommentStyle	      "Auto"
+	      IgnoreCustomStorageClasses on
+	      IgnoreTestpoints	      off
+	      IncHierarchyInIds	      off
+	      MaxIdLength	      31
+	      PreserveName	      off
+	      PreserveNameWithParent  off
+	      ShowEliminatedStatement off
+	      OperatorAnnotations     off
+	      IncAutoGenComments      off
+	      SimulinkDataObjDesc     off
+	      SFDataObjDesc	      off
+	      MATLABFcnDesc	      off
+	      IncDataTypeInIds	      off
+	      MangleLength	      1
+	      CustomSymbolStrGlobalVar "$R$N$M"
+	      CustomSymbolStrType     "$N$R$M_T"
+	      CustomSymbolStrField    "$N$M"
+	      CustomSymbolStrFcn      "$R$N$M$F"
+	      CustomSymbolStrFcnArg   "rt$I$N$M"
+	      CustomSymbolStrBlkIO    "rtb_$N$M"
+	      CustomSymbolStrTmpVar   "$N$M"
+	      CustomSymbolStrMacro    "$R$N$M"
+	      CustomSymbolStrUtil     "$N$C"
+	      DefineNamingRule	      "None"
+	      ParamNamingRule	      "None"
+	      SignalNamingRule	      "None"
+	      InsertBlockDesc	      off
+	      InsertPolySpaceComments off
+	      SimulinkBlockComments   on
+	      MATLABSourceComments    off
+	      EnableCustomComments    off
+	      InternalIdentifier      "Shortened"
+	      InlinedPrmAccess	      "Literals"
+	      ReqsInCode	      off
+	      UseSimReservedNames     off
+	    }
+	    Simulink.GRTTargetCC {
+	      $BackupClass	      "Simulink.TargetCC"
+	      $ObjectID		      17
+	      Version		      "1.14.2"
+	      Array {
+		Type			"Cell"
+		Dimension		17
+		Cell			"IncludeMdlTerminateFcn"
+		Cell			"GenerateAllocFcn"
+		Cell			"SuppressErrorStatus"
+		Cell			"ERTCustomFileBanners"
+		Cell			"GenerateSampleERTMain"
+		Cell			"GenerateTestInterfaces"
+		Cell			"RemoveResetFunc"
+		Cell			"PurelyIntegerCode"
+		Cell			"RemoveDisableFunc"
+		Cell			"SupportComplex"
+		Cell			"SupportAbsoluteTime"
+		Cell			"SupportContinuousTime"
+		Cell			"SupportNonInlinedSFcns"
+		Cell			"ExistingSharedCode"
+		Cell			"ModelStepFunctionPrototypeControlCompliant"
+		Cell			"PreserveStateflowLocalDataDimensions"
+		Cell			"CombineOutputUpdateFcns"
+		PropName		"DisabledProps"
+	      }
+	      TargetFcnLib	      "ansi_tfl_tmw.mat"
+	      TargetLibSuffix	      ""
+	      TargetPreCompLibLocation ""
+	      GenFloatMathFcnCalls    "NOT IN USE"
+	      TargetLangStandard      "C89/C90 (ANSI)"
+	      CodeReplacementLibrary  "None"
+	      UtilityFuncGeneration   "Auto"
+	      ERTMultiwordTypeDef     "System defined"
+	      ERTMultiwordLength      256
+	      MultiwordLength	      2048
+	      GenerateFullHeader      on
+	      GenerateSampleERTMain   off
+	      GenerateTestInterfaces  off
+	      ModelReferenceCompliant on
+	      ParMdlRefBuildCompliant on
+	      CompOptLevelCompliant   on
+	      ConcurrentExecutionCompliant on
+	      IncludeMdlTerminateFcn  on
+	      GeneratePreprocessorConditionals "Use local settings"
+	      CombineOutputUpdateFcns off
+	      CombineSignalStateStructs	off
+	      SuppressErrorStatus     off
+	      ERTFirstTimeCompliant   off
+	      IncludeFileDelimiter    "Auto"
+	      ERTCustomFileBanners    off
+	      SupportAbsoluteTime     on
+	      LogVarNameModifier      "rt_"
+	      MatFileLogging	      on
+	      MultiInstanceERTCode    off
+	      CodeInterfacePackaging  "Nonreusable function"
+	      SupportNonFinite	      on
+	      SupportComplex	      on
+	      PurelyIntegerCode	      off
+	      SupportContinuousTime   on
+	      SupportNonInlinedSFcns  on
+	      SupportVariableSizeSignals off
+	      EnableShiftOperators    on
+	      ParenthesesLevel	      "Nominal"
+	      MATLABClassNameForMDSCustomization "Simulink.SoftwareTarget.GRTCustomization"
+	      ModelStepFunctionPrototypeControlCompliant off
+	      CPPClassGenCompliant    on
+	      AutosarCompliant	      off
+	      GRTInterface	      on
+	      GenerateAllocFcn	      off
+	      UseMalloc		      off
+	      ExtMode		      off
+	      ExtModeStaticAlloc      off
+	      ExtModeTesting	      off
+	      ExtModeStaticAllocSize  1000000
+	      ExtModeTransport	      0
+	      ExtModeMexFile	      "ext_comm"
+	      ExtModeIntrfLevel	      "Level1"
+	      RTWCAPISignals	      off
+	      RTWCAPIParams	      off
+	      RTWCAPIStates	      off
+	      RTWCAPIRootIO	      off
+	      GenerateASAP2	      off
+	      MultiInstanceErrorCode  "Error"
+	    }
+	    PropName		    "Components"
+	  }
+	}
+	PropName		"Components"
+      }
+      Name		      "Configuration"
+      CurrentDlgPage	      "Solver"
+      ConfigPrmDlgPosition     [ 308, 112, 1228, 752 ] 
+    }
+    PropName		    "ConfigurationSets"
+  }
+  Simulink.ConfigSet {
+    $PropName		    "ActiveConfigurationSet"
+    $ObjectID		    7
+  }
+  Object {
+    $PropName		    "DataTransfer"
+    $ObjectID		    18
+    $ClassName		    "Simulink.GlobalDataTransfer"
+    DefaultTransitionBetweenSyncTasks "Ensure deterministic transfer (maximum delay)"
+    DefaultTransitionBetweenAsyncTasks "Ensure data integrity only"
+    DefaultTransitionBetweenContTasks "Ensure deterministic transfer (minimum delay)"
+    DefaultExtrapolationMethodBetweenContTasks "None"
+    AutoInsertRateTranBlk   [0]
+  }
+  ExplicitPartitioning	  off
+  BlockDefaults {
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    NamePlacement	    "normal"
+    FontName		    "Arial"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    ShowName		    on
+    BlockRotation	    0
+    BlockMirror		    off
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	    "center"
+    VerticalAlignment	    "middle"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    FontName		    "Arial"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    UseDisplayTextAsClickCallback off
+  }
+  LineDefaults {
+    FontName		    "Arial"
+    FontSize		    9
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+  }
+  MaskDefaults {
+    SelfModifiable	    "off"
+    IconFrame		    "on"
+    IconOpaque		    "on"
+    RunInitForIconRedraw    "off"
+    IconRotate		    "none"
+    PortRotate		    "default"
+    IconUnits		    "autoscale"
+  }
+  MaskParameterDefaults {
+    Evaluate		    "on"
+    Tunable		    "on"
+    NeverSave		    "off"
+    Internal		    "off"
+    ReadOnly		    "off"
+    Enabled		    "on"
+    Visible		    "on"
+    ToolTip		    "on"
+  }
+  BlockParameterDefaults {
+    Block {
+      BlockType		      Demux
+      Outputs		      "4"
+      DisplayOption	      "none"
+      BusSelectionMode	      off
+    }
+    Block {
+      BlockType		      M-S-Function
+      FunctionName	      "matlabfile"
+      DisplayMFileStacktrace  on
+    }
+    Block {
+      BlockType		      Mux
+      Inputs		      "4"
+      DisplayOption	      "none"
+      UseBusObject	      off
+      BusObject		      "BusObject"
+      NonVirtualBus	      off
+    }
+    Block {
+      BlockType		      Outport
+      Port		      "1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      LockScale		      off
+      BusOutputAsStruct	      off
+      PortDimensions	      "-1"
+      VarSizeSig	      "Inherit"
+      SampleTime	      "-1"
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      SourceOfInitialOutputValue "Dialog"
+      OutputWhenDisabled      "held"
+      InitialOutput	      "[]"
+    }
+    Block {
+      BlockType		      S-Function
+      FunctionName	      "system"
+      SFunctionModules	      "''"
+      PortCounts	      "[]"
+      SFunctionDeploymentMode off
+    }
+    Block {
+      BlockType		      SubSystem
+      ShowPortLabels	      "FromPortIcon"
+      Permissions	      "ReadWrite"
+      PermitHierarchicalResolution "All"
+      TreatAsAtomicUnit	      off
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      CheckFcnCallInpInsideContextMsg off
+      SystemSampleTime	      "-1"
+      RTWSystemCode	      "Auto"
+      RTWFcnNameOpts	      "Auto"
+      RTWFileNameOpts	      "Auto"
+      FunctionInterfaceSpec   "void_void"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      SimViewingDevice	      off
+      DataTypeOverride	      "UseLocalSettings"
+      DataTypeOverrideAppliesTo	"AllNumericTypes"
+      MinMaxOverflowLogging   "UseLocalSettings"
+      Opaque		      off
+      MaskHideContents	      off
+      SFBlockType	      "NONE"
+      Variant		      off
+      GeneratePreprocessorConditionals off
+      ContentPreviewEnabled   off
+    }
+    Block {
+      BlockType		      Terminator
+    }
+    Block {
+      BlockType		      TriggerPort
+      TriggerType	      "rising"
+      StatesWhenEnabling      "inherit"
+      PropagateVarSize	      "During execution"
+      ShowOutputPort	      off
+      OutputDataType	      "auto"
+      SampleTimeType	      "triggered"
+      SampleTime	      "1"
+      ZeroCross		      on
+      PortDimensions	      "-1"
+      TriggerSignalSampleTime "-1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      Interpolate	      on
+    }
+  }
+  System {
+    Name		    "barrier_template_14a"
+    Location		    [-8, -8, 1374, 736]
+    Open		    on
+    ModelBrowserVisibility  off
+    ModelBrowserWidth	    200
+    ScreenColor		    "white"
+    PaperOrientation	    "landscape"
+    PaperPositionMode	    "auto"
+    PaperType		    "A4"
+    PaperUnits		    "centimeters"
+    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+    TiledPageScale	    1
+    ShowPageBoundaries	    off
+    ZoomFactor		    "125"
+    ReportName		    "simulink-default.rpt"
+    SIDHighWatermark	    "8"
+    Block {
+      BlockType		      M-S-Function
+      Name		      "Barrier Model"
+      SID		      "1"
+      Ports		      [1, 4]
+      Position		      [450, 166, 685, 259]
+      ZOrder		      -1
+      FunctionName	      "sfun_bar"
+      Object {
+	$PropName		"MaskObject"
+	$ObjectID		19
+	$ClassName		"Simulink.Mask"
+	Display			"port_label('input',1,'Motor');\nport_label('output',1,'Limit Switch Bottom');\nport_label('output',2,'Limi"
+	"t Switch Top');\nport_label('output',3,'IR');\nport_label('output',4,'Remote');\ntext(0.05,0.9,'Barrier UI');"
+	IconUnits		"normalized"
+      }
+    }
+    Block {
+      BlockType		      Mux
+      Name		      "Mux"
+      SID		      "8"
+      Ports		      [7, 1]
+      Position		      [770, 107, 775, 363]
+      ZOrder		      4
+      ShowName		      off
+      Inputs		      "7"
+      DisplayOption	      "bar"
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "closedloop"
+      SID		      "7"
+      Ports		      [0, 1, 0, 1]
+      Position		      [335, 189, 395, 241]
+      ZOrder		      3
+      LibraryVersion	      "1.266"
+      ErrorFcn		      "Stateflow.Translate.translate"
+      PermitHierarchicalResolution "ExplicitOnly"
+      TreatAsAtomicUnit	      on
+      RequestExecContextInheritance off
+      SFBlockType	      "Chart"
+      System {
+	Name			"closedloop"
+	Location		[-14, 70, 1364, 850]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	SIDHighWatermark	"66"
+	Block {
+	  BlockType		  TriggerPort
+	  Name			  " input events "
+	  SID			  "7::65"
+	  Ports			  [0, 1]
+	  Position		  [20, 101, 40, 119]
+	  ZOrder		  45
+	  TriggerType		  "either"
+	  StatesWhenEnabling	  "held"
+	  ShowOutputPort	  on
+	}
+	Block {
+	  BlockType		  Demux
+	  Name			  " Demux "
+	  SID			  "7::62"
+	  Ports			  [1, 1]
+	  Position		  [270, 230, 320, 270]
+	  ZOrder		  42
+	  Outputs		  "1"
+	}
+	Block {
+	  BlockType		  S-Function
+	  Name			  " SFunction "
+	  SID			  "7::61"
+	  Tag			  "Stateflow S-Function barrier_template_14a 3"
+	  Ports			  [1, 2]
+	  Position		  [180, 100, 230, 160]
+	  ZOrder		  41
+	  FunctionName		  "sf_sfun"
+	  PortCounts		  "[1 2]"
+	  EnableBusSupport	  on
+	  Port {
+	    PortNumber		    2
+	    Name		    "mot"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  " Terminator "
+	  SID			  "7::63"
+	  Position		  [460, 241, 480, 259]
+	  ZOrder		  43
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "mot"
+	  SID			  "7::66"
+	  Position		  [460, 101, 480, 119]
+	  ZOrder		  46
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  Name			  "mot"
+	  ZOrder		  1
+	  Labels		  [0, 0]
+	  SrcBlock		  " SFunction "
+	  SrcPort		  2
+	  DstBlock		  "mot"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  2
+	  SrcBlock		  " Demux "
+	  SrcPort		  1
+	  DstBlock		  " Terminator "
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  3
+	  SrcBlock		  " input events "
+	  SrcPort		  1
+	  DstBlock		  " SFunction "
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  4
+	  SrcBlock		  " SFunction "
+	  SrcPort		  1
+	  DstBlock		  " Demux "
+	  DstPort		  1
+	}
+      }
+    }
+    Line {
+      ZOrder		      1
+      SrcBlock		      "closedloop"
+      SrcPort		      1
+      DstBlock		      "Barrier Model"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      2
+      SrcBlock		      "Barrier Model"
+      SrcPort		      1
+      Points		      [65, 0; 0, -10]
+      Branch {
+	ZOrder			4
+	DstBlock		"Mux"
+	DstPort			1
+      }
+      Branch {
+	ZOrder			3
+	DstBlock		"Mux"
+	DstPort			2
+      }
+    }
+    Line {
+      ZOrder		      5
+      SrcBlock		      "Barrier Model"
+      SrcPort		      3
+      Points		      [38, 0]
+      Branch {
+	ZOrder			8
+	Points			[0, -25]
+	DstBlock		"Mux"
+	DstPort			3
+      }
+      Branch {
+	ZOrder			7
+	Points			[0, 10]
+	DstBlock		"Mux"
+	DstPort			4
+      }
+    }
+    Line {
+      ZOrder		      9
+      SrcBlock		      "Barrier Model"
+      SrcPort		      4
+      Points		      [38, 0; 0, 20]
+      DstBlock		      "Mux"
+      DstPort		      5
+    }
+    Line {
+      ZOrder		      10
+      SrcBlock		      "Barrier Model"
+      SrcPort		      2
+      Points		      [17, 0; 0, 105]
+      Branch {
+	ZOrder			12
+	Points			[0, 35]
+	DstBlock		"Mux"
+	DstPort			7
+      }
+      Branch {
+	ZOrder			11
+	DstBlock		"Mux"
+	DstPort			6
+      }
+    }
+    Line {
+      ZOrder		      14
+      SrcBlock		      "Mux"
+      SrcPort		      1
+      Points		      [9, 0; 0, -142; -424, 0]
+      DstBlock		      "closedloop"
+      DstPort		      trigger
+    }
+  }
+}
+#Finite State Machines
+#
+#   Stateflow Version 8.1 (R2014a) dated Feb  8 2014, 02:29:12
+#
+#
+Stateflow {
+  machine {
+    id			    1
+    name		    "barrier_template_14a"
+    created		    "13-Feb-2019 15:43:00"
+    isLibrary		    0
+    firstTarget		    113
+    sfVersion		    76014001.002
+  }
+  chart {
+    id			    2
+    name		    "closedloop"
+    windowPosition	    [199.5 216.75 417 348.75]
+    viewLimits		    [-212.059 2001.275 61.931 1070.264]
+    zoomFactor		    2.222
+    stateColor		    [0.3803921568627451 0.2745098039215687 0.1803921568627451]
+    stateLabelColor	    [0.4588235294117647 0.2980392156862745 0.1411764705882353]
+    transitionColor	    [0.3215686274509804 0.5450980392156862 0.7725490196078432]
+    transitionLabelColor    [0.3215686274509804 0.5450980392156862 0.7725490196078432]
+    junctionColor	    [0.7764705882352941 0.4980392156862745 0]
+    chartColor		    [1 0.9882352941176471 0.9254901960784314]
+    screen		    [1 1 3200 1200 1.25]
+    treeNode		    [0 3 0 0]
+    firstTransition	    56
+    viewObj		    2
+    visible		    1
+    machine		    1
+    subviewS {
+    }
+    ssIdHighWaterMark	    109
+    decomposition	    CLUSTER_CHART
+    firstEvent		    46
+    firstData		    45
+    chartFileNumber	    3
+    executeAtInitialization 1
+    saturateOnIntegerOverflow 1
+    userSpecifiedStateTransitionExecutionOrder 1
+    disableImplicitCasting  1
+    actionLanguage	    2
+  }
+  state {
+    id			    3
+    labelString		    "q0"
+    position		    [70 100 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 0 4]
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    1
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    4
+    labelString		    "q10\nentry:mot_d0;"
+    position		    [220 100 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 3 5]
+    firstTransition	    27
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    2
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    5
+    labelString		    "q11\nentry:mot_d0;"
+    position		    [370 100 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 4 6]
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    3
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    6
+    labelString		    "q12\nentry:mot_d0;"
+    position		    [520 100 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 5 7]
+    firstTransition	    28
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    4
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    7
+    labelString		    "q13\nentry:mot_d0;"
+    position		    [670 100 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 6 8]
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    5
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    8
+    labelString		    "q14\nentry:mot_d0;"
+    position		    [70 250 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 7 9]
+    firstTransition	    29
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    6
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    9
+    labelString		    "q15\nentry:mot_dm1;"
+    position		    [220 250 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 8 10]
+    firstTransition	    30
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    7
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    10
+    labelString		    "q16"
+    position		    [370 250 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 9 11]
+    firstTransition	    31
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    8
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    11
+    labelString		    "q17\nentry:mot_d1;"
+    position		    [520 250 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 10 12]
+    firstTransition	    32
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    9
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    12
+    labelString		    "q18\nentry:mot_d1;"
+    position		    [670 250 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 11 13]
+    firstTransition	    33
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    10
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    13
+    labelString		    "q19\nentry:mot_d0;"
+    position		    [70 400 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 12 14]
+    firstTransition	    34
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    11
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    14
+    labelString		    "q2\nentry:mot_d1;"
+    position		    [220 400 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 13 15]
+    firstTransition	    35
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    12
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    15
+    labelString		    "q20\nentry:mot_d0;"
+    position		    [370 400 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 14 16]
+    firstTransition	    36
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    13
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    16
+    labelString		    "q21"
+    position		    [520 400 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 15 17]
+    firstTransition	    37
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    14
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    17
+    labelString		    "q22"
+    position		    [670 400 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 16 18]
+    firstTransition	    38
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    15
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    18
+    labelString		    "q23"
+    position		    [70 550 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 17 19]
+    firstTransition	    39
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    16
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    19
+    labelString		    "q24"
+    position		    [220 550 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 18 20]
+    firstTransition	    40
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    17
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    20
+    labelString		    "q3"
+    position		    [370 550 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 19 21]
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    18
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    21
+    labelString		    "q4\nentry:mot_d1;"
+    position		    [520 550 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 20 22]
+    firstTransition	    41
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    19
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    22
+    labelString		    "q5\nentry:mot_d0;"
+    position		    [670 550 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 21 23]
+    firstTransition	    42
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    20
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    23
+    labelString		    "q6"
+    position		    [70 700 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 22 24]
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    21
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    24
+    labelString		    "q7\nentry:mot_d0;"
+    position		    [220 700 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 23 25]
+    firstTransition	    43
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    22
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    25
+    labelString		    "q8\nentry:mot_d0;"
+    position		    [370 700 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 24 26]
+    firstTransition	    44
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    23
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  state {
+    id			    26
+    labelString		    "q9"
+    position		    [520 700 80 80]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 25 0]
+    visible		    0
+    subviewer		    2
+    ssIdNumber		    24
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+    }
+  }
+  transition {
+    id			    27
+    labelString		    "remote_rise"
+    labelPosition	    [249.583 137.778 65.5 17]
+    fontSize		    12
+    src {
+      id		      4
+      intersection	      [2 -1 -0 0.1667 300 113.3333 0 0]
+    }
+    dst {
+      id		      4
+      intersection	      [2 -1 -0 0.8333 300 166.6667 0 0]
+    }
+    midPoint		    [282.5175 140]
+    chart		    2
+    linkNode		    [4 0 0]
+    dataLimits		    [281.871 300 113.333 169.067]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    38
+  }
+  transition {
+    id			    28
+    labelString		    "remote_rise"
+    labelPosition	    [545.386 140.879 65.5 17]
+    fontSize		    12
+    src {
+      id		      6
+      intersection	      [2 -1 -0 0.1667 600 113.3333 0 0]
+    }
+    dst {
+      id		      6
+      intersection	      [2 -1 -0 0.8333 600 166.6667 0 0]
+    }
+    midPoint		    [582.5175 140]
+    chart		    2
+    linkNode		    [6 0 0]
+    dataLimits		    [581.871 600 113.333 169.067]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    45
+  }
+  transition {
+    id			    29
+    labelString		    "remote_rise"
+    labelPosition	    [98.01 284.805 65.5 17]
+    fontSize		    12
+    src {
+      id		      8
+      intersection	      [2 -1 -0 0.1667 150 263.3333 0 0]
+    }
+    dst {
+      id		      8
+      intersection	      [2 -1 -0 0.8333 150 316.6667 0 0]
+    }
+    midPoint		    [132.5175 290]
+    chart		    2
+    linkNode		    [8 0 0]
+    dataLimits		    [131.871 150 263.333 319.067]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    52
+  }
+  transition {
+    id			    30
+    labelString		    "remote_rise"
+    labelPosition	    [251.945 260.997 65.5 17]
+    fontSize		    12
+    src {
+      id		      9
+      intersection	      [2 -1 -0 0.1667 300 263.3333 0 0]
+    }
+    dst {
+      id		      9
+      intersection	      [2 -1 -0 0.8333 300 316.6667 0 0]
+    }
+    midPoint		    [282.5175 290]
+    chart		    2
+    linkNode		    [9 0 0]
+    dataLimits		    [281.871 300 263.333 319.067]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    54
+  }
+  transition {
+    id			    31
+    labelString		    "remote_rise"
+    labelPosition	    [400.498 283.177 65.5 17]
+    fontSize		    12
+    src {
+      id		      10
+      intersection	      [2 -1 -0 0.1667 450 263.3333 0 0]
+    }
+    dst {
+      id		      10
+      intersection	      [2 -1 -0 0.8333 450 316.6667 0 0]
+    }
+    midPoint		    [432.5175 290]
+    chart		    2
+    linkNode		    [10 0 0]
+    dataLimits		    [431.871 450 263.333 319.067]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    58
+  }
+  transition {
+    id			    32
+    labelString		    "remote_rise"
+    labelPosition	    [550.413 286.164 65.5 17]
+    fontSize		    12
+    src {
+      id		      11
+      intersection	      [2 -1 -0 0.1667 600 263.3333 0 0]
+    }
+    dst {
+      id		      11
+      intersection	      [2 -1 -0 0.8333 600 316.6667 0 0]
+    }
+    midPoint		    [582.5175 290]
+    chart		    2
+    linkNode		    [11 0 0]
+    dataLimits		    [581.871 600 263.333 319.067]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    59
+  }
+  transition {
+    id			    33
+    labelString		    "remote_rise"
+    labelPosition	    [700.503 287.822 65.5 17]
+    fontSize		    12
+    src {
+      id		      12
+      intersection	      [2 -1 -0 0.1667 750 263.3333 0 0]
+    }
+    dst {
+      id		      12
+      intersection	      [2 -1 -0 0.8333 750 316.6667 0 0]
+    }
+    midPoint		    [732.5175 290]
+    chart		    2
+    linkNode		    [12 0 0]
+    dataLimits		    [731.871 750 263.333 319.067]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    63
+  }
+  transition {
+    id			    34
+    labelString		    "remote_rise"
+    labelPosition	    [99.331 429.858 65.5 17]
+    fontSize		    12
+    src {
+      id		      13
+      intersection	      [2 -1 -0 0.1667 150 413.3333 0 0]
+    }
+    dst {
+      id		      13
+      intersection	      [2 -1 -0 0.8333 150 466.6667 0 0]
+    }
+    midPoint		    [132.5175 440]
+    chart		    2
+    linkNode		    [13 0 0]
+    dataLimits		    [131.871 150 413.333 469.067]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    66
+  }
+  transition {
+    id			    35
+    labelString		    "remote_rise"
+    labelPosition	    [244.105 442.503 65.5 17]
+    fontSize		    12
+    src {
+      id		      14
+      intersection	      [2 -1 -0 0.1667 300 413.3333 0 0]
+    }
+    dst {
+      id		      14
+      intersection	      [2 -1 -0 0.8333 300 466.6667 0 0]
+    }
+    midPoint		    [282.5175 440]
+    chart		    2
+    linkNode		    [14 0 0]
+    dataLimits		    [281.871 300 413.333 469.067]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    68
+  }
+  transition {
+    id			    36
+    labelString		    "remote_rise"
+    labelPosition	    [401.945 410.997 65.5 17]
+    fontSize		    12
+    src {
+      id		      15
+      intersection	      [2 -1 -0 0.1667 450 413.3333 0 0]
+    }
+    dst {
+      id		      15
+      intersection	      [2 -1 -0 0.8333 450 466.6667 0 0]
+    }
+    midPoint		    [432.5175 440]
+    chart		    2
+    linkNode		    [15 0 0]
+    dataLimits		    [431.871 450 413.333 469.067]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    73
+  }
+  transition {
+    id			    37
+    labelString		    "remote_rise"
+    labelPosition	    [554.923 431.424 65.5 17]
+    fontSize		    12
+    src {
+      id		      16
+      intersection	      [2 -1 -0 0.1667 600 413.3333 0 0]
+    }
+    dst {
+      id		      16
+      intersection	      [2 -1 -0 0.8333 600 466.6667 0 0]
+    }
+    midPoint		    [582.5175 440]
+    chart		    2
+    linkNode		    [16 0 0]
+    dataLimits		    [581.871 600 413.333 469.067]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    75
+  }
+  transition {
+    id			    38
+    labelString		    "remote_rise"
+    labelPosition	    [700.542 434.036 65.5 17]
+    fontSize		    12
+    src {
+      id		      17
+      intersection	      [2 -1 -0 0.1667 750 413.3333 0 0]
+    }
+    dst {
+      id		      17
+      intersection	      [2 -1 -0 0.8333 750 466.6667 0 0]
+    }
+    midPoint		    [732.5175 440]
+    chart		    2
+    linkNode		    [17 0 0]
+    dataLimits		    [731.871 750 413.333 469.067]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    79
+  }
+  transition {
+    id			    39
+    labelString		    "remote_rise"
+    labelPosition	    [108.288 553.129 65.5 17]
+    fontSize		    12
+    src {
+      id		      18
+      intersection	      [2 -1 -0 0.1667 150 563.3333 0 0]
+    }
+    dst {
+      id		      18
+      intersection	      [2 -1 -0 0.8333 150 616.6667 0 0]
+    }
+    midPoint		    [132.5175 590]
+    chart		    2
+    linkNode		    [18 0 0]
+    dataLimits		    [131.871 150 563.333 619.067]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    81
+  }
+  transition {
+    id			    40
+    labelString		    "remote_rise"
+    labelPosition	    [246.41 586.811 65.5 17]
+    fontSize		    12
+    src {
+      id		      19
+      intersection	      [2 -1 -0 0.1667 300 563.3333 0 0]
+    }
+    dst {
+      id		      19
+      intersection	      [2 -1 -0 0.8333 300 616.6667 0 0]
+    }
+    midPoint		    [282.5175 590]
+    chart		    2
+    linkNode		    [19 0 0]
+    dataLimits		    [281.871 300 563.333 619.067]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    85
+  }
+  transition {
+    id			    41
+    labelString		    "remote_rise"
+    labelPosition	    [551.945 560.997 65.5 17]
+    fontSize		    12
+    src {
+      id		      21
+      intersection	      [2 -1 -0 0.1667 600 563.3333 0 0]
+    }
+    dst {
+      id		      21
+      intersection	      [2 -1 -0 0.8333 600 616.6667 0 0]
+    }
+    midPoint		    [582.5175 590]
+    chart		    2
+    linkNode		    [21 0 0]
+    dataLimits		    [581.871 600 563.333 619.067]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    90
+  }
+  transition {
+    id			    42
+    labelString		    "remote_rise"
+    labelPosition	    [704.923 580.391 65.5 17]
+    fontSize		    12
+    src {
+      id		      22
+      intersection	      [2 -1 -0 0.1667 750 563.3333 0 0]
+    }
+    dst {
+      id		      22
+      intersection	      [2 -1 -0 0.8333 750 616.6667 0 0]
+    }
+    midPoint		    [732.5175 590]
+    chart		    2
+    linkNode		    [22 0 0]
+    dataLimits		    [731.871 750 563.333 619.067]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    92
+  }
+  transition {
+    id			    43
+    labelString		    "remote_rise"
+    labelPosition	    [246.995 735.941 65.5 17]
+    fontSize		    12
+    src {
+      id		      24
+      intersection	      [2 -1 -0 0.1667 300 713.3333 0 0]
+    }
+    dst {
+      id		      24
+      intersection	      [2 -1 -0 0.8333 300 766.6667 0 0]
+    }
+    midPoint		    [282.5175 740]
+    chart		    2
+    linkNode		    [24 0 0]
+    dataLimits		    [281.871 300 713.333 769.067]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    101
+  }
+  transition {
+    id			    44
+    labelString		    "remote_rise"
+    labelPosition	    [393.894 742.369 65.5 17]
+    fontSize		    12
+    src {
+      id		      25
+      intersection	      [2 -1 -0 0.1667 450 713.3333 0 0]
+    }
+    dst {
+      id		      25
+      intersection	      [2 -1 -0 0.8333 450 766.6667 0 0]
+    }
+    midPoint		    [432.5175 740]
+    chart		    2
+    linkNode		    [25 0 0]
+    dataLimits		    [431.871 450 713.333 769.067]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    105
+  }
+  data {
+    id			    45
+    ssIdNumber		    30
+    name		    "mot"
+    linkNode		    [2 0 0]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  event {
+    id			    46
+    ssIdNumber		    25
+    name		    "bottom_fall"
+    linkNode		    [2 0 47]
+    scope		    INPUT_EVENT
+    trigger		    FALLING_EDGE_EVENT
+    machine		    1
+  }
+  event {
+    id			    47
+    ssIdNumber		    26
+    name		    "bottom_rise"
+    linkNode		    [2 46 48]
+    scope		    INPUT_EVENT
+    trigger		    RISING_EDGE_EVENT
+    machine		    1
+  }
+  event {
+    id			    48
+    ssIdNumber		    27
+    name		    "infra_fall"
+    linkNode		    [2 47 49]
+    scope		    INPUT_EVENT
+    trigger		    FALLING_EDGE_EVENT
+    machine		    1
+  }
+  event {
+    id			    49
+    ssIdNumber		    28
+    name		    "infra_rise"
+    linkNode		    [2 48 50]
+    scope		    INPUT_EVENT
+    trigger		    RISING_EDGE_EVENT
+    machine		    1
+  }
+  event {
+    id			    50
+    ssIdNumber		    29
+    name		    "mot_d0"
+    linkNode		    [2 49 51]
+    scope		    LOCAL_EVENT
+    trigger		    FUNCTION_CALL_EVENT
+    machine		    1
+  }
+  event {
+    id			    51
+    ssIdNumber		    31
+    name		    "mot_d1"
+    linkNode		    [2 50 52]
+    scope		    LOCAL_EVENT
+    trigger		    FUNCTION_CALL_EVENT
+    machine		    1
+  }
+  event {
+    id			    52
+    ssIdNumber		    32
+    name		    "mot_dm1"
+    linkNode		    [2 51 53]
+    scope		    LOCAL_EVENT
+    trigger		    FUNCTION_CALL_EVENT
+    machine		    1
+  }
+  event {
+    id			    53
+    ssIdNumber		    33
+    name		    "remote_rise"
+    linkNode		    [2 52 54]
+    scope		    INPUT_EVENT
+    trigger		    RISING_EDGE_EVENT
+    machine		    1
+  }
+  event {
+    id			    54
+    ssIdNumber		    34
+    name		    "top_fall"
+    linkNode		    [2 53 55]
+    scope		    INPUT_EVENT
+    trigger		    FALLING_EDGE_EVENT
+    machine		    1
+  }
+  event {
+    id			    55
+    ssIdNumber		    35
+    name		    "top_rise"
+    linkNode		    [2 54 0]
+    scope		    INPUT_EVENT
+    trigger		    RISING_EDGE_EVENT
+    machine		    1
+  }
+  transition {
+    id			    56
+    labelString		    "mot_d0/{mot=0;}"
+    labelPosition	    [205.378 90.058 90.5 17]
+    fontSize		    12
+    src {
+      id		      5
+      intersection	      [1 0 -1 0.5 410 100 0 0]
+    }
+    dst {
+      id		      3
+      intersection	      [1 0 -1 0.5 110 100 0 0]
+    }
+    midPoint		    [260 20.9733]
+    chart		    2
+    linkNode		    [2 0 57]
+    dataLimits		    [107.6 410 20.854 100]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    42
+  }
+  transition {
+    id			    57
+    labelString		    "infra_fall"
+    labelPosition	    [565.625 50.253 47 17]
+    fontSize		    12
+    src {
+      id		      5
+      intersection	      [1 0 -1 0.5 410 100 0 0]
+    }
+    dst {
+      id		      7
+      intersection	      [1 0 -1 0.5 710 100 0 0]
+    }
+    midPoint		    [560 20.9733]
+    chart		    2
+    linkNode		    [2 56 58]
+    dataLimits		    [410 712.4 20.854 100]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    3
+    ssIdNumber		    44
+  }
+  transition {
+    id			    58
+    labelString		    "infra_rise"
+    labelPosition	    [379.916 185.402 51.25 17]
+    fontSize		    12
+    src {
+      id		      8
+      intersection	      [1 0 -1 0.5 110 250 0 0]
+    }
+    dst {
+      id		      6
+      intersection	      [1 0 -1 0.5 560 100 0 0]
+    }
+    midPoint		    [335 51.767]
+    chart		    2
+    linkNode		    [2 57 59]
+    dataLimits		    [110 562.4 26.021 250]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    51
+  }
+  transition {
+    id			    59
+    labelString		    "infra_fall"
+    labelPosition	    [378.338 173.931 47 17]
+    fontSize		    12
+    src {
+      id		      6
+      intersection	      [1 0 -1 0.5 560 100 0 0]
+    }
+    dst {
+      id		      8
+      intersection	      [1 0 -1 0.5 110 250 0 0]
+    }
+    midPoint		    [335 53.0318]
+    chart		    2
+    linkNode		    [2 58 60]
+    dataLimits		    [107.6 560 31.548 250]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    46
+  }
+  transition {
+    id			    60
+    labelString		    "infra_fall"
+    labelPosition	    [405.238 102.16 47 17]
+    fontSize		    12
+    src {
+      id		      25
+      intersection	      [1 0 -1 0.5 410 700 0 0]
+    }
+    dst {
+      id		      4
+      intersection	      [1 0 -1 0.5 260 100 0 0]
+    }
+    midPoint		    [335 239.4425]
+    chart		    2
+    linkNode		    [2 59 61]
+    dataLimits		    [257.6 410 49.306 700]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    102
+  }
+  transition {
+    id			    61
+    labelString		    "bottom_rise"
+    labelPosition	    [621.296 157.056 64.75 17]
+    fontSize		    12
+    src {
+      id		      26
+      intersection	      [1 0 -1 0.5 560 700 0 0]
+    }
+    dst {
+      id		      5
+      intersection	      [1 0 -1 0.5 410 100 0 0]
+    }
+    midPoint		    [485 239.4425]
+    chart		    2
+    linkNode		    [2 60 62]
+    dataLimits		    [407.6 560 49.306 700]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    107
+  }
+  transition {
+    id			    62
+    labelString		    "top_fall"
+    labelPosition	    [396.264 180.324 40.5 17]
+    fontSize		    12
+    src {
+      id		      24
+      intersection	      [1 0 -1 0.5 260 700 0 0]
+    }
+    dst {
+      id		      4
+      intersection	      [1 0 -1 0.5 260 100 0 0]
+    }
+    midPoint		    [260 244]
+    chart		    2
+    linkNode		    [2 61 63]
+    dataLimits		    [257.6 262.4 51.373 700]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    98
+  }
+  transition {
+    id			    63
+    labelPosition	    [85 205 0 0]
+    fontSize		    12
+    src {
+      intersection	      [0 1.4142 1.4142 0 50 135 0 0]
+    }
+    dst {
+      id		      3
+      intersection	      [4 -1 0 0.5 70 140 0 0]
+    }
+    midPoint		    [26.4907 84.3006]
+    chart		    2
+    linkNode		    [2 62 64]
+    dataLimits		    [26.404 70 83.688 142.4]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    109
+  }
+  transition {
+    id			    64
+    labelString		    "infra_rise"
+    labelPosition	    [103.776 157.605 51.25 17]
+    fontSize		    12
+    src {
+      id		      20
+      intersection	      [3 0 1 0.5 410 630 0 0]
+    }
+    dst {
+      id		      3
+      intersection	      [3 0 1 0.5 110 180 0 0]
+    }
+    midPoint		    [260 542.5487]
+    chart		    2
+    linkNode		    [2 63 65]
+    dataLimits		    [107.6 410 180 671.29]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    86
+  }
+  transition {
+    id			    65
+    labelString		    "remote_rise"
+    labelPosition	    [418.871 558.938 65.5 17]
+    fontSize		    12
+    src {
+      id		      7
+      intersection	      [3 0 1 0.5 710 180 0 0]
+    }
+    dst {
+      id		      8
+      intersection	      [3 0 1 0.5 110 330 0 0]
+    }
+    midPoint		    [410 414.1137]
+    chart		    2
+    linkNode		    [2 64 66]
+    dataLimits		    [107.6 710 180 434.698]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    49
+  }
+  transition {
+    id			    66
+    labelString		    "infra_fall"
+    labelPosition	    [267.775 446.194 47 17]
+    fontSize		    12
+    src {
+      id		      3
+      intersection	      [3 0 1 0.5 110 180 0 0]
+    }
+    dst {
+      id		      20
+      intersection	      [1 0 -1 0.5 410 550 0 0]
+    }
+    midPoint		    [260 361]
+    chart		    2
+    linkNode		    [2 65 67]
+    dataLimits		    [110 412.4 180 550]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    37
+  }
+  transition {
+    id			    67
+    labelString		    "remote_rise"
+    labelPosition	    [194.789 335.226 65.5 17]
+    fontSize		    12
+    src {
+      id		      3
+      intersection	      [3 0 1 0.5 110 180 0 0]
+    }
+    dst {
+      id		      14
+      intersection	      [1 0 -1 0.5 260 400 0 0]
+    }
+    midPoint		    [185 286]
+    chart		    2
+    linkNode		    [2 66 68]
+    dataLimits		    [110 262.4 180 400]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    36
+  }
+  transition {
+    id			    68
+    labelString		    "mot_d0/{mot=0;}"
+    labelPosition	    [441.376 339.08 90.5 17]
+    fontSize		    12
+    src {
+      id		      6
+      intersection	      [3 0 1 0.5 560 180 0 0]
+    }
+    dst {
+      id		      14
+      intersection	      [1 0 -1 0.5 260 400 0 0]
+    }
+    midPoint		    [410 286]
+    chart		    2
+    linkNode		    [2 67 69]
+    dataLimits		    [257.6 560 180 400]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    47
+  }
+  transition {
+    id			    69
+    labelString		    "infra_fall"
+    labelPosition	    [324.895 397.706 47 17]
+    fontSize		    12
+    src {
+      id		      26
+      intersection	      [3 0 1 0.5 560 780 0 0]
+    }
+    dst {
+      id		      4
+      intersection	      [3 0 1 0.5 260 180 0 0]
+    }
+    midPoint		    [410 649.9187]
+    chart		    2
+    linkNode		    [2 68 70]
+    dataLimits		    [257.6 560 180 827.86]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    106
+  }
+  transition {
+    id			    70
+    labelString		    "bottom_rise"
+    labelPosition	    [498.139 285.939 64.75 17]
+    fontSize		    12
+    src {
+      id		      4
+      intersection	      [3 0 1 0.5 260 180 0 0]
+    }
+    dst {
+      id		      7
+      intersection	      [3 0 1 0.5 710 180 0 0]
+    }
+    midPoint		    [485 296.5178]
+    chart		    2
+    linkNode		    [2 69 71]
+    dataLimits		    [260 712.4 180 296.566]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    39
+  }
+  transition {
+    id			    71
+    labelString		    "infra_rise"
+    labelPosition	    [440.456 505.84 51.25 17]
+    fontSize		    12
+    src {
+      id		      4
+      intersection	      [3 0 1 0.5 260 180 0 0]
+    }
+    dst {
+      id		      25
+      intersection	      [1 0 -1 0.5 410 700 0 0]
+    }
+    midPoint		    [335 436]
+    chart		    2
+    linkNode		    [2 70 72]
+    dataLimits		    [260 412.4 180 700]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    3
+    ssIdNumber		    41
+  }
+  transition {
+    id			    72
+    labelString		    "mot_d0/{mot=0;}"
+    labelPosition	    [496.77 213.765 90.5 17]
+    fontSize		    12
+    src {
+      id		      4
+      intersection	      [3 0 1 0.5 260 180 0 0]
+    }
+    dst {
+      id		      12
+      intersection	      [1 0 -1 0.5 710 250 0 0]
+    }
+    midPoint		    [485 211]
+    chart		    2
+    linkNode		    [2 71 73]
+    dataLimits		    [260 712.4 180 250]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    40
+  }
+  transition {
+    id			    73
+    labelString		    "mot_d0/{mot=0;}"
+    labelPosition	    [643.121 440.733 90.5 17]
+    fontSize		    12
+    src {
+      id		      7
+      intersection	      [3 0 1 0.5 710 180 0 0]
+    }
+    dst {
+      id		      20
+      intersection	      [1 0 -1 0.5 410 550 0 0]
+    }
+    midPoint		    [560 361]
+    chart		    2
+    linkNode		    [2 72 74]
+    dataLimits		    [407.6 710 180 550]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    3
+    ssIdNumber		    50
+  }
+  transition {
+    id			    74
+    labelString		    "bottom_rise"
+    labelPosition	    [555.01 634.993 64.75 17]
+    fontSize		    12
+    src {
+      id		      25
+      intersection	      [3 0 1 0.5 410 780 0 0]
+    }
+    dst {
+      id		      5
+      intersection	      [3 0 1 0.5 410 180 0 0]
+    }
+    midPoint		    [410 632]
+    chart		    2
+    linkNode		    [2 73 75]
+    dataLimits		    [407.6 412.4 180 819.557]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    103
+  }
+  transition {
+    id			    75
+    labelString		    "infra_rise"
+    labelPosition	    [489.251 273.752 51.25 17]
+    fontSize		    12
+    src {
+      id		      7
+      intersection	      [3 0 1 0.5 710 180 0 0]
+    }
+    dst {
+      id		      5
+      intersection	      [3 0 1 0.5 410 180 0 0]
+    }
+    midPoint		    [560 259.0267]
+    chart		    2
+    linkNode		    [2 74 76]
+    dataLimits		    [407.6 710 180 259.146]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    48
+  }
+  transition {
+    id			    76
+    labelString		    "remote_rise"
+    labelPosition	    [467.99 193.752 65.5 17]
+    fontSize		    12
+    src {
+      id		      5
+      intersection	      [3 0 1 0.5 410 180 0 0]
+    }
+    dst {
+      id		      6
+      intersection	      [3 0 1 0.5 560 180 0 0]
+    }
+    midPoint		    [485 221.5533]
+    chart		    2
+    linkNode		    [2 75 77]
+    dataLimits		    [410 562.4 180 221.743]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    43
+  }
+  transition {
+    id			    77
+    labelString		    "infra_rise"
+    labelPosition	    [328.018 258.401 51.25 17]
+    fontSize		    12
+    src {
+      id		      10
+      intersection	      [1 0 -1 0.5 410 250 0 0]
+    }
+    dst {
+      id		      9
+      intersection	      [1 0 -1 0.5 260 250 0 0]
+    }
+    midPoint		    [335 208.4467]
+    chart		    2
+    linkNode		    [2 76 78]
+    dataLimits		    [257.6 410 208.257 250]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    57
+  }
+  transition {
+    id			    78
+    labelString		    "mot_d0/{mot=0;}"
+    labelPosition	    [608.463 403.334 90.5 17]
+    fontSize		    12
+    src {
+      id		      25
+      intersection	      [1 0 -1 0.5 410 700 0 0]
+    }
+    dst {
+      id		      11
+      intersection	      [1 0 -1 0.5 560 250 0 0]
+    }
+    midPoint		    [485 350.5156]
+    chart		    2
+    linkNode		    [2 77 79]
+    dataLimits		    [410 562.4 208.681 700]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    3
+    ssIdNumber		    104
+  }
+  transition {
+    id			    79
+    labelString		    "mot_d0/{mot=0;}"
+    labelPosition	    [208.322 309.374 90.5 17]
+    fontSize		    12
+    src {
+      id		      13
+      intersection	      [1 0 -1 0.5 110 400 0 0]
+    }
+    dst {
+      id		      9
+      intersection	      [1 0 -1 0.5 260 250 0 0]
+    }
+    midPoint		    [185 266.5344]
+    chart		    2
+    linkNode		    [2 78 80]
+    dataLimits		    [110 262.4 223.375 400]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    65
+  }
+  transition {
+    id			    80
+    labelString		    "mot_d0/{mot=0;}"
+    labelPosition	    [400.493 342.509 90.5 17]
+    fontSize		    12
+    src {
+      id		      15
+      intersection	      [1 0 -1 0.5 410 400 0 0]
+    }
+    dst {
+      id		      10
+      intersection	      [1 0 -1 0.5 410 250 0 0]
+    }
+    midPoint		    [410 281.5]
+    chart		    2
+    linkNode		    [2 79 81]
+    dataLimits		    [407.6 412.4 231.442 400]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    71
+  }
+  transition {
+    id			    81
+    labelString		    "mot_d1/{mot=1;}"
+    labelPosition	    [583.193 334.121 90.5 17]
+    fontSize		    12
+    src {
+      id		      11
+      intersection	      [1 0 -1 0.5 560 250 0 0]
+    }
+    dst {
+      id		      16
+      intersection	      [3 0 1 0.5 560 480 0 0]
+    }
+    midPoint		    [560 369]
+    chart		    2
+    linkNode		    [2 80 82]
+    dataLimits		    [557.6 562.4 239.476 498.524]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    61
+  }
+  transition {
+    id			    82
+    labelString		    "mot_d1/{mot=1;}"
+    labelPosition	    [735.91 339.235 90.5 17]
+    fontSize		    12
+    src {
+      id		      12
+      intersection	      [1 0 -1 0.5 710 250 0 0]
+    }
+    dst {
+      id		      17
+      intersection	      [3 0 1 0.5 710 480 0 0]
+    }
+    midPoint		    [710 369]
+    chart		    2
+    linkNode		    [2 81 83]
+    dataLimits		    [707.6 712.4 239.476 498.524]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    64
+  }
+  transition {
+    id			    83
+    labelString		    "top_rise"
+    labelPosition	    [575.144 413.489 44.75 17]
+    fontSize		    12
+    src {
+      id		      17
+      intersection	      [1 0 -1 0.5 710 400 0 0]
+    }
+    dst {
+      id		      15
+      intersection	      [1 0 -1 0.5 410 400 0 0]
+    }
+    midPoint		    [560 320.9733]
+    chart		    2
+    linkNode		    [2 82 84]
+    dataLimits		    [407.6 710 320.854 400]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    77
+  }
+  transition {
+    id			    84
+    labelString		    "bottom_fall"
+    labelPosition	    [350.6 492.167 60.5 17]
+    fontSize		    12
+    src {
+      id		      18
+      intersection	      [1 0 -1 0.5 110 550 0 0]
+    }
+    dst {
+      id		      16
+      intersection	      [1 0 -1 0.5 560 400 0 0]
+    }
+    midPoint		    [335 351.767]
+    chart		    2
+    linkNode		    [2 83 85]
+    dataLimits		    [110 562.4 326.021 550]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    80
+  }
+  transition {
+    id			    85
+    labelString		    "bottom_fall"
+    labelPosition	    [514.498 496.497 60.5 17]
+    fontSize		    12
+    src {
+      id		      19
+      intersection	      [1 0 -1 0.5 260 550 0 0]
+    }
+    dst {
+      id		      17
+      intersection	      [1 0 -1 0.5 710 400 0 0]
+    }
+    midPoint		    [485 351.767]
+    chart		    2
+    linkNode		    [2 84 86]
+    dataLimits		    [260 712.4 326.021 550]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    83
+  }
+  transition {
+    id			    86
+    labelString		    "mot_dm1/{mot=-1;}"
+    labelPosition	    [237.36 571.442 104.5 17]
+    fontSize		    12
+    src {
+      id		      9
+      intersection	      [3 0 1 0.5 260 330 0 0]
+    }
+    dst {
+      id		      23
+      intersection	      [1 0 -1 0.5 110 700 0 0]
+    }
+    midPoint		    [185 511]
+    chart		    2
+    linkNode		    [2 85 87]
+    dataLimits		    [107.6 260 330 700]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    56
+  }
+  transition {
+    id			    87
+    labelString		    "mot_d0/{mot=0;}"
+    labelPosition	    [403.42 511.427 90.5 17]
+    fontSize		    12
+    src {
+      id		      8
+      intersection	      [3 0 1 0.5 110 330 0 0]
+    }
+    dst {
+      id		      21
+      intersection	      [1 0 -1 0.5 560 550 0 0]
+    }
+    midPoint		    [335 436]
+    chart		    2
+    linkNode		    [2 86 88]
+    dataLimits		    [110 562.4 330 550]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    53
+  }
+  transition {
+    id			    88
+    labelString		    "mot_d0/{mot=0;}"
+    labelPosition	    [488.479 555.535 90.5 17]
+    fontSize		    12
+    src {
+      id		      22
+      intersection	      [3 0 1 0.5 710 630 0 0]
+    }
+    dst {
+      id		      9
+      intersection	      [3 0 1 0.5 260 330 0 0]
+    }
+    midPoint		    [485 618.1091]
+    chart		    2
+    linkNode		    [2 87 89]
+    dataLimits		    [257.6 710 330 685.866]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    91
+  }
+  transition {
+    id			    89
+    labelString		    "mot_d0/{mot=0;}"
+    labelPosition	    [453.816 752.721 90.5 17]
+    fontSize		    12
+    src {
+      id		      24
+      intersection	      [3 0 1 0.5 260 780 0 0]
+    }
+    dst {
+      id		      10
+      intersection	      [3 0 1 0.5 410 330 0 0]
+    }
+    midPoint		    [335 675.6898]
+    chart		    2
+    linkNode		    [2 88 90]
+    dataLimits		    [260 412.4 330 812.343]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    99
+  }
+  transition {
+    id			    90
+    labelString		    "infra_fall"
+    labelPosition	    [315.937 347.901 47 17]
+    fontSize		    12
+    src {
+      id		      9
+      intersection	      [3 0 1 0.5 260 330 0 0]
+    }
+    dst {
+      id		      10
+      intersection	      [3 0 1 0.5 410 330 0 0]
+    }
+    midPoint		    [335 371.5533]
+    chart		    2
+    linkNode		    [2 89 91]
+    dataLimits		    [260 412.4 330 371.743]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    55
+  }
+  transition {
+    id			    91
+    labelString		    "infra_rise"
+    labelPosition	    [557.453 354.292 51.25 17]
+    fontSize		    12
+    src {
+      id		      12
+      intersection	      [3 0 1 0.5 710 330 0 0]
+    }
+    dst {
+      id		      11
+      intersection	      [3 0 1 0.5 560 330 0 0]
+    }
+    midPoint		    [635 371.5533]
+    chart		    2
+    linkNode		    [2 90 92]
+    dataLimits		    [557.6 710 330 371.743]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    62
+  }
+  transition {
+    id			    92
+    labelString		    "infra_fall"
+    labelPosition	    [629.704 347.929 47 17]
+    fontSize		    12
+    src {
+      id		      11
+      intersection	      [3 0 1 0.5 560 330 0 0]
+    }
+    dst {
+      id		      12
+      intersection	      [3 0 1 0.5 710 330 0 0]
+    }
+    midPoint		    [635 371.5533]
+    chart		    2
+    linkNode		    [2 91 93]
+    dataLimits		    [560 712.4 330 371.743]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    60
+  }
+  transition {
+    id			    93
+    labelString		    "infra_fall"
+    labelPosition	    [635.604 391.038 47 17]
+    fontSize		    12
+    src {
+      id		      16
+      intersection	      [1 0 -1 0.5 560 400 0 0]
+    }
+    dst {
+      id		      17
+      intersection	      [1 0 -1 0.5 710 400 0 0]
+    }
+    midPoint		    [635 358.4467]
+    chart		    2
+    linkNode		    [2 92 94]
+    dataLimits		    [560 712.4 358.257 400]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    76
+  }
+  transition {
+    id			    94
+    labelString		    "infra_rise"
+    labelPosition	    [521.57 665.204 51.25 17]
+    fontSize		    12
+    src {
+      id		      24
+      intersection	      [1 0 -1 0.5 260 700 0 0]
+    }
+    dst {
+      id		      22
+      intersection	      [1 0 -1 0.5 710 550 0 0]
+    }
+    midPoint		    [485 501.767]
+    chart		    2
+    linkNode		    [2 93 95]
+    dataLimits		    [260 712.4 476.021 700]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    3
+    ssIdNumber		    100
+  }
+  transition {
+    id			    95
+    labelString		    "mot_d1/{mot=1;}"
+    labelPosition	    [200.943 575.115 90.5 17]
+    fontSize		    12
+    src {
+      id		      14
+      intersection	      [3 0 1 0.5 260 480 0 0]
+    }
+    dst {
+      id		      18
+      intersection	      [3 0 1 0.5 110 630 0 0]
+    }
+    midPoint		    [185 613.4656]
+    chart		    2
+    linkNode		    [2 94 96]
+    dataLimits		    [107.6 260 480 656.625]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    69
+  }
+  transition {
+    id			    96
+    labelString		    "infra_rise"
+    labelPosition	    [229.894 629.131 51.25 17]
+    fontSize		    12
+    src {
+      id		      15
+      intersection	      [3 0 1 0.5 410 480 0 0]
+    }
+    dst {
+      id		      13
+      intersection	      [3 0 1 0.5 110 480 0 0]
+    }
+    midPoint		    [260 559.0267]
+    chart		    2
+    linkNode		    [2 95 97]
+    dataLimits		    [107.6 410 480 559.146]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    72
+  }
+  transition {
+    id			    97
+    labelString		    "top_rise"
+    labelPosition	    [312.044 682.472 44.75 17]
+    fontSize		    12
+    src {
+      id		      16
+      intersection	      [3 0 1 0.5 560 480 0 0]
+    }
+    dst {
+      id		      13
+      intersection	      [3 0 1 0.5 110 480 0 0]
+    }
+    midPoint		    [335 596.5178]
+    chart		    2
+    linkNode		    [2 96 98]
+    dataLimits		    [107.6 560 480 596.566]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    74
+  }
+  transition {
+    id			    98
+    labelString		    "infra_fall"
+    labelPosition	    [278.003 553.472 47 17]
+    fontSize		    12
+    src {
+      id		      13
+      intersection	      [3 0 1 0.5 110 480 0 0]
+    }
+    dst {
+      id		      15
+      intersection	      [3 0 1 0.5 410 480 0 0]
+    }
+    midPoint		    [260 559.0267]
+    chart		    2
+    linkNode		    [2 97 99]
+    dataLimits		    [110 412.4 480 559.146]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    67
+  }
+  transition {
+    id			    99
+    labelString		    "infra_rise"
+    labelPosition	    [337.69 706.507 51.25 17]
+    fontSize		    12
+    src {
+      id		      21
+      intersection	      [3 0 1 0.5 560 630 0 0]
+    }
+    dst {
+      id		      14
+      intersection	      [3 0 1 0.5 260 480 0 0]
+    }
+    midPoint		    [410 641.9774]
+    chart		    2
+    linkNode		    [2 98 100]
+    dataLimits		    [257.6 560 480 670.049]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    88
+  }
+  transition {
+    id			    100
+    labelString		    "infra_fall"
+    labelPosition	    [436.986 532.831 47 17]
+    fontSize		    12
+    src {
+      id		      14
+      intersection	      [3 0 1 0.5 260 480 0 0]
+    }
+    dst {
+      id		      21
+      intersection	      [1 0 -1 0.5 560 550 0 0]
+    }
+    midPoint		    [410 511]
+    chart		    2
+    linkNode		    [2 99 101]
+    dataLimits		    [260 562.4 480 550]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    70
+  }
+  transition {
+    id			    101
+    labelString		    "infra_rise"
+    labelPosition	    [557.699 506.751 51.25 17]
+    fontSize		    12
+    src {
+      id		      17
+      intersection	      [3 0 1 0.5 710 480 0 0]
+    }
+    dst {
+      id		      16
+      intersection	      [3 0 1 0.5 560 480 0 0]
+    }
+    midPoint		    [635 521.5533]
+    chart		    2
+    linkNode		    [2 100 102]
+    dataLimits		    [557.6 710 480 521.743]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    78
+  }
+  transition {
+    id			    102
+    labelString		    "infra_fall"
+    labelPosition	    [554.899 648.132 47 17]
+    fontSize		    12
+    src {
+      id		      22
+      intersection	      [1 0 -1 0.5 710 550 0 0]
+    }
+    dst {
+      id		      24
+      intersection	      [1 0 -1 0.5 260 700 0 0]
+    }
+    midPoint		    [485 503.0318]
+    chart		    2
+    linkNode		    [2 101 103]
+    dataLimits		    [257.6 710 481.548 700]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    93
+  }
+  transition {
+    id			    103
+    labelString		    "infra_rise"
+    labelPosition	    [174.225 546.969 51.25 17]
+    fontSize		    12
+    src {
+      id		      19
+      intersection	      [1 0 -1 0.5 260 550 0 0]
+    }
+    dst {
+      id		      18
+      intersection	      [1 0 -1 0.5 110 550 0 0]
+    }
+    midPoint		    [185 508.4467]
+    chart		    2
+    linkNode		    [2 102 104]
+    dataLimits		    [107.6 260 508.257 550]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    84
+  }
+  transition {
+    id			    104
+    labelString		    "top_fall"
+    labelPosition	    [345.578 733.506 40.5 17]
+    fontSize		    12
+    src {
+      id		      23
+      intersection	      [1 0 -1 0.5 110 700 0 0]
+    }
+    dst {
+      id		      26
+      intersection	      [1 0 -1 0.5 560 700 0 0]
+    }
+    midPoint		    [335 583.4822]
+    chart		    2
+    linkNode		    [2 103 105]
+    dataLimits		    [110 562.4 583.434 700]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    3
+    ssIdNumber		    97
+  }
+  transition {
+    id			    105
+    labelString		    "infra_fall"
+    labelPosition	    [174.213 635.386 47 17]
+    fontSize		    12
+    src {
+      id		      18
+      intersection	      [3 0 1 0.5 110 630 0 0]
+    }
+    dst {
+      id		      19
+      intersection	      [3 0 1 0.5 260 630 0 0]
+    }
+    midPoint		    [185 671.5533]
+    chart		    2
+    linkNode		    [2 104 106]
+    dataLimits		    [110 262.4 630 671.743]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    82
+  }
+  transition {
+    id			    106
+    labelString		    "remote_rise"
+    labelPosition	    [408.866 920.149 65.5 17]
+    fontSize		    12
+    src {
+      id		      23
+      intersection	      [3 0 1 0.5 110 780 0 0]
+    }
+    dst {
+      id		      22
+      intersection	      [3 0 1 0.5 710 630 0 0]
+    }
+    midPoint		    [410 863.1436]
+    chart		    2
+    linkNode		    [2 105 107]
+    dataLimits		    [110 712.4 630 880.278]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    95
+  }
+  transition {
+    id			    107
+    labelString		    "mot_d1/{mot=1;}"
+    labelPosition	    [385.577 774.861 90.5 17]
+    fontSize		    12
+    src {
+      id		      21
+      intersection	      [3 0 1 0.5 560 630 0 0]
+    }
+    dst {
+      id		      19
+      intersection	      [3 0 1 0.5 260 630 0 0]
+    }
+    midPoint		    [410 709.0267]
+    chart		    2
+    linkNode		    [2 106 108]
+    dataLimits		    [257.6 560 630 709.146]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    89
+  }
+  transition {
+    id			    108
+    labelString		    "top_fall"
+    labelPosition	    [599.793 851.531 40.5 17]
+    fontSize		    12
+    src {
+      id		      22
+      intersection	      [3 0 1 0.5 710 630 0 0]
+    }
+    dst {
+      id		      25
+      intersection	      [3 0 1 0.5 410 780 0 0]
+    }
+    midPoint		    [560 793.7659]
+    chart		    2
+    linkNode		    [2 107 109]
+    dataLimits		    [407.6 710 630 826.73]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    3
+    ssIdNumber		    94
+  }
+  transition {
+    id			    109
+    labelString		    "remote_rise"
+    labelPosition	    [468.977 643.309 65.5 17]
+    fontSize		    12
+    src {
+      id		      20
+      intersection	      [3 0 1 0.5 410 630 0 0]
+    }
+    dst {
+      id		      21
+      intersection	      [3 0 1 0.5 560 630 0 0]
+    }
+    midPoint		    [485 671.5533]
+    chart		    2
+    linkNode		    [2 108 110]
+    dataLimits		    [410 562.4 630 671.743]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    87
+  }
+  transition {
+    id			    110
+    labelString		    "infra_fall"
+    labelPosition	    [176.475 785.262 47 17]
+    fontSize		    12
+    src {
+      id		      23
+      intersection	      [3 0 1 0.5 110 780 0 0]
+    }
+    dst {
+      id		      24
+      intersection	      [3 0 1 0.5 260 780 0 0]
+    }
+    midPoint		    [185 821.5533]
+    chart		    2
+    linkNode		    [2 109 111]
+    dataLimits		    [110 262.4 780 821.743]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    96
+  }
+  transition {
+    id			    111
+    labelString		    "remote_rise"
+    labelPosition	    [450.111 848.836 65.5 17]
+    fontSize		    12
+    src {
+      id		      26
+      intersection	      [3 0 1 0.5 560 780 0 0]
+    }
+    dst {
+      id		      25
+      intersection	      [3 0 1 0.5 410 780 0 0]
+    }
+    midPoint		    [485 821.5533]
+    chart		    2
+    linkNode		    [2 110 0]
+    dataLimits		    [407.6 560 780 821.743]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    3
+    ssIdNumber		    108
+  }
+  instance {
+    id			    112
+    name		    "closedloop"
+    machine		    1
+    chart		    2
+  }
+  target {
+    id			    113
+    name		    "sfun"
+    description		    "Default Simulink S-Function Target."
+    machine		    1
+    linkNode		    [1 0 0]
+  }
+}
