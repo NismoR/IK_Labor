@@ -16,8 +16,8 @@ dnW_Delta_i_new = [1.      4.6982   10.2369    9.4826];
     
 
 
-nuW_Delta_i = nuW_Delta_i_new;
-dnW_Delta_i = dnW_Delta_i_new;
+nuW_Delta_i = nuW_Delta_i_old;
+dnW_Delta_i = dnW_Delta_i_old;
 
 % nuW_Delta1 = [2.2138 15.9537 27.6702  4.9050];
 % dnW_Delta1 = [1.      8.3412 21.2393 22.6705];

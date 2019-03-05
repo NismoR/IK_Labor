@@ -4,113 +4,102 @@
 %----------------------------------------------------------------------------
 \section{A labor témája}
 %----------------------------------------------------------------------------
-Egy sáv detektáló szoftver részeit kellett megvalósítani, mely egy videót dolgoz fel. 
-Python nyelven, PyCharm fejlesztőkörnyezetet használtunk a mérés során, képfeldolgozó funkciókhoz az OpenCV-t használtuk. 
-A fájl betöltő, megjelenítő és szemléltető funkciók már adottak voltak, ezt kellett bizonyos függvényekkel kiegészítenünk, ennek részleteit a következő fejezetek tartalmazzák.
+A mérés során egy MIMO lepárlótorony robusztus irányítását valósítottam meg Matlab Robust Control Toolboxa és annak felhasználásával előre megírt szkriptek segítségével. Ezen szkriptek között található a mod\_col függvény, mely a desztillációs torony modelljének munkaponti linearizációjával képes a redukálni a modellt. A mérést ezen redukált modellen, a \figref{System}~ábrán látható zárt rendszeren végeztem.
 
+\begin{figure}[!ht]\hspace{1mm}
+	\includegraphics[width=140mm,keepaspectratio]{figures/2m06/system.png}
+	\caption{A zárt kör folyamatábrája}
+	\label{fig:System}
+\end{figure}
+\newpage
 %----------------------------------------------------------------------------
 \section{Első feladat}
 %----------------------------------------------------------------------------
-Az első feladat során a videó egy képe alapján határoztuk meg a sávok pixeleit egy bináris maszkon. 
-Ehhez többféle képfeldolgozó eljárást használtunk, melyek együttesen határozták meg a kimenetet.
+A mérésvezető által meghatározott {$k_i \in$ [0.9 1.1], $\Theta_i \in$ [0 1]} bizonytalanság és késleltetés mellett inicializáltam a linearizált modellt az \textit{olp\_col} függvénnyel. 
 
 \begin{figure}[!ht]
-	\includegraphics[width=150mm,keepaspectratio]{figures/m09/mag-mask.png}\vspace{2mm}
-	\includegraphics[width=150mm,keepaspectratio]{figures/m09/mag-mask.png}
-	\caption{A gradiens abszolút értéke és iránya alapján készített maszk}
-	\label{fig:MagDirMask}
+	\includegraphics[width=75mm,keepaspectratio]{figures/2m06/olp_old_1_.png}
+	\includegraphics[width=75mm,keepaspectratio]{figures/2m06/olp_old_2_.png}
+	\caption{A zárt rendszer frekvencia válasza}
+	\label{fig:Init}
 \end{figure}
 
-Először a kép pixeleinek x és y irányú gradienseit határoztuk meg Sobel szűrőablakok segítségével. 
-Ezt az eredeti kép szürkeárnyalatossá konvertált másolatán tudtuk elvégezni. 
-A sávok határait kereshetjük meg a gradiensek segítségével, mivel a fehér sáv és közel fekete úttest pixelei között nagy az intenzitásbeli különbség. 
-A kapott értékeket kétféleképpen tettük elérhetővé a kód többi része számára:
-\begin{itemize}
-	\item Gradiens abszolút értéke: mivel a sávok mindkét határára szükségünk van, nem kell különbséget tennünk a világos-sötét és sötét-világos átmenet között. A szimmetria kiküszöbölésével továbbá elég egy küszöbözés műveletet elvégezni a gradiensekre, nem kell külön negatív és pozitív tartománnyal foglalkozni
-	\item Gradiens skálázott értéke: egységes, 0-255 közötti tartományba kényszerítjük külön az x és y irányú gradienseket, ahol a maximális x vagy y irányú gradiens jelenti a 255 értéket. Ezzel nagyság szerint küszöbözhetővé tesszük őket, hiszen például alacsony megvilágítás mellett minden pixel intenzitása kicsi lesz, különbségeik is kicsik maradnak, egy fényes képhez használt küszöbértékek alapján nem találnánk elég nagy intenzitás eltéréseket.
-\end{itemize}
-Intenzitás alapú szűrést a skálázott gradiensek összegére végeztük el, míg az irány szerinti szűréshez a két irány arkusztangensére, a keresett értéktartományok adottak voltak. Az így készített maszk látható a \figref{MagDirMask}~ábrán.
+A mérési útmutatóban található súlyozó függvény alapján a \textit{hin\_col} paranccsal megterveztem a szabályzót, mely a \figref{HinOld}~ábrán látható. Ezután leszimuláltam a megadott bizonytalanságok alapján a rendszert, melynek tranziensei a \figref{PrtOld1}~ábrán és a \figref{PrtOld2}~ábrán láthatóak, attól függően, hogy az első vagy a második bemenethez tartozó alapjelre adtunk egységugrást.
 
-
-Másodszor szín szerinti szűrést alkalmaztunk, ehhez HLS színtérbe konvertáltuk a képet. Mivel csak fehér színt kerestünk, elég volt a színtér S, azaz telítettség értékére szűrni, ez fehér közeli színekre nagy értékű lesz, ezt a \figref{ColorMask}~ábra mutatja.
-
+\begin{figure}[!ht]\hspace{36mm}
+	\includegraphics[width=75mm,keepaspectratio]{figures/2m06/hin_old_.png}
+		\caption{A megvalósított szabályzó}
+	\label{fig:HinOld}
+\end{figure}
 \begin{figure}[!ht]
-	\includegraphics[width=150mm,keepaspectratio]{figures/m09/color-mask.png}
-	\caption{A színszűrés alapján készített maszk}
-	\label{fig:ColorMask}
+	\includegraphics[width=75mm,keepaspectratio]{figures/2m06/prt_old_1.png}
+	\includegraphics[width=75mm,keepaspectratio]{figures/2m06/prt_old_2.png}\vspace{2mm}
+	\includegraphics[width=75mm,keepaspectratio]{figures/2m06/prt_old_3.png}
+	\includegraphics[width=75mm,keepaspectratio]{figures/2m06/prt_old_4.png}
+		\caption{A rendszer beavatkozó jelei és kimenetei, az első alapjelhez tartozó egységugrás esetén}
+	\label{fig:PrtOld1}
 \end{figure}
-
-Végül sávnak nyilvánítottunk minden nagy és megfelelő irányú gradiensvektor által jelölt vagy megfelelő színű pixelt. Ezzel a két módszer hibáit szűrtük ki: a gradiens módszer a sáv széleit, míg a szín módszer a belsejét találja meg, a kettő uniója jelenti a teljes sávot, ez látható a \figref{CombinedMask}~ábrán.
-
 \begin{figure}[!ht]
-	\includegraphics[width=150mm,keepaspectratio]{figures/m09/combined-mask.png}
-	\caption{A kombinált maszk}
-	\label{fig:CombinedMask}
+	\includegraphics[width=75mm,keepaspectratio]{figures/2m06/prt_old_5.png}
+	\includegraphics[width=75mm,keepaspectratio]{figures/2m06/prt_old_6.png}\vspace{2mm}
+	\includegraphics[width=75mm,keepaspectratio]{figures/2m06/prt_old_7.png}
+	\includegraphics[width=75mm,keepaspectratio]{figures/2m06/prt_old_8.png}
+		\caption{A rendszer beavatkozó jelei és kimenetei, a második alapjelhez tartozó egységugrás esetén}
+	\label{fig:PrtOld2}
 \end{figure}
+
 \newpage
-
 %----------------------------------------------------------------------------
 \section{Második feladat}
 %----------------------------------------------------------------------------
-Egy konstans paraméterű perspektív transzformációt hajtottunk végre az első feladatban elkészített maszkon. Ehhez négy pontot kellett megadni a síkon, majd ezek transzformáció utáni megfelelőit, az átalakítást mátrixát az OpenCV \textit{getPerspectiveTransform} függvénye számolta ki, a transzformációt pedig a \textit{warpPerspective} függvény végezte el a mátrix alapján. Ennek eredménye a \figref{Warped}~ábrán látható. Az átalakítás inverzét is el kellett tárolnunk, hogy a torzított képen meghatározott sávok helyét megkaphassuk az eredeti képen is.
+
+A rendszer bizonytalanságát növelve az első feladatban megvalósított szabályzó már nem lesz elég robusztus, és elveszti a stabilitását. Erre láthatóak példák a \figref{PrtMod}~ábrán, melyeken az elsőn egy enyhén, a másodikon egy erősen szélesebb bizonytalanságot és késleltetést állítottam be.
+A beállított paraméterek értékei:
+\begin{itemize}
+	\item Enyhébb eset: {$k_i \in$ [0.7 1.3], $\Theta_i \in$ [0 1.07]}
+	\item Erősebb eset: {$k_i \in$ [0.65 1.35], $\Theta_i \in$ [0 1.1]}
+\end{itemize}
 
 \begin{figure}[!ht]
-	\includegraphics[width=150mm,keepaspectratio]{figures/m09/warped-mask.png}
-	\caption{A transzformált maszk}
-	\label{fig:Warped}
+	\includegraphics[width=75mm,keepaspectratio]{figures/2m06/prt_small_1.png}
+	\includegraphics[width=75mm,keepaspectratio]{figures/2m06/prt_small_2.png}\vspace{2mm}
+	\includegraphics[width=75mm,keepaspectratio]{figures/2m06/prt_big_1.png}
+	\includegraphics[width=75mm,keepaspectratio]{figures/2m06/prt_big_2.png}
+		\caption{A rendszer válaszának tranziensei szélesebb bizonytalanságot feltételezve}
+	\label{fig:PrtMod}
 \end{figure}
 
-Egy hisztogramot készítettünk, mely a \figref{Histogram}~ábrán látható. Ez a torzított kép fehér pixeleinek számát tartalmazta oszloponként összesítve. Mivel az egyenes sávok egyenes oszlopokként jelennek meg ezen a képen, ott helyezkedik el a sáv, ahol az oszlopban sok a sávnak címkézett pixel. A hisztogram két lokális maximuma jelenti a két sávot. Ha az egyik maximum jóval kevesebb, mint a másik, az szaggatott felfestésre utal. A sávok görbülhetnek is, ekkor a felső részük már nem esik a sáv aljának oszlopába. Ezért csak a torzított maszk alsó felét vesszük figyelembe a hisztogram készítésekor, azon a részen a sáv görbülettől függetlenül megközelítőleg oszlopként látszik.
-
-
-\begin{figure}[!ht]
-	\includegraphics[width=150mm,keepaspectratio]{figures/m09/histogram.png}
-	\caption{A vertikális hisztogram}
-	\label{fig:Histogram}
-\end{figure}
 \newpage
-
 %----------------------------------------------------------------------------
 \section{Harmadik feladat}
 %----------------------------------------------------------------------------
-A kamera és a detektálás is zajos eredményeket produkál, a jármű irányításához azonban célszerű ezt kiszűrni, simább bemenetet szolgáltatni. A program előre megírt részei kiszámolták a sáv görbületét és a jármű sávközéptől való eltérését, ezeket dolgoztuk fel. 
+Az új szabályzót az előző feladatban bemutatott, enyhén növelt bizonytalansági feltételek mellett terveztem meg. Ehhez az \textit{unc\_col} függvényt hívtam meg, melyben előzetesen módosítottam a késleltetést és a bizonytalanságot, így az már az új feltételekből kapott görbeseregeket jeleníti meg. A \textit{wfit} parancs segítségével ezekhez új súlyozó függvényt tudtam keresni, mely a következő lett:
+\begin{equation}\label{NewWeight}
+\frac{2.3509    s^{3}+8.4222   s^{2}+13.6532s+    3.0960}{s^{3}+4.6982  s^{2}+ 10.2369    s+9.4826}
+\end{equation}
 
-Az új értékeket egy-egy tömbben tároljuk, a tömb elemeinek átlaga adja a simított értéket. Mozgó átlagot számolunk, azaz a tömb teljes feltöltése után a legrégebbi értéket eldobtuk, az újat beszúrtuk, majd átlagot számoltunk az elemekből.
-A simított eltérés értékekre LS becsléssel egyenest illesztettünk, az egyenes egyenlet alakját egy mátrix definiálta. Az egyenes becsült meredeksége jelenti majd a szabályzó számára a középtől való eltérés változását.
-
-
-\newpage
-%----------------------------------------------------------------------------
-\section{Negyedik feladat}
-%----------------------------------------------------------------------------
-A fuzzy szabályzót a klasszikus MacVicar-Wheelan metaszabályok szerint terveztük meg. Bemenetnek a hibajelet, illetve annak deriváltját adtuk, melyekhez 5-5 tagsági függvényt alkottunk. A kimenet szintén 5 tagsági függvénnyel rendelkezik. Ezek alapján 5 fuzzy szabályt hoztunk létre.
-
-\begin{figure}[!ht]
-	\includegraphics[width=150mm,keepaspectratio]{figures/m09/mcw.png}
-	\caption{Példa a MacVicar-Wheelan metaszabályokra, 7-7 be-, és kimeneti tagsági függvények alapján}
-	\label{fig:MCW}
-\end{figure}
+A \textit{wts\_col} fájlt ezek alapján fel is frissítettem, majd újraszimuláltam a rendszert.
 
 
-%----------------------------------------------------------------------------
-\section{Ötödik feladat}
-%----------------------------------------------------------------------------
-A kész programot futtatva az általunk implementált detektáló és szabályzó algoritmus eredményét előre megírt függvények szemléltették a videón. A sávok közötti terület színes jelölése pontosan követte a felfestés közötti területet, a horizont környékén vált bizonytalanná a becslés, főleg kanyarodás közben, hajlamos volt a színes terület eltérni a valóságtól. 
-
-Az úthibák hatására az autó belengése miatt a kamera és az út síkja változik, emiatt a megadott négy pont a perspektív transzformáció során helytelenné vált, ilyen esetekben is pontatlanná vált a becslés.
-
-Egy grafikonon (\figref{Results}~ábra) láthattuk a szabályzó bemeneteit és kimenetét, az értékek csillapított és nyers formáját is. A zaj nagyrészt valóban eltűnt a simítás után.
+Amint azt a \figref{PrtNew}~ábrán is látni, az új szabályzó a kibővített bizonytalansági feltételek mellett képes volt javítani a rendszer ugrásválaszán, ám nem minden oszcillációt sikerült megszüntetni. Ezen az eredményen további súlyozó függvények kipróbálása mellett a $W_n$ és $W_p$ mátrixok módosításával lehet javítani.
 
 
 
 \begin{figure}[!ht]
-	\includegraphics[width=150mm,keepaspectratio]{figures/m09/results.png}
-	\caption{Az algoritmus működésének ellenőrzése}
-	\label{fig:Results}
+	\includegraphics[width=75mm,keepaspectratio]{figures/2m06/unc_col_before.png}
+	\includegraphics[width=75mm,keepaspectratio]{figures/2m06/unc_col_after.png}
+	\caption{Új súlyozó függvény felvétele}
+	\label{fig:Unc}
 \end{figure}
 
 
 
+\begin{figure}[!ht]
+	\includegraphics[width=75mm,keepaspectratio]{figures/2m06/prt_new_1_.png}
+	\includegraphics[width=75mm,keepaspectratio]{figures/2m06/prt_new_3_.png}
+	\caption{Az új szabályzó viselkedése a kibővített bizonytalansági feltételek mellett}
+	\label{fig:PrtNew}
+\end{figure}
 
 
 
