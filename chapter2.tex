@@ -9,7 +9,7 @@
 %----------------------------------------------------------------------------
 \section{A labor témája}
 %----------------------------------------------------------------------------
-A mérés során egy sorompó irányítását terveztem meg, melyet a diszkrét eseményű rendszerek felügyeleti irányításával valósítottam meg. A modellt és annak specifikációit a Supremica programban alkottam meg, majd teszteltem azt a Matlab Stateflow bővítményének segítségével.
+A mérés során egy sorompó irányítását terveztük meg, melyet a diszkrét eseményű rendszerek felügyeleti irányításával valósítottunk meg. A modellt és annak specifikációit a Supremica programban alkottuk meg, majd azt a Matlab Stateflow bővítményének segítségével teszteltük.
 
 
 %----------------------------------------------------------------------------
@@ -29,7 +29,7 @@ Ezen állapotok között a következő eseményekkel lehet váltani:
 	\item \textbf{mot\_dm1} - Sorompó lefelé indítása
 	\item \textbf{mot\_d0} - Sorompó megállítása
 \end{itemize}
-Mint látható, ezen modell megengedi, hogy a mozgás közben ismételten ráindítsunk a motorra, álló helyzetben ismét leállítsuk vagy akár ellentétes irányú ráindítás is lehetséges, mely a motor élettartamát jelentősen csökkentené. Ezen jelenségek letiltása miatt egy specifikációt vezettem be, mely a \figref{SpecMot}~ábrán látható.
+Mint látható, ezen modell megengedi, hogy a mozgás közben ismételten ráindítsunk a motorra, álló helyzetben ismét leállítsuk vagy akár ellentétes irányú ráindítás is lehetséges, mely a motor élettartamát jelentősen csökkentené. Ezen jelenségek letiltása miatt egy specifikációt vezettünk be, mely a \figref{SpecMot}~ábrán látható.
 
 \begin{figure}
 	\centering
@@ -37,7 +37,7 @@ Mint látható, ezen modell megengedi, hogy a mozgás közben ismételten ráind
 	\caption{A mozgató motor specifikációja}
 	\label{fig:SpecMot}
 \end{figure}
-A Supremica \textit{Analyzer} fülén az eddig megvalósított automaták szinkron szorzatát a \textit{Synchronize} paranccsal valósítottam meg, az így készült modell -mely már megfelel a specifikációnak- a \figref{SupMot}~ábrán látható.
+A Supremica \textit{Analyzer} fülén az eddig megvalósított automaták szinkron szorzatát a \textit{Synchronize} paranccsal valósítottuk meg, az így készült modell (továbbiakban \textit{sup\_mot}) -mely már megfelel a specifikációnak- a \figref{SupMot}~ábrán látható.
 \begin{figure}
 	\centering
 	\includegraphics[keepaspectratio]{figures/2m03/b_supmot.png}
@@ -46,21 +46,62 @@ A Supremica \textit{Analyzer} fülén az eddig megvalósított automaták szinkr
 \end{figure}
 
 
-
+\newpage
 %----------------------------------------------------------------------------
 \section{A végálláskapcsoló és fizikai korlátok}
 %----------------------------------------------------------------------------
+A motor helyes vezérléséhez szükségünk lesz egy-egy végálláskapcsolóra, mely a legfelső (\textit{top\_}), illetve legalsó (\textit{bottom\_}) helyzet elérését jelzik, vagyis a motor megállítására figyelmeztetnek. Eddig a modellben csak általunk irányítható eseményeket vettünk fel, ám a végálláskapcsoló jelzésének idejét nem tudjuk kontrollálni, ezt külön meg kell jelölnünk a Supremicában. Mindkét kapcsoló jelének fel, illetve lefutó élére következik be esemény, ezeket a \textit{rise} és \textit{fall} címkével jeleztük. A végálláskapcsolókhoz tartozó automata (\figref{Limit}~ábra) kezdeti állapota az, hogy a sorompó az alsó végállásban van. További állapotok, ha két végállás között valahol félúton, vagy a felső végállásban van a sorompó rúd.
+\begin{figure}
+	\centering
+	\includegraphics[keepaspectratio]{figures/2m03/b_limit.png}
+	\caption{A végálláskapcsolók modellje}
+	\label{fig:Limit}
+\end{figure}
+Mivel nem irányítható eseményeket terveztünk a rendszerbe, így azok jelenleg bármikor bekövetkezhetnek, ám helyes működés esetén ezen eseményeknek fizikai korlátai vannak. Feltételezhetjük, hogy az alsó végálláskapcsoló jelzésének lefutó éle, és a felső kapcsoló jelzésének felfutó éle csak a sorompó felfelé mozgása közben következhet be. Ehhez hasonlóan a \textit{top\_fall}, illetve a \textit{bottom\_rise} esemény csak lefelé mozgás közben történhet. Ezeket a fizikai korlátokat is felvittük a programba, melyek a \figref{Constraints}~ábrán láthatóak.
+
+\begin{figure}
+	\centering
+	\includegraphics[keepaspectratio]{figures/2m03/b_constraint1.png}	\includegraphics[keepaspectratio]{figures/2m03/b_constraint2.png}
+	\caption{A fizikai korlátok modelljei}
+	\label{fig:Constraints}
+\end{figure}
+
+Az előző pontban taglalt \textit{sup\_mot}, valamint az ebben a pontban megvalósított automaták szinkron szorzatát véve elkészítettük a \textit{barrier} modellt, mely a sorompó mozgatását megvalósító funkciók összesített modellje. Ennek állapotgráfja látható a \figref{Barrier}~ábrán.
+
+\begin{figure}
+	\centering
+	\includegraphics[trim = 10mm 55mm 50mm 10mm,clip,width=110mm,keepaspectratio]{figures/2m03/barrier2.pdf}
+	\caption{A sorompó mozgatását megvalósító funkciók állapotgráfja}
+	\label{fig:Barrier}
+\end{figure}
 
 
 
 
+%----------------------------------------------------------------------------
+\section{Az infraérzékelő és a távirányító}
+%----------------------------------------------------------------------------
+A sorompó akkor működik jól, ha az nem záródik rá és nem tesz kárt az ügyfél gépjárművében. Ennek megakadályozására infrasugaras érzékelőt használunk, melyet a rendszerbe kell integrálnunk. Továbbá az ügyfél szeretné távirányítóval nyithatóvá tenni a sorompót. E két rendszer modellje látható a \figref{InfraRemote}~ábrán, melyen az infra jel felfutó éle jelzi az akadály megjelenését, illetve a lefutó éle annak eltűnését. A távirányító szempontjából elég nekünk a gomb megnyomását érzékelnünk. Ezen események ismét általunk kontrollálhatatlanok, ezeket jelezni kell a programnak. 
 
+\begin{figure}
+	\centering
+	\includegraphics[keepaspectratio]{figures/2m03/b_infra.png}	\includegraphics[keepaspectratio]{figures/2m03/b_remote.png}
+	\caption{Az infraérzékelő és a távirányító modelljei}
+	\label{fig:InfraRemote}
+\end{figure}
 
+Az eddig meglévő \textit{barrier}, illetve az újonnan megvalósított két modellt ismét \textit{szinkronizáljuk} a Supremica segítségével, továbbiakban ez lesz a plant, mely a \figref{Plant}~ábrán látható.
 
+\begin{figure}
+	\centering
+	\includegraphics[trim = 15mm 70mm 50mm 10mm,clip,width=140mm,keepaspectratio]{figures/2m03/plant.pdf}
+	\caption{A teljes rendszer működését megvalósító állapotgép}
+	\label{fig:Plant}
+\end{figure}
 
-
-
-
+%----------------------------------------------------------------------------
+\section{Specifikációk}
+%----------------------------------------------------------------------------
 
 
 \newpage
