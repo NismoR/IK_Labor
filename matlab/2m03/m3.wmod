@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="windows-1250" standalone="yes"?>
+<Module Name="m3" xmlns="http://waters.sourceforge.net/xsd/module" xmlns:ns2="http://waters.sourceforge.net/xsd/base" xmlns:ns3="http://waters.sourceforge.net/xsd/des">
+    <EventDeclList>
+        <EventDecl Kind="CONTROLLABLE" Name="mod_dm1"/>
+        <EventDecl Kind="CONTROLLABLE" Name="mod_d1"/>
+        <EventDecl Kind="CONTROLLABLE" Name="mod_d0"/>
+        <EventDecl Kind="PROPOSITION" Name=":accepting"/>
+    </EventDeclList>
+    <ComponentList>
+        <SimpleComponent Kind="PLANT" Name="motor">
+            <Graph>
+                <NodeList>
+                    <SimpleNode Initial="true" Name="all">
+                        <EventList>
+                            <SimpleIdentifier Name=":accepting"/>
+                        </EventList>
+                        <PointGeometry>
+                            <Point X="416" Y="272"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="le">
+                        <PointGeometry>
+                            <Point X="160" Y="272"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="fel">
+                        <PointGeometry>
+                            <Point X="688" Y="272"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                </NodeList>
+                <EdgeList>
+                    <Edge Source="all" Target="fel">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d1"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="547" Y="251"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="all" Target="all">
+                        <SplineGeometry>
+                            <Point X="414" Y="275"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="fel" Target="all">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="557" Y="291"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="fel" Target="fel">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d1"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="763" Y="238"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="le" Target="le">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_dm1"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="80" Y="246"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="le" Target="all">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="287" Y="250"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="all" Target="le">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_dm1"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="291" Y="293"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="all" Target="all">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="430" Y="328"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="le" Target="fel">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d1"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="406" Y="470"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="fel" Target="le">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_dm1"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="419" Y="124"/>
+                        </SplineGeometry>
+                    </Edge>
+                </EdgeList>
+            </Graph>
+        </SimpleComponent>
+    </ComponentList>
+</Module>

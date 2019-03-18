@@ -1,0 +1,1912 @@
+<?xml version="1.0" encoding="windows-1250" standalone="yes"?>
+<Module Name="m3_motor" xmlns="http://waters.sourceforge.net/xsd/module" xmlns:ns2="http://waters.sourceforge.net/xsd/base" xmlns:ns3="http://waters.sourceforge.net/xsd/des">
+    <EventDeclList>
+        <EventDecl Kind="CONTROLLABLE" Name="mod_dm1"/>
+        <EventDecl Kind="CONTROLLABLE" Name="mod_d1"/>
+        <EventDecl Kind="CONTROLLABLE" Name="mod_d0"/>
+        <EventDecl Kind="PROPOSITION" Name=":accepting"/>
+        <EventDecl Kind="UNCONTROLLABLE" Name="bottom_fall"/>
+        <EventDecl Kind="UNCONTROLLABLE" Name="bottom_rise"/>
+        <EventDecl Kind="UNCONTROLLABLE" Name="top_fall"/>
+        <EventDecl Kind="UNCONTROLLABLE" Name="top_rise"/>
+        <EventDecl Kind="UNCONTROLLABLE" Name="infra_fall"/>
+        <EventDecl Kind="UNCONTROLLABLE" Name="infra_rise"/>
+        <EventDecl Kind="UNCONTROLLABLE" Name="remote_rise"/>
+    </EventDeclList>
+    <ComponentList>
+        <SimpleComponent Kind="PLANT" Name="motor">
+            <Graph>
+                <NodeList>
+                    <SimpleNode Name="le">
+                        <PointGeometry>
+                            <Point X="160" Y="272"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="fel">
+                        <PointGeometry>
+                            <Point X="688" Y="272"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Initial="true" Name="all">
+                        <EventList>
+                            <SimpleIdentifier Name=":accepting"/>
+                        </EventList>
+                        <PointGeometry>
+                            <Point X="416" Y="288"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                </NodeList>
+                <EdgeList>
+                    <Edge Source="fel" Target="fel">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d1"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="763" Y="238"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="le" Target="le">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_dm1"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="80" Y="246"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="le" Target="fel">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d1"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="406" Y="470"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="fel" Target="le">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_dm1"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="419" Y="124"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="le" Target="all">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="288" Y="262"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="all" Target="le">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_dm1"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="286" Y="296"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="all" Target="fel">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d1"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="548" Y="264"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="fel" Target="all">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="554" Y="300"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="all" Target="all">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="423" Y="223"/>
+                        </SplineGeometry>
+                    </Edge>
+                </EdgeList>
+            </Graph>
+        </SimpleComponent>
+        <SimpleComponent Kind="SPEC" Name="spec_mot">
+            <Graph>
+                <NodeList>
+                    <SimpleNode Initial="true" Name="S0">
+                        <PointGeometry>
+                            <Point X="272" Y="256"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="S1">
+                        <PointGeometry>
+                            <Point X="528" Y="256"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                </NodeList>
+                <EdgeList>
+                    <Edge Source="S1" Target="S0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="399" Y="302"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="S0" Target="S1">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d1"/>
+                            <SimpleIdentifier Name="mod_dm1"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="398" Y="226"/>
+                        </SplineGeometry>
+                    </Edge>
+                </EdgeList>
+            </Graph>
+        </SimpleComponent>
+        <SimpleComponent Kind="SPEC" Name="spec2">
+            <Graph>
+                <NodeList>
+                    <SimpleNode Initial="true" Name="S0">
+                        <PointGeometry>
+                            <Point X="160" Y="160"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="S1">
+                        <PointGeometry>
+                            <Point X="256" Y="160"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                </NodeList>
+                <EdgeList>
+                    <Edge Source="S0" Target="S1">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="top_rise"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="198" Y="100"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="S1" Target="S0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="top_fall"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="218" Y="190"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="S0" Target="S0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d1"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="112" Y="205"/>
+                        </SplineGeometry>
+                    </Edge>
+                </EdgeList>
+            </Graph>
+        </SimpleComponent>
+        <SimpleComponent Kind="SPEC" Name="spec3">
+            <Graph>
+                <NodeList>
+                    <SimpleNode Initial="true" Name="S0">
+                        <PointGeometry>
+                            <Point X="160" Y="128"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="S1">
+                        <PointGeometry>
+                            <Point X="304" Y="128"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                </NodeList>
+                <EdgeList>
+                    <Edge Source="S0" Target="S1">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d1"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="234" Y="100"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="S1" Target="S0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="top_rise"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="236" Y="146"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="S0" Target="S0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="118" Y="178"/>
+                        </SplineGeometry>
+                    </Edge>
+                </EdgeList>
+            </Graph>
+        </SimpleComponent>
+        <SimpleComponent Kind="SPEC" Name="spec4">
+            <Graph>
+                <NodeList>
+                    <SimpleNode Initial="true" Name="S0">
+                        <PointGeometry>
+                            <Point X="144" Y="176"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="S1">
+                        <PointGeometry>
+                            <Point X="288" Y="176"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                </NodeList>
+                <EdgeList>
+                    <Edge Source="S0" Target="S1">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="top_rise"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="214" Y="144"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="S1" Target="S0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="top_fall"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="216" Y="194"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="S1" Target="S1">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_dm1"/>
+                        </LabelBlock>
+                    </Edge>
+                </EdgeList>
+            </Graph>
+        </SimpleComponent>
+        <SimpleComponent Kind="SPEC" Name="spec5">
+            <Graph>
+                <NodeList>
+                    <SimpleNode Initial="true" Name="S0">
+                        <PointGeometry>
+                            <Point X="160" Y="192"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="S1">
+                        <PointGeometry>
+                            <Point X="288" Y="192"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                </NodeList>
+                <EdgeList>
+                    <Edge Source="S0" Target="S1">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_fall"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="224" Y="166"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="S1" Target="S0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_rise"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="228" Y="206"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="S0" Target="S0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_dm1"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="105" Y="257"/>
+                        </SplineGeometry>
+                    </Edge>
+                </EdgeList>
+            </Graph>
+        </SimpleComponent>
+        <SimpleComponent Kind="SPEC" Name="spec6">
+            <Graph>
+                <NodeList>
+                    <SimpleNode Initial="true" Name="S0">
+                        <PointGeometry>
+                            <Point X="208" Y="160"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="S1">
+                        <PointGeometry>
+                            <Point X="352" Y="160"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                </NodeList>
+                <EdgeList>
+                    <Edge Source="S0" Target="S1">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_dm1"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="278" Y="134"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="S1" Target="S0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_fall"/>
+                            <SimpleIdentifier Name="bottom_rise"/>
+                            <SimpleIdentifier Name="remote_rise"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="280" Y="180"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="S0" Target="S0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <SimpleIdentifier Name="infra_fall"/>
+                            <SimpleIdentifier Name="bottom_rise"/>
+                            <SimpleIdentifier Name="remote_rise"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="168" Y="200"/>
+                        </SplineGeometry>
+                    </Edge>
+                </EdgeList>
+            </Graph>
+        </SimpleComponent>
+        <SimpleComponent Kind="PLANT" Name="Motor_sup_plant">
+            <Graph>
+                <NodeList>
+                    <SimpleNode Initial="true" Name="q0">
+                        <EventList>
+                            <SimpleIdentifier Name=":accepting"/>
+                        </EventList>
+                        <PointGeometry>
+                            <Point X="120" Y="131"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q2">
+                        <PointGeometry>
+                            <Point X="50" Y="211"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q3">
+                        <PointGeometry>
+                            <Point X="195" Y="55"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                </NodeList>
+                <EdgeList>
+                    <Edge Source="q0" Target="q2">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d1"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="90" Y="181"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q0" Target="q3">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_dm1"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="169" Y="97"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q2" Target="q0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="73" Y="167"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q3" Target="q0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="153" Y="81"/>
+                        </SplineGeometry>
+                    </Edge>
+                </EdgeList>
+            </Graph>
+        </SimpleComponent>
+        <SimpleComponent Kind="PLANT" Name="limit">
+            <Graph>
+                <NodeList>
+                    <SimpleNode Initial="true" Name="also">
+                        <EventList>
+                            <SimpleIdentifier Name=":accepting"/>
+                        </EventList>
+                        <PointGeometry>
+                            <Point X="128" Y="160"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="kozep">
+                        <PointGeometry>
+                            <Point X="336" Y="160"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="felso">
+                        <PointGeometry>
+                            <Point X="592" Y="160"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                </NodeList>
+                <EdgeList>
+                    <Edge Source="also" Target="kozep">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="bottom_fall"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="232" Y="118"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="kozep" Target="felso">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="top_fall"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="456" Y="124"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="felso" Target="kozep">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="top_rise"/>
+                        </LabelBlock>
+                    </Edge>
+                    <Edge Source="kozep" Target="also">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="bottom_rise"/>
+                        </LabelBlock>
+                    </Edge>
+                </EdgeList>
+            </Graph>
+        </SimpleComponent>
+        <SimpleComponent Kind="PLANT" Name="constraint1">
+            <Graph>
+                <NodeList>
+                    <SimpleNode Initial="true" Name="S0">
+                        <PointGeometry>
+                            <Point X="208" Y="176"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="S1">
+                        <PointGeometry>
+                            <Point X="464" Y="176"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                </NodeList>
+                <EdgeList>
+                    <Edge Source="S0" Target="S1">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d1"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="334" Y="150"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="S1" Target="S0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                        </LabelBlock>
+                    </Edge>
+                    <Edge Source="S0" Target="S0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <SimpleIdentifier Name="mod_dm1"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="160" Y="236"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="S1" Target="S1">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="bottom_fall"/>
+                            <SimpleIdentifier Name="top_rise"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="527" Y="167"/>
+                        </SplineGeometry>
+                    </Edge>
+                </EdgeList>
+            </Graph>
+        </SimpleComponent>
+        <SimpleComponent Kind="PLANT" Name="infra">
+            <Graph>
+                <NodeList>
+                    <SimpleNode Initial="true" Name="S0">
+                        <PointGeometry>
+                            <Point X="176" Y="160"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="S1">
+                        <PointGeometry>
+                            <Point X="304" Y="160"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                </NodeList>
+                <EdgeList>
+                    <Edge Source="S0" Target="S1">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_fall"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="238" Y="138"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="S1" Target="S0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_rise"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="242" Y="206"/>
+                        </SplineGeometry>
+                    </Edge>
+                </EdgeList>
+            </Graph>
+        </SimpleComponent>
+        <SimpleComponent Kind="PLANT" Name="constraint2">
+            <Graph>
+                <NodeList>
+                    <SimpleNode Initial="true" Name="S0">
+                        <PointGeometry>
+                            <Point X="256" Y="224"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="S1">
+                        <PointGeometry>
+                            <Point X="368" Y="224"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                </NodeList>
+                <EdgeList>
+                    <Edge Source="S0" Target="S1">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_dm1"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="312" Y="194"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="S1" Target="S0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                        </LabelBlock>
+                    </Edge>
+                    <Edge Source="S0" Target="S0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <SimpleIdentifier Name="mod_d1"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="207" Y="264"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="S1" Target="S1">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="bottom_rise"/>
+                            <SimpleIdentifier Name="top_fall"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="419" Y="270"/>
+                        </SplineGeometry>
+                    </Edge>
+                </EdgeList>
+            </Graph>
+        </SimpleComponent>
+        <SimpleComponent Kind="PLANT" Name="barrier">
+            <Graph>
+                <NodeList>
+                    <SimpleNode Initial="true" Name="q0">
+                        <EventList>
+                            <SimpleIdentifier Name=":accepting"/>
+                        </EventList>
+                        <PointGeometry>
+                            <Point X="84" Y="63"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q1">
+                        <PointGeometry>
+                            <Point X="241" Y="295"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q2">
+                        <PointGeometry>
+                            <Point X="186" Y="84"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q3">
+                        <PointGeometry>
+                            <Point X="464" Y="264"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q4">
+                        <PointGeometry>
+                            <Point X="311" Y="240"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q5">
+                        <PointGeometry>
+                            <Point X="72" Y="147"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q6">
+                        <PointGeometry>
+                            <Point X="403" Y="148"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q7">
+                        <PointGeometry>
+                            <Point X="214" Y="209"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q8">
+                        <PointGeometry>
+                            <Point X="500" Y="187"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                </NodeList>
+                <EdgeList>
+                    <Edge Source="q0" Target="q2">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d1"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                    </Edge>
+                    <Edge Source="q0" Target="q5">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_dm1"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="76" Y="103"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q1" Target="q4">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d1"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="283" Y="287"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q1" Target="q7">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_dm1"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="231" Y="256"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q2" Target="q0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="135" Y="52"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q2" Target="q4">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="bottom_fall"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="254" Y="156"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q3" Target="q4">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="top_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="393" Y="261"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q3" Target="q8">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="504" Y="234"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q4" Target="q1">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="270" Y="269"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q5" Target="q0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="54" Y="100"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q6" Target="q8">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                    </Edge>
+                    <Edge Source="q7" Target="q1">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="211" Y="263"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q7" Target="q5">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="bottom_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="134" Y="183"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q7" Target="q6">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="top_fall"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="307" Y="170"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q8" Target="q3">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d1"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="485" Y="225"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q8" Target="q6">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_dm1"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="463" Y="149"/>
+                        </SplineGeometry>
+                    </Edge>
+                </EdgeList>
+            </Graph>
+        </SimpleComponent>
+        <SimpleComponent Kind="PLANT" Name="remote">
+            <Graph>
+                <NodeList>
+                    <SimpleNode Initial="true" Name="S0">
+                        <PointGeometry>
+                            <Point X="208" Y="160"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                </NodeList>
+                <EdgeList>
+                    <Edge Source="S0" Target="S0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="remote_rise"/>
+                        </LabelBlock>
+                    </Edge>
+                </EdgeList>
+            </Graph>
+        </SimpleComponent>
+        <SimpleComponent Kind="PLANT" Name="plant_full">
+            <Graph>
+                <NodeList>
+                    <SimpleNode Initial="true" Name="q0">
+                        <EventList>
+                            <SimpleIdentifier Name=":accepting"/>
+                        </EventList>
+                        <PointGeometry>
+                            <Point X="123" Y="223"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q1">
+                        <EventList>
+                            <SimpleIdentifier Name=":accepting"/>
+                        </EventList>
+                        <PointGeometry>
+                            <Point X="119" Y="294"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q10">
+                        <PointGeometry>
+                            <Point X="408" Y="449"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q11">
+                        <PointGeometry>
+                            <Point X="439" Y="512"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q12">
+                        <PointGeometry>
+                            <Point X="665" Y="491"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q13">
+                        <PointGeometry>
+                            <Point X="683" Y="559"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q14">
+                        <PointGeometry>
+                            <Point X="189" Y="380"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q15">
+                        <PointGeometry>
+                            <Point X="186" Y="447"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q16">
+                        <PointGeometry>
+                            <Point X="435" Y="315"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q17">
+                        <PointGeometry>
+                            <Point X="483" Y="369"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q2">
+                        <PointGeometry>
+                            <Point X="798" Y="381"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q3">
+                        <PointGeometry>
+                            <Point X="797" Y="451"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q4">
+                        <PointGeometry>
+                            <Point X="480" Y="168"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q5">
+                        <PointGeometry>
+                            <Point X="508" Y="232"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q6">
+                        <PointGeometry>
+                            <Point X="729" Y="229"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q7">
+                        <PointGeometry>
+                            <Point X="727" Y="297"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q8">
+                        <PointGeometry>
+                            <Point X="245" Y="116"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="q9">
+                        <PointGeometry>
+                            <Point X="254" Y="186"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="5" Y="5"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                </NodeList>
+                <EdgeList>
+                    <Edge Source="q0" Target="q0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="remote_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="65" Y="193"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q0" Target="q1">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_fall"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="115" Y="256"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q0" Target="q14">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d1"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="157" Y="293"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q0" Target="q8">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_dm1"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="177" Y="162"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q1" Target="q0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="93" Y="255"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q1" Target="q1">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="remote_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="54" Y="298"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q1" Target="q15">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d1"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="124" Y="385"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q1" Target="q9">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_dm1"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="181" Y="248"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q10" Target="q10">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="remote_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="371" Y="495"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q10" Target="q11">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_fall"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="409" Y="496"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q10" Target="q16">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="424" Y="386"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q11" Target="q10">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="429" Y="487"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q11" Target="q11">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="remote_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="431" Y="574"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q11" Target="q17">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="476" Y="455"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q12" Target="q10">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="top_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="536" Y="477"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q12" Target="q12">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="remote_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="652" Y="540"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q12" Target="q13">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_fall"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="669" Y="537"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q12" Target="q2">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="744" Y="448"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q13" Target="q11">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="top_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="564" Y="557"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q13" Target="q12">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="691" Y="531"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q13" Target="q13">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="remote_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="711" Y="617"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q13" Target="q3">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="762" Y="528"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q14" Target="q0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="139" Y="302"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q14" Target="q10">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="bottom_fall"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="292" Y="421"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q14" Target="q14">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="remote_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="133" Y="400"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q14" Target="q15">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_fall"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                    </Edge>
+                    <Edge Source="q15" Target="q1">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="142" Y="375"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q15" Target="q11">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="bottom_fall"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="305" Y="499"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q15" Target="q14">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="167" Y="419"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q15" Target="q15">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="remote_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="141" Y="491"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q16" Target="q10">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d1"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="403" Y="380"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q16" Target="q16">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="remote_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="394" Y="285"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q16" Target="q17">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_fall"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="467" Y="335"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q16" Target="q4">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_dm1"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                    </Edge>
+                    <Edge Source="q17" Target="q11">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d1"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                    </Edge>
+                    <Edge Source="q17" Target="q16">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="451" Y="349"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q17" Target="q17">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="remote_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="522" Y="401"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q17" Target="q5">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_dm1"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="514" Y="302"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q2" Target="q12">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d1"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="737" Y="427"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q2" Target="q2">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="remote_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="864" Y="376"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q2" Target="q3">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_fall"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="804" Y="419"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q2" Target="q6">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_dm1"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="793" Y="294"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q3" Target="q13">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d1"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="746" Y="514"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q3" Target="q2">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="826" Y="419"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q3" Target="q3">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="remote_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="856" Y="479"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q3" Target="q7">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_dm1"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="764" Y="386"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q4" Target="q16">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="442" Y="226"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q4" Target="q4">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="remote_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="488" Y="106"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q4" Target="q5">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_fall"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="509" Y="185"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q4" Target="q6">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="top_fall"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="611" Y="179"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q4" Target="q8">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="bottom_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="360" Y="121"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q5" Target="q17">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="493" Y="296"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q5" Target="q4">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="489" Y="194"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q5" Target="q5">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="remote_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="546" Y="186"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q5" Target="q7">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="top_fall"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="625" Y="258"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q5" Target="q9">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="bottom_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="382" Y="202"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q6" Target="q2">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="772" Y="296"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q6" Target="q6">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="remote_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="773" Y="184"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q6" Target="q7">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_fall"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="749" Y="257"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q7" Target="q3">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="775" Y="368"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q7" Target="q6">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                    </Edge>
+                    <Edge Source="q7" Target="q7">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="remote_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="784" Y="276"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q8" Target="q0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="165" Y="145"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q8" Target="q8">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="remote_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="219" Y="57"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q8" Target="q9">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_fall"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="255" Y="140"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q9" Target="q1">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d0"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="175" Y="228"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q9" Target="q8">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="infra_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="233" Y="143"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="q9" Target="q9">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="remote_rise"/>
+                            <LabelGeometry Anchor="NW">
+                                <Point X="0" Y="10"/>
+                            </LabelGeometry>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="208" Y="152"/>
+                        </SplineGeometry>
+                    </Edge>
+                </EdgeList>
+            </Graph>
+        </SimpleComponent>
+        <SimpleComponent Kind="SPEC" Name="spec1">
+            <Graph>
+                <NodeList>
+                    <SimpleNode Initial="true" Name="S0">
+                        <PointGeometry>
+                            <Point X="208" Y="144"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                    <SimpleNode Name="S1">
+                        <PointGeometry>
+                            <Point X="352" Y="144"/>
+                        </PointGeometry>
+                        <LabelGeometry Anchor="NW">
+                            <Point X="0" Y="10"/>
+                        </LabelGeometry>
+                    </SimpleNode>
+                </NodeList>
+                <EdgeList>
+                    <Edge Source="S0" Target="S1">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="remote_rise"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="282" Y="122"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="S1" Target="S0">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="bottom_rise"/>
+                        </LabelBlock>
+                        <SplineGeometry>
+                            <Point X="282" Y="156"/>
+                        </SplineGeometry>
+                    </Edge>
+                    <Edge Source="S1" Target="S1">
+                        <LabelBlock>
+                            <SimpleIdentifier Name="mod_d1"/>
+                            <SimpleIdentifier Name="remote_rise"/>
+                        </LabelBlock>
+                    </Edge>
+                </EdgeList>
+            </Graph>
+        </SimpleComponent>
+    </ComponentList>
+</Module>
