@@ -8,6 +8,7 @@ clc
 % 1) Inicializálás
 % A jármû 3.5 méter oldalirányú és 1 fokos orientációs hibával indul.
 % A sebessége 30 m/s.
+% x = [e1, d_e1, e2, d_e2];
 x0   = [3.5; 30*sin(1/180*pi); 1/180*pi; 0];    
 kmax = 500;
 N    = 100;

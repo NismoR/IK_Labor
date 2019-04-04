@@ -32,6 +32,7 @@ function [px,py,psi,delta,E,J,lambda] = mpccar(N,kmax,P,Q,R,x0)
 % Phi = ??
 % Psi = ??
 % KN =  ?
+mpc_init;
 
 % 4) MPC algoritmus:
 for k = 1:kmax
